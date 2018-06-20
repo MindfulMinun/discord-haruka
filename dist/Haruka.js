@@ -2,7 +2,7 @@
 (function() {
   //! ========================================
   //! Creating Haruka
-  var Enmap, Haruka, HarukaFns, file, fnObj, fs, h, i, len;
+  var Enmap, EnmapSQLite, Haruka, HarukaFns, file, fnObj, fs, i, len, provider;
 
   Haruka = {};
 
@@ -18,18 +18,22 @@
 
   Enmap = require('enmap');
 
-  h = require('enmap-sqlite');
+  EnmapSQLite = require('enmap-sqlite');
 
   //! ========================================
   //! Enmap
-  // provider = new EnmapSQLite({ name: 'settings' })
-  // Haruka.settings = new Enmap({
-  //     provider: new EnmapSQLite({
-  //         name: 'settings'
-  //     })
-  // })
+  provider = new EnmapSQLite({
+    name: 'settings'
+  });
+
+  Haruka.settings = new Enmap({
+    provider: new EnmapSQLite({
+      name: 'settings'
+    })
+  });
+
   Haruka.defaultSettings = {
-    modRole: "Moderator",
+    modRole: "Mod",
     adminRole: "Admin",
     welcomeChannel: "welcome",
     getWelcomeMessage: function(member) {
@@ -38,7 +42,7 @@
         // "サーバへようこそ, #{member}さま！"
         `Behold! ${member} has arrived!`,
         `A wild ${member} appeared!`,
-        `The man, the myth, the legend, ${member}!`,
+        `The man, the myth, the legend, ${member} has arrived!`,
         `${member} joined the party.`
       ].choose();
     }
@@ -92,23 +96,6 @@
     if (!hasRun) {
       return msg.reply(["Hmm, I'm not sure what you mean by that.", "Sorry, I don't know what you meant by that.", "I’m not sure I understand.", "I’m not sure what you mean."].choose() + " Try `-h help` for a list of commands.");
     }
-  };
-
-  Haruka.greet = function(channelName, member) {
-    var channel;
-    //! Send the message to a designated channel on a server
-    channel = member.guild.channels.find('name', channelName);
-    if (!channel) {
-      return;
-    }
-    return channel.send([
-      `Welcome to the server, ${member}!`,
-      // "サーバへようこそ, #{member}さま！"
-      `Behold! ${member} has arrived!`,
-      `A wild ${member} appeared!`,
-      `The man, the myth, the legend, ${member}!`,
-      `${member} joined the party.`
-    ].choose());
   };
 
   module.exports = Haruka;

@@ -13,15 +13,15 @@ EnmapSQLite = require 'enmap-sqlite'
 
 #! ========================================
 #! Enmap
-# provider = new EnmapSQLite({ name: 'settings' })
-# Haruka.settings = new Enmap({
-#     provider: new EnmapSQLite({
-#         name: 'settings'
-#     })
-# })
+provider = new EnmapSQLite({ name: 'settings' })
+Haruka.settings = new Enmap({
+    provider: new EnmapSQLite({
+        name: 'settings'
+    })
+})
 
 Haruka.defaultSettings = {
-    modRole: "Moderator"
+    modRole: "Mod"
     adminRole: "Admin"
     welcomeChannel: "welcome"
     getWelcomeMessage: (member) ->
@@ -30,7 +30,7 @@ Haruka.defaultSettings = {
             # "サーバへようこそ, #{member}さま！"
             "Behold! #{member} has arrived!"
             "A wild #{member} appeared!"
-            "The man, the myth, the legend, #{member}!"
+            "The man, the myth, the legend, #{member} has arrived!"
             "#{member} joined the party."
         ].choose()
 }
@@ -80,19 +80,5 @@ Haruka.try = (msg) ->
             "I’m not sure I understand."
             "I’m not sure what you mean."
         ].choose() + " Try `-h help` for a list of commands."
-
-
-Haruka.greet = (channelName, member) ->
-    #! Send the message to a designated channel on a server
-    channel = member.guild.channels.find 'name', channelName
-    return if not channel
-    channel.send [
-        "Welcome to the server, #{member}!"
-        # "サーバへようこそ, #{member}さま！"
-        "Behold! #{member} has arrived!"
-        "A wild #{member} appeared!"
-        "The man, the myth, the legend, #{member}!"
-        "#{member} joined the party."
-    ].choose()
 
 module.exports = Haruka

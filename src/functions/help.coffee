@@ -5,9 +5,9 @@ handler = (msg, match, H) ->
         msg.reply "I'm in **development** mode,
             stuff may break. Use `#h` instead of `-h`."
 
-    if match[1] and match[1].length
+    if match[1]
         for fn in H.functions
-            helpMatch = fn.regex.test match[2]
+            helpMatch = fn.regex.test match[1]
             if helpMatch then return msg.channel.send fn.help
 
     msg.channel.send """
@@ -28,7 +28,7 @@ handler = (msg, match, H) ->
 
 module.exports = {
     name: "Help"
-    regex: /^(help|h)\s*(\S[\s\S]*)?$/i
+    regex: /^(?:help|h)(?:\s+(\S[\s\S]*))?\s*$/i
     handler: handler
     help: """
         ```asciidoc
