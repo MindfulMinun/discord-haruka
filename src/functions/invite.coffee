@@ -1,12 +1,11 @@
 #! ========================================
 #! Invite
-config = require '../config.json'
-handler = (msg) ->
+handler = (msg, match, H) ->
     msg.reply [
         "Invite me to another server using the following link: \n"
         'https://discordapp.com/oauth2/authorize?'
         'client_id='
-        config.client_id
+        H.config.client_id
         '&scope=bot'
     ].join ''
 

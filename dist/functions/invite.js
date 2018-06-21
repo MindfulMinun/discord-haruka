@@ -2,12 +2,10 @@
 (function() {
   //! ========================================
   //! Invite
-  var config, handler;
+  var handler;
 
-  config = require('../config.json');
-
-  handler = function(msg) {
-    return msg.reply(["Invite me to another server using the following link: \n", 'https://discordapp.com/oauth2/authorize?', 'client_id=', config.client_id, '&scope=bot'].join(''));
+  handler = function(msg, match, H) {
+    return msg.reply(["Invite me to another server using the following link: \n", 'https://discordapp.com/oauth2/authorize?', 'client_id=', H.config.client_id, '&scope=bot'].join(''));
   };
 
   module.exports = {

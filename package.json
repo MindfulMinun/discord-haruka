@@ -1,16 +1,17 @@
 {
-  "name": "discord-haruka",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "MindfulMinun",
-  "license": "MIT",
-  "dependencies": {
-    "discord.js": "^11.3.2",
-    "fs": "0.0.1-security",
-    "nedb": "^1.8.0"
-  }
+    "name": "discord-haruka",
+    "version": "1.0.0-alpha",
+    "description": "A useless Discord bot.",
+    "main": "dist/main.js",
+    "scripts": {
+        "start": "node dist/main.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "MindfulMinun",
+    "license": "MIT",
+    "dependencies": {
+        "discord.js": "^11.3.2",
+        "fs": "0.0.1-security",
+        "nedb": "^1.8.0"
+    }
 }

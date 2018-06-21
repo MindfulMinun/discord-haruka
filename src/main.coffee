@@ -2,11 +2,12 @@
 #! Haruka Setup
 fs      = require 'fs'
 Discord = require 'discord.js'
-config  = require './config'
+config  = require '../config.json'
 Haruka  = require './Haruka.js'
 
 client = new Discord.Client
 
+Haruka.config = config
 #! ========================================
 #! Add event listeners
 client.on 'ready', ->
@@ -44,7 +45,7 @@ client.on 'message', (msg) -> Haruka.try msg
 
 #! Catch Uncaught rejections and continue normally.
 process.on 'unhandledRejection', (err) ->
-    console.log "Uncaught Promise Rejection:", err
+    console.log "===== Uncaught Promise Rejection: =====\n", err
 
 #! ========================================
 #! Helpers
@@ -53,4 +54,4 @@ Array::last   = -> this[this.length - 1]
 
 #! ========================================
 #! Finally, log Haruka in.
-client.login config.token
+client.login Haruka.config.token

@@ -2,8 +2,8 @@
 #! .gitignore
 
 # Config: don't want to leak out Haruka's info
-dist/config.json
-src/config.cson
+/config.json
+/config.cson
 data/
 
 # IDEs and editors
@@ -24,6 +24,7 @@ data/
 
 # Logs
 logs
+
 *.log
 npm-debug.log*
 yarn-debug.log*

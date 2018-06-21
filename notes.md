@@ -1,6 +1,6 @@
 # Notes
 
-Some reminders for me.
+Some reminders on how to do stuff.
 
 ### Compile Coffeescript
 ```bash
@@ -9,7 +9,7 @@ $ coffee -o dist/ -cw src/
 ```
 
 
-### Copy files from here to Server
+### Copy files from local to Server
 ```bash
 #! In Haruka: Clear everything in Haruka
 $ rm -rf ~
