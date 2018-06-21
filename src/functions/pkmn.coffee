@@ -101,9 +101,9 @@ handler = (msg, match) ->
             .setThumbnail pkmn.sprites.front_default
             .setTitle "#{capitalize P.name} — #{P.dexNumber}"
             .setDescription P.description
-            .addField "National Dex \#", P.dexNumber
-            .addField "Typing", P.types.join "/"
-            .addField "Category", P.category
+            .addField "National Dex \#", P.dexNumber, true
+            .addField "Typing", P.types.join "/", true
+            .addField "Category", P.category, true
         msg.channel.send embed
     catch err
         console.log "========================================"

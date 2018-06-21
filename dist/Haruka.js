@@ -2,7 +2,7 @@
 (function() {
   //! ========================================
   //! Creating Haruka
-  var Enmap, EnmapSQLite, Haruka, HarukaFns, file, fnObj, fs, i, len, provider;
+  var Datastore, Haruka, HarukaFns, file, fnObj, fs, i, len;
 
   Haruka = {};
 
@@ -16,40 +16,37 @@
   //! Modules
   fs = require('fs');
 
-  Enmap = require('enmap');
-
-  EnmapSQLite = require('enmap-sqlite');
+  Datastore = require('nedb');
 
   //! ========================================
-  //! Enmap
-  provider = new EnmapSQLite({
-    name: 'settings'
-  });
-
-  Haruka.settings = new Enmap({
-    provider: new EnmapSQLite({
-      name: 'settings'
+  //! Datastores
+  Haruka.db = {
+    serverSettings: new Datastore({
+      filename: 'data/serverSettings.db',
+      autoload: true
     })
-  });
-
-  Haruka.defaultSettings = {
-    modRole: "Mod",
-    adminRole: "Admin",
-    welcomeChannel: "welcome",
-    getWelcomeMessage: function(member) {
-      return [
-        `Welcome to the server, ${member}!`,
-        // "サーバへようこそ, #{member}さま！"
-        `Behold! ${member} has arrived!`,
-        `A wild ${member} appeared!`,
-        `The man, the myth, the legend, ${member} has arrived!`,
-        `${member} joined the party.`
-      ].choose();
-    }
   };
+
+  Haruka.defaultServerSettings = {
+    modRole: "mod",
+    adminRole: "admin",
+    welcomeChannel: "welcome",
+    shouldWelcomeNewMembers: true
+  };
+
+  //! Compact database every hour
+  // Haruka.db.persistence.setAutocompactionInterval 3.6e+6
 
   //! ========================================
   //! Helper functions
+  // welcomeMessage: [
+  //     "Welcome to the server, {member}!"
+  //     # "サーバへようこそ, {member}さま！"
+  //     "Behold! {member} has arrived!"
+  //     "A wild {member} appeared!"
+  //     "The man, the myth, the legend, {member} has arrived!"
+  //     "{member} joined the party."
+  // ]
   Array.prototype.choose = function() {
     return this[Math.floor(Math.random() * this.length)];
   };
@@ -79,7 +76,12 @@
     if (!txt.startsWith(Haruka.prefix) || msg.author.bot) {
       return;
     }
+    //! Arguments = "-h    my command" -> "my command"
     args = txt.slice(Haruka.prefix.length).replace(/^\s+/g, '');
+    //! Show a warning if Haruka's in dev mode
+    if (Haruka.dev) {
+      msg.reply("I'm in **development** mode, stuff may break. Use `#h` instead of `-h`.");
+    }
     ref = Haruka.functions;
     //! Run through all the commands and see if one matches.
     for (j = 0, len1 = ref.length; j < len1; j++) {

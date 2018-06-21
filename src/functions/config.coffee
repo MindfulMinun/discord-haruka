@@ -1,23 +1,35 @@
 #! ========================================
 #! About
 handler = (msg, match, H) ->
-    #! Get rid of extraneous properties
-    guildConf = JSON.parse JSON.stringify(
-        H.settings.get(msg.guild.id) or H.defaultSettings
+    db = H.db.serverSettings
+
+    if not msg.guild
+        return msg.reply [
+            "You have to be in a server to use this command."
+            "This command can only be used if you’re in a server."
+            "You can’t use this command outside of servers."
+        ].choose()
+
+    serverSettings = await (new Promise (s, f) ->
+        db.find({_id: "#{msg.guild.id}"}, (err, doc) ->
+            if doc then s(doc) else f(err)
+        )
     )
-    console.log match
+
+    console.log serverSettings
 
     #! Command is admin only, get admin value:
-    adminRole = msg.guild.roles.find("name", guildConf.adminRole)
+    adminRole = msg.guild.roles.find("name", serverSettings.adminRole)
 
-    if not adminRole or not msg.member.has adminRole.id
+    if not adminRole or not msg.member.roles.has adminRole.id
+    # if no
         return msg.reply [
-            "You have to have the `#{guildConf.adminRole}` role
+            "You have to have the `${guildConf.adminRole}` role
                 to use this command."
-            "You don't have the `#{guildConf.adminRole}` role,
+            "You don't have the `${guildConf.adminRole}` role,
                 so you’re not allowed to use this command."
             "You can’t do that if you don’t have the
-                `#{guildConf.adminRole}` role."
+                `${guildConf.adminRole}` role."
         ].choose()
 
     #! -h config adminRole admin

@@ -23,24 +23,28 @@ client.on 'ready', ->
         """
 client.on 'message', (msg) -> Haruka.try msg
 
-client.on 'guildCreate', (guild) ->
-    #! Adding a new row to the collection uses `set(key, value)`
-    Haruka.settings.set guild.id, Haruka.defaultSettings
+# client.on 'guildCreate', (guild) ->
+#     #! Adding a new row to the collection uses `set(key, value)`
+#     Haruka.settings.set guild.id, Haruka.defaultSettings
+#
+# client.on 'guildDelete', (guild) ->
+#     #! Removing an element uses `delete(key)`
+#     Haruka.settings.delete guild.id
+#
+# client.on 'guildMemberAdd', (member) ->
+#     #! This executes when a member joins, so let's welcome them!
+#     #! Get a welcome message using `getProp`
+#     message = Haruka.settings.getProp(member.guild.id, getWelcomeMessage)()
+#
+#     #! Send message to the welcome channel
+#     member.guild.channels
+#         .find "name", Haruka.settings.getProp(member.guild.id, "welcomeChannel")
+#         .send welcomeMessage
+#         .catch console.error
 
-client.on 'guildDelete', (guild) ->
-    #! Removing an element uses `delete(key)`
-    Haruka.settings.delete guild.id
-
-client.on 'guildMemberAdd', (member) ->
-    #! This executes when a member joins, so let's welcome them!
-    #! Get a welcome message using `getProp`
-    message = Haruka.settings.getProp(member.guild.id, getWelcomeMessage)()
-
-    #! Send message to the welcome channel
-    member.guild.channels
-        .find "name", Haruka.settings.getProp(member.guild.id, "welcomeChannel")
-        .send welcomeMessage
-        .catch console.error
+#! Catch Uncaught rejections and continue normally.
+process.on 'unhandledRejection', (err) ->
+    console.log "Uncaught Promise Rejection:", err
 
 #! ========================================
 #! Helpers

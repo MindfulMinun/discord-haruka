@@ -4,15 +4,29 @@
   //! About
   var handler;
 
-  handler = function(msg, match, H) {
-    var adminRole, args, guildConf;
-    //! Get rid of extraneous properties
-    guildConf = JSON.parse(JSON.stringify(H.settings.get(msg.guild.id) || H.defaultSettings));
-    console.log(match);
+  handler = async function(msg, match, H) {
+    var adminRole, args, db, serverSettings;
+    db = H.db.serverSettings;
+    if (!msg.guild) {
+      return msg.reply(["You have to be in a server to use this command.", "This command can only be used if you’re in a server.", "You can’t use this command outside of servers."].choose());
+    }
+    serverSettings = (await (new Promise(function(s, f) {
+      return db.find({
+        _id: `${msg.guild.id}`
+      }, function(err, doc) {
+        if (doc) {
+          return s(doc);
+        } else {
+          return f(err);
+        }
+      });
+    })));
+    console.log(serverSettings);
     //! Command is admin only, get admin value:
-    adminRole = msg.guild.roles.find("name", guildConf.adminRole);
-    if (!adminRole || !msg.member.has(adminRole.id)) {
-      return msg.reply([`You have to have the \`${guildConf.adminRole}\` role to use this command.`, `You don't have the \`${guildConf.adminRole}\` role, so you’re not allowed to use this command.`, `You can’t do that if you don’t have the \`${guildConf.adminRole}\` role.`].choose());
+    adminRole = msg.guild.roles.find("name", serverSettings.adminRole);
+    if (!adminRole || !msg.member.roles.has(adminRole.id)) {
+      // if no
+      return msg.reply(["You have to have the `${guildConf.adminRole}` role to use this command.", "You don't have the `${guildConf.adminRole}` role, so you’re not allowed to use this command.", "You can’t do that if you don’t have the `${guildConf.adminRole}` role."].choose());
     }
     //! -h config adminRole admin
     if (match[1]) {

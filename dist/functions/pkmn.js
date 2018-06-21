@@ -104,7 +104,7 @@
         return capitalize(t.type.name);
       });
       //! Create the embed object
-      embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://www.smogon.com/dex/sm/pokemon/${(P.name === "Meowstic" ? "meowstic-m" : species.name)}/`).setThumbnail(pkmn.sprites.front_default).setTitle(`${capitalize(P.name)} — ${P.dexNumber}`).setDescription(P.description).addField("National Dex \#", P.dexNumber).addField("Typing", P.types.join("/")).addField("Category", P.category);
+      embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://www.smogon.com/dex/sm/pokemon/${(P.name === "Meowstic" ? "meowstic-m" : species.name)}/`).setThumbnail(pkmn.sprites.front_default).setTitle(`${capitalize(P.name)} — ${P.dexNumber}`).setDescription(P.description).addField("National Dex \#", P.dexNumber, true).addField("Typing", P.types.join("/", true)).addField("Category", P.category, true);
       return msg.channel.send(embed);
     } catch (error) {
       err = error;

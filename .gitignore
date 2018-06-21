@@ -4,6 +4,7 @@
 # Config: don't want to leak out Haruka's info
 dist/config.json
 src/config.cson
+data/
 
 # IDEs and editors
 .idea

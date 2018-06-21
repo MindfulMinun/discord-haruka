@@ -2,7 +2,7 @@
 #! Chat
 
 handler = (msg) ->
-    msg.reply [
+    msg.channel.send [
         "I’m so excited for the new Smash Bros. game coming out this December!
             Apparently, the game’s going to include all characters from
             previous Smash series. The only _new_ characters they’ve annnounced

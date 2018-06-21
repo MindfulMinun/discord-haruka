@@ -7,33 +7,35 @@ Haruka.prefix = if Haruka.dev then '#h' else '-h'
 
 #! ========================================
 #! Modules
-fs          = require 'fs'
-Enmap       = require 'enmap'
-EnmapSQLite = require 'enmap-sqlite'
+fs        = require 'fs'
+Datastore = require 'nedb'
 
 #! ========================================
-#! Enmap
-provider = new EnmapSQLite({ name: 'settings' })
-Haruka.settings = new Enmap({
-    provider: new EnmapSQLite({
-        name: 'settings'
-    })
-})
-
-Haruka.defaultSettings = {
-    modRole: "Mod"
-    adminRole: "Admin"
-    welcomeChannel: "welcome"
-    getWelcomeMessage: (member) ->
-        [
-            "Welcome to the server, #{member}!"
-            # "サーバへようこそ, #{member}さま！"
-            "Behold! #{member} has arrived!"
-            "A wild #{member} appeared!"
-            "The man, the myth, the legend, #{member} has arrived!"
-            "#{member} joined the party."
-        ].choose()
+#! Datastores
+Haruka.db = {
+    serverSettings: new Datastore {
+        filename: 'data/serverSettings.db'
+        autoload: yes
+    }
 }
+
+Haruka.defaultServerSettings = {
+    modRole: "mod"
+    adminRole: "admin"
+    welcomeChannel: "welcome"
+    shouldWelcomeNewMembers: yes
+    # welcomeMessage: [
+    #     "Welcome to the server, {member}!"
+    #     # "サーバへようこそ, {member}さま！"
+    #     "Behold! {member} has arrived!"
+    #     "A wild {member} appeared!"
+    #     "The man, the myth, the legend, {member} has arrived!"
+    #     "{member} joined the party."
+    # ]
+}
+
+#! Compact database every hour
+# Haruka.db.persistence.setAutocompactionInterval 3.6e+6
 
 #! ========================================
 #! Helper functions
@@ -62,7 +64,13 @@ Haruka.try = (msg) ->
     #! and it's not from another bot.
     if (not txt.startsWith(Haruka.prefix) or msg.author.bot) then return
 
+    #! Arguments = "-h    my command" -> "my command"
     args = txt.slice(Haruka.prefix.length).replace(/^\s+/g, '')
+
+    #! Show a warning if Haruka's in dev mode
+    if Haruka.dev
+        msg.reply "I'm in **development** mode, stuff may break.
+            Use `#h` instead of `-h`."
 
     #! Run through all the commands and see if one matches.
     for fn in Haruka.functions
