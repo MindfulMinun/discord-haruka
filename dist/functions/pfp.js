@@ -6,18 +6,26 @@
 
   Discord = require('discord.js');
 
-  handler = function(msg) {
-    var embed;
-    console.log(msg);
-    embed = new Discord.RichEmbed().setColor('#448aff').setURL(msg.author.displayAvatarURL).setTitle(msg.author.username).setDescription("Profile image").setImage(msg.author.displayAvatarURL);
-    return msg.channel.send(embed);
+  handler = function(msg, match) {
+    var embed, i, len, results, user, users;
+    users = msg.mentions.users.array();
+    if (!users.length) {
+      users = [msg.author];
+    }
+    results = [];
+    for (i = 0, len = users.length; i < len; i++) {
+      user = users[i];
+      embed = new Discord.RichEmbed().setColor('#448aff').setURL(user.displayAvatarURL).setTitle(user.username).setDescription("Profile image").setImage(user.displayAvatarURL);
+      results.push(msg.channel.send(embed));
+    }
+    return results;
   };
 
   module.exports = {
     name: "Profile Image",
-    regex: /^(my\s+)?(img|pfp|avatar)/i,
+    regex: /^(img|pfp|avatar)/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for Profile Image ===\n*Aliases*: my img, my pfp, my avatar, img, pfp, avatar\n-h pfp :: Returns your profile image in a nice box with a URL.\n```"
+    help: "```asciidoc\n=== Help for Profile Image ===\n*Aliases*: img, pfp, avatar\n-h pfp :: Returns your profile image in a nice box with a URL.\n-h pfp [@user @user ...] :: Returs those user’s profile image.\nNote: You must @ each member directly. @[role], @here, and @everyone\n      won't work.\n```"
   };
 
 }).call(this);

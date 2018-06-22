@@ -1,5 +1,29 @@
 #! ========================================
 #! Creating Haruka
+
+###
+ * The message handlers will be passed a snapshot of the Haruka instance.
+ * The Haruka instance will have the following structure:
+
+    Haruka {
+        dev: Boolean
+        functions: [{
+            name: String
+            regex: RegExp
+            handler: Function
+            help: String
+        }, ...]
+        prefix: Enum('-h', '#h')
+        db: {
+            serverSettings: Datastore
+        }
+        defaultServerSettings: Object
+        addFunction: Function
+        try: Function
+        config: JSON
+    }
+###
+
 Haruka = {}
 Haruka.dev = yes
 Haruka.functions = []
@@ -23,15 +47,7 @@ Haruka.defaultServerSettings = {
     modRole: "mod"
     adminRole: "admin"
     welcomeChannel: "welcome"
-    shouldWelcomeNewMembers: yes
-    # welcomeMessage: [
-    #     "Welcome to the server, {member}!"
-    #     # "サーバへようこそ, {member}さま！"
-    #     "Behold! {member} has arrived!"
-    #     "A wild {member} appeared!"
-    #     "The man, the myth, the legend, {member} has arrived!"
-    #     "{member} joined the party."
-    # ]
+    shouldWelcomeNewMembers: no
 }
 
 #! Compact database every hour
@@ -57,15 +73,14 @@ for file in HarukaFns
 
 
 Haruka.try = (msg) ->
-    txt = msg.content
     hasRun = no
+
+    txt = msg.content.tokenize()
+    txt[1] = if txt[1] then txt[1] else "help"
 
     #! Check if the message starts with the prefix,
     #! and it's not from another bot.
-    if (not txt.startsWith(Haruka.prefix) or msg.author.bot) then return
-
-    #! Arguments = "-h    my command" -> "my command"
-    args = txt.slice(Haruka.prefix.length).replace(/^\s+/g, '')
+    if (txt[0] isnt Haruka.prefix) or msg.author.bot then return
 
     #! Show a warning if Haruka's in dev mode
     if Haruka.dev
@@ -75,7 +90,7 @@ Haruka.try = (msg) ->
     #! Run through all the commands and see if one matches.
     for fn in Haruka.functions
         if hasRun is no
-            regexMatch = fn.regex.exec(args)
+            regexMatch = fn.regex.exec txt[1]
             if regexMatch
                 hasRun = yes
                 fn.handler(msg, regexMatch, Haruka)

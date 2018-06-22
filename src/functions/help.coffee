@@ -13,14 +13,14 @@ handler = (msg, match, H) ->
         For help for a specific command, use `-h help <command>`.
         ```asciidoc
         === Commands ===
-        about      :: General stuff about me.
-        chat       :: Start a conversation with me!
-        help [...] :: This list. What did you expect?
-        invite     :: Replies with the URL to invite me to other servers.
-        pfp        :: Returns your profile image as a URL
-        ping       :: Replies “Pong!”
-        pkmn <...> :: Get information regarding a Pokémon (Try -h help pkmn)
-        say <...>  :: Replies with <...>
+        -h about      :: General stuff about me.
+        -h chat       :: Start a conversation with me!
+        -h help [...] :: This list. What did you expect?
+        -h invite     :: Replies with the URL to invite me to other servers.
+        -h pfp        :: Returns your profile image as a URL
+        -h ping       :: Replies “Pong!”
+        -h pkmn <...> :: Get information regarding a Pokémon (Try -h help pkmn)
+        -h say <...>  :: Replies with <...>
         ```
     """
 

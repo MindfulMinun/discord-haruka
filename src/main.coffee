@@ -6,8 +6,8 @@ config  = require '../config.json'
 Haruka  = require './Haruka.js'
 
 client = new Discord.Client
-
 Haruka.config = config
+
 #! ========================================
 #! Add event listeners
 client.on 'ready', ->
@@ -24,24 +24,35 @@ client.on 'ready', ->
         """
 client.on 'message', (msg) -> Haruka.try msg
 
-# client.on 'guildCreate', (guild) ->
-#     #! Adding a new row to the collection uses `set(key, value)`
-#     Haruka.settings.set guild.id, Haruka.defaultSettings
-#
-# client.on 'guildDelete', (guild) ->
-#     #! Removing an element uses `delete(key)`
-#     Haruka.settings.delete guild.id
-#
-# client.on 'guildMemberAdd', (member) ->
-#     #! This executes when a member joins, so let's welcome them!
-#     #! Get a welcome message using `getProp`
-#     message = Haruka.settings.getProp(member.guild.id, getWelcomeMessage)()
-#
-#     #! Send message to the welcome channel
-#     member.guild.channels
-#         .find "name", Haruka.settings.getProp(member.guild.id, "welcomeChannel")
-#         .send welcomeMessage
-#         .catch console.error
+client.on 'guildCreate', (guild) ->
+    #! Adding a new row to the collection uses `insert(key, value)`
+    Haruka.db.serverSettings.insert(guild.id, Haruka.defaultSettings)
+
+client.on 'guildDelete', (guild) ->
+    #! Removing an element uses `delete(key, options, cb)`
+    Haruka.db.serverSettings.remove({ _id: guild.id }, {}, (->))
+
+client.on 'guildMemberAdd', (member) ->
+    #! This executes when a member joins, so let's welcome them!
+    #! Check if Haruka should welcome members using `db.find`
+    db.find({ _id: member.guild.id }, (err, docs) ->
+        if err then return
+
+        if docs.shouldWelcomeNewMembers is yes
+            #! Send message to channel
+            member.guild.channels
+                .find "name", docs.welcomeChannel
+                .send [
+                    "Welcome to the server, #{member}!"
+                    # "サーバへようこそ, #{member}さま！"
+                    "Behold! #{member} has arrived!"
+                    "A wild #{member} appeared!"
+                    "The man, the myth, the legend, #{member} has arrived!"
+                    "#{member} joined the party."
+                ].choose()
+                .catch console.error
+
+    )
 
 #! Catch Uncaught rejections and continue normally.
 process.on 'unhandledRejection', (err) ->
@@ -49,8 +60,17 @@ process.on 'unhandledRejection', (err) ->
 
 #! ========================================
 #! Helpers
-Array::choose = -> this[Math.floor(Math.random() * this.length)]
-Array::last   = -> this[this.length - 1]
+Array::choose = ->
+    #! Choose a random element from this array.
+    this[Math.floor(Math.random() * this.length)]
+
+Array::last = ->
+    #! Retrieve this array's last element.
+    this[this.length - 1]
+
+String::tokenize = ->
+    #! Split this string at the first occurrence of whitespace.
+    this.replace(/\s+/, '\x01').split '\x01'
 
 #! ========================================
 #! Finally, log Haruka in.

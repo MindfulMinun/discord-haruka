@@ -3,25 +3,32 @@
 
 Discord = require 'discord.js'
 
-handler = (msg) ->
-    console.log msg
-    embed = new Discord.RichEmbed()
-        .setColor '#448aff'
-        .setURL   msg.author.displayAvatarURL
-        .setTitle msg.author.username
-        .setDescription "Profile image"
-        .setImage msg.author.displayAvatarURL
-    msg.channel.send embed
+handler = (msg, match) ->
+    users = msg.mentions.users.array()
+
+    if not users.length then users = [msg.author]
+
+    for user in users
+        embed = new Discord.RichEmbed()
+            .setColor '#448aff'
+            .setURL   user.displayAvatarURL
+            .setTitle user.username
+            .setDescription "Profile image"
+            .setImage user.displayAvatarURL
+        msg.channel.send embed
 
 module.exports = {
     name: "Profile Image"
-    regex: /^(my\s+)?(img|pfp|avatar)/i
+    regex: /^(img|pfp|avatar)/i
     handler: handler
     help: """
         ```asciidoc
         === Help for Profile Image ===
-        *Aliases*: my img, my pfp, my avatar, img, pfp, avatar
+        *Aliases*: img, pfp, avatar
         -h pfp :: Returns your profile image in a nice box with a URL.
+        -h pfp [@user @user ...] :: Returs those user’s profile image.
+        Note: You must @ each member directly. @[role], @here, and @everyone
+              won't work.
         ```
     """
 }

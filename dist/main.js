@@ -33,24 +33,40 @@
     return Haruka.try(msg);
   });
 
-  // client.on 'guildCreate', (guild) ->
-  //     #! Adding a new row to the collection uses `set(key, value)`
-  //     Haruka.settings.set guild.id, Haruka.defaultSettings
+  client.on('guildCreate', function(guild) {
+    //! Adding a new row to the collection uses `insert(key, value)`
+    return Haruka.db.serverSettings.insert(guild.id, Haruka.defaultSettings);
+  });
 
-  // client.on 'guildDelete', (guild) ->
-  //     #! Removing an element uses `delete(key)`
-  //     Haruka.settings.delete guild.id
+  client.on('guildDelete', function(guild) {
+    //! Removing an element uses `delete(key, options, cb)`
+    return Haruka.db.serverSettings.remove({
+      _id: guild.id
+    }, {}, (function() {}));
+  });
 
-  // client.on 'guildMemberAdd', (member) ->
-  //     #! This executes when a member joins, so let's welcome them!
-  //     #! Get a welcome message using `getProp`
-  //     message = Haruka.settings.getProp(member.guild.id, getWelcomeMessage)()
-
-  //     #! Send message to the welcome channel
-  //     member.guild.channels
-  //         .find "name", Haruka.settings.getProp(member.guild.id, "welcomeChannel")
-  //         .send welcomeMessage
-  //         .catch console.error
+  client.on('guildMemberAdd', function(member) {
+    //! This executes when a member joins, so let's welcome them!
+    //! Check if Haruka should welcome members using `db.find`
+    return db.find({
+      _id: member.guild.id
+    }, function(err, docs) {
+      if (err) {
+        return;
+      }
+      if (docs.shouldWelcomeNewMembers === true) {
+        //! Send message to channel
+        return member.guild.channels.find("name", docs.welcomeChannel).send([
+          `Welcome to the server, ${member}!`,
+          // "サーバへようこそ, #{member}さま！"
+          `Behold! ${member} has arrived!`,
+          `A wild ${member} appeared!`,
+          `The man, the myth, the legend, ${member} has arrived!`,
+          `${member} joined the party.`
+        ].choose()).catch(console.error);
+      }
+    });
+  });
 
   //! Catch Uncaught rejections and continue normally.
   process.on('unhandledRejection', function(err) {
@@ -60,11 +76,18 @@
   //! ========================================
   //! Helpers
   Array.prototype.choose = function() {
+    //! Choose a random element from this array.
     return this[Math.floor(Math.random() * this.length)];
   };
 
   Array.prototype.last = function() {
+    //! Retrieve this array's last element.
     return this[this.length - 1];
+  };
+
+  String.prototype.tokenize = function() {
+    //! Split this string at the first occurrence of whitespace.
+    return this.replace(/\s+/, '\x01').split('\x01');
   };
 
   //! ========================================

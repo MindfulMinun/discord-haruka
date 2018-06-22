@@ -2,6 +2,28 @@
 (function() {
   //! ========================================
   //! Creating Haruka
+  /*
+   * The message handlers will be passed a snapshot of the Haruka instance.
+   * The Haruka instance will have the following structure:
+
+      Haruka {
+          dev: Boolean
+          functions: [{
+              name: String
+              regex: RegExp
+              handler: Function
+              help: String
+          }, ...]
+          prefix: Enum('-h', '#h')
+          db: {
+              serverSettings: Datastore
+          }
+          defaultServerSettings: Object
+          addFunction: Function
+          try: Function
+          config: JSON
+      }
+   */
   var Datastore, Haruka, HarukaFns, file, fnObj, fs, i, len;
 
   Haruka = {};
@@ -31,7 +53,7 @@
     modRole: "mod",
     adminRole: "admin",
     welcomeChannel: "welcome",
-    shouldWelcomeNewMembers: true
+    shouldWelcomeNewMembers: false
   };
 
   //! Compact database every hour
@@ -39,14 +61,6 @@
 
   //! ========================================
   //! Helper functions
-  // welcomeMessage: [
-  //     "Welcome to the server, {member}!"
-  //     # "サーバへようこそ, {member}さま！"
-  //     "Behold! {member} has arrived!"
-  //     "A wild {member} appeared!"
-  //     "The man, the myth, the legend, {member} has arrived!"
-  //     "{member} joined the party."
-  // ]
   Array.prototype.choose = function() {
     return this[Math.floor(Math.random() * this.length)];
   };
@@ -68,16 +82,15 @@
   }
 
   Haruka.try = function(msg) {
-    var args, fn, hasRun, j, len1, ref, regexMatch, txt;
-    txt = msg.content;
+    var fn, hasRun, j, len1, ref, regexMatch, txt;
     hasRun = false;
+    txt = msg.content.tokenize();
+    txt[1] = txt[1] ? txt[1] : "help";
     //! Check if the message starts with the prefix,
     //! and it's not from another bot.
-    if (!txt.startsWith(Haruka.prefix) || msg.author.bot) {
+    if ((txt[0] !== Haruka.prefix) || msg.author.bot) {
       return;
     }
-    //! Arguments = "-h    my command" -> "my command"
-    args = txt.slice(Haruka.prefix.length).replace(/^\s+/g, '');
     //! Show a warning if Haruka's in dev mode
     if (Haruka.dev) {
       msg.reply("I'm in **development** mode, stuff may break. Use `#h` instead of `-h`.");
@@ -87,7 +100,7 @@
     for (j = 0, len1 = ref.length; j < len1; j++) {
       fn = ref[j];
       if (hasRun === false) {
-        regexMatch = fn.regex.exec(args);
+        regexMatch = fn.regex.exec(txt[1]);
         if (regexMatch) {
           hasRun = true;
           fn.handler(msg, regexMatch, Haruka);
