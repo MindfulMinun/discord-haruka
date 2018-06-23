@@ -7,11 +7,17 @@ handler = (msg, match, H) ->
         'client_id='
         H.config.client_id
         '&scope=bot'
+        '&permissions='
+        '125966'
     ].join ''
+
+#! Permissions:
+# Admin, Kick / Ban members, Read msgs, Embed links, Read history,
+# Send msgs, Manage msgs, Attach files, View voice channels
 
 module.exports = {
     name: "Invite"
-    regex: /^(invite|link)/i
+    regex: /^(invite|link)(\s+|$)/i
     handler: handler
     help: """
         ```asciidoc

@@ -16,7 +16,7 @@
         }
       }
     }
-    return msg.channel.send("Here's a list of all my commands. Arguments in `<angle brackets>` are required, and those in `[regular brackets]` are optional.\nFor help for a specific command, use `-h help <command>`.\n```asciidoc\n=== Commands ===\n-h about      :: General stuff about me.\n-h chat       :: Start a conversation with me!\n-h help [...] :: This list. What did you expect?\n-h invite     :: Replies with the URL to invite me to other servers.\n-h pfp        :: Returns your profile image as a URL\n-h ping       :: Replies “Pong!”\n-h pkmn <...> :: Get information regarding a Pokémon (Try -h help pkmn)\n-h say <...>  :: Replies with <...>\n```");
+    return msg.channel.send("Here’s a list of all my commands. Arguments in `<angle brackets>` are required, and those in `[regular brackets]` are optional.\nFor help for a specific command, use `-h help <command>`.\n```asciidoc\n=== Commands ===\n-h 8ball      :: Answers any yes or no question.\n-h about      :: General stuff about me.\n-h help [...] :: This list. What did you expect?\n-h invite     :: Replies with the URL to invite me to other servers.\n-h pfp [...]  :: Returns your (or someone else’s) profile image as a URL\n-h ping       :: Replies “Pong!”\n-h pkmn <...> :: Get information regarding a Pokémon (See -h help pkmn)\n-h say <...>  :: Replies with <...>\n```");
   };
 
   module.exports = {

@@ -33,41 +33,6 @@
     return Haruka.try(msg);
   });
 
-  client.on('guildCreate', function(guild) {
-    //! Adding a new row to the collection uses `insert(key, value)`
-    return Haruka.db.serverSettings.insert(guild.id, Haruka.defaultSettings);
-  });
-
-  client.on('guildDelete', function(guild) {
-    //! Removing an element uses `delete(key, options, cb)`
-    return Haruka.db.serverSettings.remove({
-      _id: guild.id
-    }, {}, (function() {}));
-  });
-
-  client.on('guildMemberAdd', function(member) {
-    //! This executes when a member joins, so let's welcome them!
-    //! Check if Haruka should welcome members using `db.find`
-    return db.find({
-      _id: member.guild.id
-    }, function(err, docs) {
-      if (err) {
-        return;
-      }
-      if (docs.shouldWelcomeNewMembers === true) {
-        //! Send message to channel
-        return member.guild.channels.find("name", docs.welcomeChannel).send([
-          `Welcome to the server, ${member}!`,
-          // "サーバへようこそ, #{member}さま！"
-          `Behold! ${member} has arrived!`,
-          `A wild ${member} appeared!`,
-          `The man, the myth, the legend, ${member} has arrived!`,
-          `${member} joined the party.`
-        ].choose()).catch(console.error);
-      }
-    });
-  });
-
   //! Catch Uncaught rejections and continue normally.
   process.on('unhandledRejection', function(err) {
     return console.log("===== Uncaught Promise Rejection: =====\n", err);

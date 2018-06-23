@@ -2,6 +2,11 @@
 (function() {
   //! ========================================
   //! Config
+  /*
+   * I give up :(
+   * Files in /functions/ starting with an underscore
+   * won't be pushed to Haruka#functions
+   */
   var handler;
 
   handler = function(msg, match, H) {
@@ -26,7 +31,7 @@
       return msg.reply(["You have to be in a server to use this command.", "This command can only be used if you’re in a server.", "You can’t use this command outside of servers."].choose());
     }
     return getServerSettings().then(function(doc) {
-      var actualType, adminRole, args, canSetProperty, expectedType, isntArray;
+      var actualType, adminRole, args, canSetProperty, expectedType, isntArray, prop, update, val;
       isntArray = !Array.isArray(doc) || !doc.length;
       if (isntArray) {
         doc = H.defaultServerSettings;
@@ -38,45 +43,55 @@
         return msg.reply([`You have to have the \`${doc.adminRole}\` role to use this command.`, `You don’t have the \`${doc.adminRole}\` role, so you’re not allowed to use this command.`, `You can’t do that if you don’t have the \`${doc.adminRole}\` role.`].choose());
       }
       Object.defineProperty(doc, "_id", {
-        value: doc._id,
         enumerable: false
       });
       canSetProperty = function(obj, prop) {
         return obj.hasOwnProperty(prop) && obj.propertyIsEnumerable(prop);
       };
       args = match.input.tokenize()[1];
-      if (Array.isArray(args) && args.length) {
-        args = args.tokenize();
-        if (args.length === 1) {
+      if (args) {
+        //! Getting / setting
+        [prop, val] = args.tokenize();
+        if (val === void 0) {
           //! Getting a value
-          if (canSetProperty(doc, `${args[0]}`)) {
-            return msg.reply(`Don’t break anything.\n\`\`\`js\n{\n  "${args[0]}": ${JSON.stringify(doc[args[0]], null, 2)}\n}\n\`\`\``);
+          if (canSetProperty(doc, prop)) {
+            return msg.reply(`Don’t break anything.\n\`\`\`js\n{ "${prop}": ${JSON.stringify(doc[prop])} }\n\`\`\``);
           } else {
-            //! Can't read property
-            return msg.reply(["Tough luck, I can’t let you read that property.", "You can’t read that property. Are you testing me?", "You’re not allowed to read that property. You better not be trying to break anything."].choose());
+            throw Error("Haruka: Read not allowed");
           }
         } else {
-          //! Args.length is 2
           //! Setting a value
-          if (canSetProperty(doc, `${args[0]}`)) {
+          if (canSetProperty(doc, prop)) {
             //! This part right here is very tricky.
             //! Get the typeofs of values
-            expectedType = typeof docs[args[0]];
-            actualType = typeof JSON.parse(args[1]);
+            expectedType = typeof doc[prop];
+            actualType = typeof JSON.parse(val);
             if (expectedType !== actualType) {
-              return msg.reply([`I expected ${args[0]} to be of type ${typeof docs[args[0]]}, was instead ${typeof args[1]}.`].choose());
+              throw Error("Haruka: Type mismatch");
             }
-            return msg.reply(`Set property \`${args[0]}\` to \`${JSON.parse(args[1])}\`.\n\`\`\`js\n{\n  "${args[0]}": ${JSON.stringify(doc[args[0]], null, 2)}\n}\n\`\`\``);
+            update = {};
+            update[prop] = JSON.parse(val);
+            console.log(typeof msg.guild.id);
+            console.log(update);
+            db.update({
+              _id: msg.guild.id
+            }, update);
+            msg.reply("Updated value.");
           } else {
-            //! Can't read property
-            return msg.reply(["Tough luck, I can’t let you set that property.", "You can’t set that property. Are you testing me?", "You’re not allowed to set that property. You better not be trying to break anything."].choose());
+            throw Error("Haruka: ");
           }
         }
       }
       return msg.reply(`Don’t break anything.\n\`\`\`js\n// The configuration for this server: ${msg.guild.name}\n${JSON.stringify(doc, null, 2)}\n\`\`\``);
-    }).catch(function(err) {
-      console.log(err);
-      return msg.reply(["An unexpected error occurred. If you were setting a value, make sure it's formatted correctly in JSON. (i.e., wrap quotes around strings.)", "Some error occurred. If you were setting a value, make sure you "].choose());
+    }).catch(function(e) {
+      if (e.message === "Haruka: Read not allowed") {
+        return msg.reply(["Tough luck, I can’t let you read that property.", "You can’t read that property. Are you testing me?", "You’re not allowed to read that property. You better not be trying to break anything."].choose());
+      }
+      if (e.message.startsWith("Haruka: ")) {
+        return msg.reply(e.message.tokenize()[1]);
+      }
+      console.log(e);
+      return msg.reply(["An unexpected error occurred. If you were setting a value, make sure it's formatted correctly in JSON. (i.e., wrap quotes around strings.)", "Some error occurred. If you were setting a value, make sure strings are wrapped in quotes."].choose());
     });
   };
 

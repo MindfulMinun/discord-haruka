@@ -2,6 +2,9 @@
 (function() {
   //! ========================================
   //! Chat
+  /*
+   * TODO: Add more stuff to talk about.
+   */
   var handler;
 
   handler = function(msg) {

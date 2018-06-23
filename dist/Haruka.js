@@ -24,11 +24,13 @@
           config: JSON
       }
    */
-  var Datastore, Haruka, HarukaFns, file, fnObj, fs, i, len;
+  var Haruka, HarukaFns, file, fnObj, fs, i, len;
 
   Haruka = {};
 
-  Haruka.dev = true;
+  Haruka.dev = false;
+
+  Haruka.version = "v1.1.0";
 
   Haruka.functions = [];
 
@@ -37,27 +39,6 @@
   //! ========================================
   //! Modules
   fs = require('fs');
-
-  Datastore = require('nedb');
-
-  //! ========================================
-  //! Datastores
-  Haruka.db = {
-    serverSettings: new Datastore({
-      filename: 'data/serverSettings.db',
-      autoload: true
-    })
-  };
-
-  Haruka.defaultServerSettings = {
-    modRole: "mod",
-    adminRole: "admin",
-    welcomeChannel: "welcome",
-    shouldWelcomeNewMembers: false
-  };
-
-  //! Compact database every hour
-  // Haruka.db.persistence.setAutocompactionInterval 3.6e+6
 
   //! ========================================
   //! Helper functions
@@ -72,7 +53,7 @@
   //! ========================================
   //! Take Haruka's functions and add them to the queue
   HarukaFns = fs.readdirSync('./dist/functions').filter(function(file) {
-    return file.endsWith('.js');
+    return file.endsWith('.js') && !file.startsWith("_");
   });
 
   for (i = 0, len = HarukaFns.length; i < len; i++) {
@@ -82,8 +63,8 @@
   }
 
   Haruka.try = function(msg) {
-    var fn, hasRun, j, len1, ref, regexMatch, txt;
-    hasRun = false;
+    var fn, j, len1, ref, regexMatch, txt;
+    //! Tokenize input
     txt = msg.content.tokenize();
     txt[1] = txt[1] ? txt[1] : "help";
     //! Check if the message starts with the prefix,
@@ -99,18 +80,13 @@
     //! Run through all the commands and see if one matches.
     for (j = 0, len1 = ref.length; j < len1; j++) {
       fn = ref[j];
-      if (hasRun === false) {
-        regexMatch = fn.regex.exec(txt[1]);
-        if (regexMatch) {
-          hasRun = true;
-          fn.handler(msg, regexMatch, Haruka);
-        }
+      regexMatch = fn.regex.exec(txt[1]);
+      if (regexMatch) {
+        return fn.handler(msg, regexMatch, Haruka);
       }
     }
     //! Catchall
-    if (!hasRun) {
-      return msg.reply(["Hmm, I'm not sure what you mean by that.", "Sorry, I don't know what you meant by that.", "I’m not sure I understand.", "I’m not sure what you mean."].choose() + " Try `-h help` for a list of commands.");
-    }
+    return msg.reply(["Hmm, I'm not sure what you mean by that.", "Sorry, I don't know what you meant by that.", "I’m not sure I understand.", "I’m not sure what you mean."].choose() + " Try `-h help` for a list of commands.");
   };
 
   module.exports = Haruka;

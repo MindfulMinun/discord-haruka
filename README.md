@@ -1,6 +1,24 @@
 # Haruka
 
-Haruka, your useless Discord bot.
+Haruka, your useless Discord bot. [Add Haruka][add]
+
+- [Commands](#commands)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
+
+
+## Commands
+As of `v1.1.0`, Haruka has 8 functions:
+
+- [`-h 8ball`][8ball]: Answers any yes or no question.
+- [`-h about`][about]: General stuff about Haruka.
+- [`-h help`][help]: Returns a list of all the commands, much like this one.
+- [`-h invite`][invite]: Replies with a URL to invite Haruka to other servers.
+- [`-h pfp`][pfp]: Return a user’s profile image as a URL
+- [`-h ping`][ping]: Replies “Pong!”
+- [`-h pkmn`][pkmn]: Gets information about a Pokémon.
+- [`-h say`][say]: Replies with whatever you tell it to.
 
 ## Installation
 
@@ -8,8 +26,8 @@ Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recomm
 
 ```json
 {
-    "token": "your-token-goes-here",
-    "client_id": "your-client-id-goes-here"
+  "token": "your-token-goes-here",
+  "client_id": "your-client-id-goes-here"
 }
 ```
 
@@ -28,3 +46,14 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 [github]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
 [license]: https://github.com/MindfulMinun/discord-haruka/blob/development/LICENSE "discord-haruka/LICENSE"
+[add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
+
+<!-- Function links -->
+[8ball]:  https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/8ball.coffee
+[about]:  https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/about.coffee
+[help]:   https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/help.coffee
+[invite]: https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/invite.coffee
+[pfp]:    https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/pfp.coffee
+[ping]:   https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/ping.coffee
+[pkmn]:   https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/pkmn.coffee
+[say]:    https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/say.coffee
