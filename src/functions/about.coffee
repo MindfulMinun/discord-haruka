@@ -1,9 +1,10 @@
 #! ========================================
 #! About
-handler = (msg) ->
+handler = (msg, match, H) ->
     msg.reply "
-        Hi, I’m Haruka, your useless bot. I'm made out of CoffeeScript
-        and dedication. I was created by MindfulMinun, check him out here:\n
+        Hi, I’m Haruka, your useless bot (`#{H.version}`).
+        I’m made out of CoffeeScript and dedication. I was created
+        by MindfulMinun, check him out here:\n
         - https://twitter.com/MindfulMinun
     "
 

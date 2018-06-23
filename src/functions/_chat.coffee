@@ -1,6 +1,10 @@
 #! ========================================
 #! Chat
 
+###
+ * TODO: Add more stuff to talk about.
+###
+
 handler = (msg) ->
     msg.channel.send [
         "I’m so excited for the new Smash Bros. game coming out this December!

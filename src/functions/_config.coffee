@@ -1,5 +1,12 @@
 #! ========================================
 #! Config
+
+###
+ * I give up :(
+ * Files in /functions/ starting with an underscore
+ * won't be pushed to Haruka#functions
+###
+
 handler = (msg, match, H) ->
     db = H.db.serverSettings
 
@@ -29,7 +36,7 @@ handler = (msg, match, H) ->
             db.insert doc
 
         adminRole = msg.guild.roles.find("name", doc.adminRole)
-        if not adminRole or not msg.member.roles.has adminRole.id
+        if not adminRole or not msg.member.roles.has(adminRole.id)
             return msg.reply [
                 "You have to have the `#{doc.adminRole}` role
                     to use this command."
@@ -40,7 +47,6 @@ handler = (msg, match, H) ->
             ].choose()
 
         Object.defineProperty doc, "_id", {
-            value: doc._id
             enumerable: no
         }
 
@@ -50,62 +56,39 @@ handler = (msg, match, H) ->
 
         args = match.input.tokenize()[1]
 
-        if Array.isArray(args) and args.length
-            args = args.tokenize()
-            if args.length is 1
+        if args
+            #! Getting / setting
+            [prop, val] = args.tokenize()
+
+            if val is undefined
                 #! Getting a value
-                if canSetProperty(doc, "#{args[0]}")
+                if canSetProperty(doc, prop)
                     return msg.reply """
                         Don’t break anything.
                         ```js
-                        {
-                          "#{args[0]}": #{JSON.stringify doc[args[0]], null, 2}
-                        }
+                        { "#{prop}": #{
+                        JSON.stringify(doc[prop])
+                        } }
                         ```
                     """
-                else
-                    #! Can't read property
-                    return msg.reply [
-                        "Tough luck, I can’t let you read that property."
-                        "You can’t read that property. Are you testing me?"
-                        "You’re not allowed to read that property.
-                            You better not be trying to break anything."
-                    ].choose()
+                else throw Error "Haruka: Read not allowed"
             else
-                #! Args.length is 2
                 #! Setting a value
-                if canSetProperty(doc, "#{args[0]}")
+                if canSetProperty(doc, prop)
                     #! This part right here is very tricky.
                     #! Get the typeofs of values
-                    expectedType = typeof docs[args[0]]
-                    actualType   = typeof JSON.parse args[1]
-
+                    expectedType = typeof doc[prop]
+                    actualType   = typeof JSON.parse val
                     if expectedType isnt actualType
-                        return msg.reply [
-                            "I expected #{args[0]} to be of type
-                                #{typeof docs[args[0]]}, was instead
-                                #{typeof args[1]}."
-                        ].choose()
-
-
-
-                    return msg.reply """
-                        Set property `#{args[0]}` to `#{JSON.parse args[1]}`.
-                        ```js
-                        {
-                          "#{args[0]}": #{JSON.stringify doc[args[0]], null, 2}
-                        }
-                        ```
-                    """
-                else
-                    #! Can't read property
-                    return msg.reply [
-                        "Tough luck, I can’t let you set that property."
-                        "You can’t set that property. Are you testing me?"
-                        "You’re not allowed to set that property.
-                            You better not be trying to break anything."
-                    ].choose()
-
+                        throw Error "Haruka: Type mismatch"
+                    update = {}; update[prop] = JSON.parse val
+                    console.log typeof msg.guild.id
+                    console.log update
+                    db.update(
+                        { _id: msg.guild.id }, update
+                    )
+                    msg.reply "Updated value."
+                else throw Error "Haruka: "
 
         msg.reply """
             Don’t break anything.
@@ -115,14 +98,24 @@ handler = (msg, match, H) ->
             ```
         """
 
-    .catch (err) ->
-        console.log err
+    .catch (e) ->
+        if e.message is "Haruka: Read not allowed"
+            return msg.reply [
+                "Tough luck, I can’t let you read that property."
+                "You can’t read that property. Are you testing me?"
+                "You’re not allowed to read that property.
+                    You better not be trying to break anything."
+            ].choose()
+        if e.message.startsWith "Haruka: "
+            return msg.reply e.message.tokenize()[1]
+
+        console.log e
         return msg.reply [
             "An unexpected error occurred. If you were setting a value,
                 make sure it's formatted correctly in JSON. (i.e., wrap quotes
                 around strings.)"
             "Some error occurred. If you were setting a value, make sure
-                you "
+                strings are wrapped in quotes."
         ].choose()
 
 module.exports = {
@@ -136,7 +129,8 @@ module.exports = {
         -h config :: Prints the current server configuration.
         -h config <key> :: Prints the configuration for that value
         -h config <key> <value> :: Sets a value. Value must be JSON-formatted.
-                                   (ex, strings in "quotes", booleans: true / false)
+                                   (ex, strings in "quotes", \
+                                   booleans: true / false)
         ```
     """
 }
