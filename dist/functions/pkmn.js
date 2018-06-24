@@ -24,7 +24,7 @@
         r.on('data', function(chunk) {
           return data += chunk;
         });
-        //! Whole response recieved, print result
+        //! Whole response recieved, return result
         return r.on('end', function() {
           return resolve(data);
         });
@@ -56,7 +56,7 @@
     P = {};
     try {
       if (!match.last()) {
-        return msg.reply(["Use `-h pkmn ` followed by the Pokémon you want me to look up.", "I can look for Pokémon in my Pokédex if you use `-h pkmn ` followed by a Pokémon's name or National Dex number.", "You’re missing a few arguments. Try `-h help pkmn` if you forgot this command’s syntax."].choose());
+        return msg.reply(["Use `-h pkmn` followed by the Pokémon you want me to look up.", "I can look for Pokémon in my Pokédex if you use `-h pkmn ` followed by a Pokémon's name or National Dex number.", "You’re missing a few arguments. Try `-h help pkmn` if you forgot this command’s syntax."].choose());
       }
       species = JSON.parse((await fetch(SPECIES_URL + match.last().toLowerCase() + "/")));
       //! Postpone JSON.parse pkmn until it's needed
@@ -104,7 +104,7 @@
         return capitalize(t.type.name);
       });
       //! Create the embed object
-      embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://www.smogon.com/dex/sm/pokemon/${(P.name === "Meowstic" ? "meowstic-m" : species.name)}/`).setThumbnail(pkmn.sprites.front_default).setTitle(`${capitalize(P.name)} — ${P.dexNumber}`).setDescription(P.description).addField("National Dex \#", P.dexNumber, true).addField("Typing", P.types.join("/", true)).addField("Category", P.category, true);
+      embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://www.smogon.com/dex/sm/pokemon/${(P.name === "Meowstic" ? "meowstic-m" : species.name)}/`).setThumbnail(pkmn.sprites.front_default).setTitle(`${capitalize(P.name)} — ${P.dexNumber}`).setDescription(P.description).addField("National Dex \#", P.dexNumber, true).addField("Typing", P.types.join("/"), true).addField("Category", P.category, true);
       return msg.channel.send(embed);
     } catch (error) {
       err = error;

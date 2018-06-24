@@ -15,10 +15,9 @@ fetch = (url) ->
 
         client.get url, (r) ->
             data = ''
-
             #! A chunk of data has been recieved
             r.on 'data', (chunk) -> data += chunk
-            #! Whole response recieved, print result
+            #! Whole response recieved, return result
             r.on 'end', -> resolve data
         .on 'error', (err) ->
             reject err
@@ -40,7 +39,7 @@ handler = (msg, match) ->
     try
         if not match.last()
             return msg.reply [
-                "Use `-h pkmn ` followed by the Pokémon you want me to look up."
+                "Use `-h pkmn` followed by the Pokémon you want me to look up."
                 "I can look for Pokémon in my Pokédex if you use `-h pkmn `
                     followed by a Pokémon's name or National Dex number."
                 "You’re missing a few arguments. Try `-h help pkmn` if
@@ -101,9 +100,9 @@ handler = (msg, match) ->
             .setThumbnail pkmn.sprites.front_default
             .setTitle "#{capitalize P.name} — #{P.dexNumber}"
             .setDescription P.description
-            .addField "National Dex \#", P.dexNumber, true
-            .addField "Typing", P.types.join "/", true
-            .addField "Category", P.category, true
+            .addField "National Dex \#", P.dexNumber, yes
+            .addField "Typing", P.types.join("/"), yes
+            .addField "Category", P.category, yes
         msg.channel.send embed
     catch err
         console.log "========================================"
