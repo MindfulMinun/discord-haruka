@@ -48,7 +48,7 @@ module.exports = {
     regex: /^(?:8\-ball|8ball|ask)\s*/i
     handler: handler
     help:
-        short: "-h 8ball       ::
+        short: "-h 8ball <???> ::
             Answers any yes or no question."
         long: """
             ```asciidoc

@@ -5,6 +5,10 @@ Started: 2018-06-23
 - GitHub function:
     - `[2018-06-24]`: GitHub function: Retrieves information about a GitHub repository. Syntax: `-h github <user/repo>`
     - `[2018-06-25]`: Added `.catch` statements
+    - `[2018-06-25]`: Added stargazers, forks, and issues counter
+
+- Kanji function:
+    - `[2018-06-25]`: Kanji function: Looks up info about a Kanji character. Syntax: `-h kanji <kanji>`
 
 ### Changed
 - Pokémon function:  

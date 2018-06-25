@@ -23,7 +23,7 @@
     regex: /^(?:8\-ball|8ball|ask)\s*/i,
     handler: handler,
     help: {
-      short: "-h 8ball       :: Answers any yes or no question.",
+      short: "-h 8ball <???> :: Answers any yes or no question.",
       long: "```asciidoc\n=== Help for 8-ball ===\n*Aliases*: 8-ball, 8ball, ask\n-h 8ball <question> :: Answers any yes or no question with 47.2% certainty.\n```"
     }
   };

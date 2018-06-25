@@ -41,16 +41,10 @@ handler = (msg, match, H) ->
         data = JSON.parse payload.body
         console.log data
 
-        DateUTC = (date) ->
-            #! Formats Dates in a way I hope everyone can understand.
-            date ?= new Date()
-            date  = new Date(date)
-                .toISOString()
-                .slice 0, 19
-                .replace 'T', ' '
-            date + " UTC"
+        stars = (+data.stargazers_count or "None").toLocaleString()
+        forks = (+data.forks or "None").toLocaleString()
+        issues = (+data.open_issues or "None").toLocaleString()
 
-        lastUpdated = DateUTC data.updated_at
         #! coffeelint: disable=max_line_length
         embed = new Discord.RichEmbed()
             .setColor '#448aff'
@@ -61,12 +55,17 @@ handler = (msg, match, H) ->
             .addField "Language", data.language, yes
             .addField "License", data.license?.name or "None?", yes
             .addField "Default Branch", data.default_branch, yes
-            .addField "Last updated", "`#{lastUpdated}`", no
+            .addField "Stargazers", stars, yes
+            .addField "Forks", forks, yes
+            .addField "Open issues", issues, yes
+            .setFooter "Last updated"
+            .setTimestamp new Date data.updated_at
+            # .addField "Last updated", "`#{lastUpdated}`", no
             # .setFooter "All times UTC"
         #! coffeelint: enable=max_line_length
         msg.channel.send embed
     .catch (err) ->
-        if err.response.statusCode is 404
+        if err?.response?.statusCode is 404
             msg.reply [
                 "That repository wasn’t found. Make sure you’ve spelled
                     the repository name correctly and try again."
@@ -76,6 +75,7 @@ handler = (msg, match, H) ->
                     everything correctly and try again."
             ].choose()
         else
+            console.log err
             msg.reply [
                 "Sorry, but an unexpected error occurred."
                 "An unexpected error ocurred. Sorry about that."

@@ -14,10 +14,6 @@
             help: String
         }, ...]
         prefix: Enum('-h', '#h')
-        db: {
-            serverSettings: Datastore
-        }
-        defaultServerSettings: Object
         addFunction: Function
         try: Function
         config: JSON

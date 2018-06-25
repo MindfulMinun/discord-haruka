@@ -37,27 +37,24 @@
       }
     };
     return asyncReq(options).then(function(payload) {
-      var DateUTC, data, embed, lastUpdated, ref;
+      var data, embed, forks, issues, ref, stars;
       data = JSON.parse(payload.body);
       console.log(data);
-      DateUTC = function(date) {
-        //! Formats Dates in a way I hope everyone can understand.
-        if (date == null) {
-          date = new Date();
-        }
-        date = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
-        return date + " UTC";
-      };
-      lastUpdated = DateUTC(data.updated_at);
+      stars = (+data.stargazers_count || "None").toLocaleString();
+      forks = (+data.forks || "None").toLocaleString();
+      issues = (+data.open_issues || "None").toLocaleString();
       //! coffeelint: disable=max_line_length
-      embed = new Discord.RichEmbed().setColor('#448aff').setTitle(data.full_name).setDescription(data.description).setURL(data.html_url).setThumbnail(data.owner.avatar_url).addField("Language", data.language, true).addField("License", ((ref = data.license) != null ? ref.name : void 0) || "None?", true).addField("Default Branch", data.default_branch, true).addField("Last updated", `\`${lastUpdated}\``, false);
+      embed = new Discord.RichEmbed().setColor('#448aff').setTitle(data.full_name).setDescription(data.description).setURL(data.html_url).setThumbnail(data.owner.avatar_url).addField("Language", data.language, true).addField("License", ((ref = data.license) != null ? ref.name : void 0) || "None?", true).addField("Default Branch", data.default_branch, true).addField("Stargazers", stars, true).addField("Forks", forks, true).addField("Open issues", issues, true).setFooter("Last updated").setTimestamp(new Date(data.updated_at));
+      // .addField "Last updated", "`#{lastUpdated}`", no
       // .setFooter "All times UTC"
       //! coffeelint: enable=max_line_length
       return msg.channel.send(embed);
     }).catch(function(err) {
-      if (err.response.statusCode === 404) {
+      var ref;
+      if ((err != null ? (ref = err.response) != null ? ref.statusCode : void 0 : void 0) === 404) {
         return msg.reply(["That repository wasn’t found. Make sure you’ve spelled the repository name correctly and try again.", "I couldn’t find that repository. Double-check the repository name and try again.", "I got a 404 error. Make sure you’ve spelled everything correctly and try again."].choose());
       } else {
+        console.log(err);
         return msg.reply(["Sorry, but an unexpected error occurred.", "An unexpected error ocurred. Sorry about that."].choose());
       }
     });
