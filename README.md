@@ -45,15 +45,15 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 <!-- Reference links -->
 [github]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
-[license]: https://github.com/MindfulMinun/discord-haruka/blob/development/LICENSE "discord-haruka/LICENSE"
+[license]: https://github.com/MindfulMinun/discord-haruka/blob/master/LICENSE "discord-haruka/LICENSE"
 [add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
 
 <!-- Function links -->
-[8ball]:  https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/8ball.coffee
-[about]:  https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/about.coffee
-[help]:   https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/help.coffee
-[invite]: https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/invite.coffee
-[pfp]:    https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/pfp.coffee
-[ping]:   https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/ping.coffee
-[pkmn]:   https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/pkmn.coffee
-[say]:    https://github.com/MindfulMinun/discord-haruka/blob/development/src/functions/say.coffee
+[8ball]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
+[about]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/about.coffee
+[help]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
+[invite]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
+[pfp]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
+[ping]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
+[pkmn]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
+[say]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee

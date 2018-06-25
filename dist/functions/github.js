@@ -32,15 +32,25 @@
       url: "https://api.github.com/repos/" + repo,
       method: "GET",
       headers: {
-        "User-Agent": `Node ${process.version}`,
+        "User-Agent": `Node.js ${process.version} on Ubuntu 16.04`,
         "Content-Type": "application/json"
       }
     };
     return asyncReq(options).then(function(payload) {
-      var data, embed, ref;
+      var DateUTC, data, embed, lastUpdated, ref;
       data = JSON.parse(payload.body);
+      DateUTC = function(date) {
+        //! Formats Dates in a way I hope everyone can understand.
+        if (date == null) {
+          date = new Date();
+        }
+        date = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
+        return date + " UTC";
+      };
+      lastUpdated = DateUTC(data.updated_at);
       //! coffeelint: disable=max_line_length
-      embed = new Discord.RichEmbed().setColor('#448aff').setTitle(data.full_name).setDescription(data.description).setURL(data.html_url).setThumbnail(data.owner.avatar_url).addField("Language", data.language, true).addField("License", ((ref = data.license) != null ? ref.name : void 0) || "None?", true).addField("Default Branch", data.default_branch, true).addField("Last updated", new Date(data.updated_at).toDateString(), true).setFooter("All times UTC");
+      embed = new Discord.RichEmbed().setColor('#448aff').setTitle(data.full_name).setDescription(data.description).setURL(data.html_url).setThumbnail(data.owner.avatar_url).addField("Language", data.language, true).addField("License", ((ref = data.license) != null ? ref.name : void 0) || "None?", true).addField("Default Branch", data.default_branch, true).addField("Last updated", `\`${lastUpdated}\``, false);
+      // .setFooter "All times UTC"
       //! coffeelint: enable=max_line_length
       return msg.channel.send(embed);
     });

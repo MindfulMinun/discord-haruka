@@ -2,13 +2,12 @@
 Started: 2018-06-23
 
 ### Added
-- GitHub function:  
-    `[2018-06-24]`: Retrieves information about a GitHub repository.
-    Syntax: `-h github <user/repo>`
+- GitHub function:
+    - `[2018-06-24]`: GitHub function: Retrieves information about a GitHub repository. Syntax: `-h github <user/repo>`
 
 ### Changed
 - Pokémon function:  
-    `[2018-06-24]`: The `RichEmbed` now displays data inline.
+    - `[2018-06-24]`: The `RichEmbed` now displays data inline.
 
 
 ### Removed

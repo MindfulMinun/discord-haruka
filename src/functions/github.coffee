@@ -31,7 +31,7 @@ handler = (msg, match, H) ->
         url: "https://api.github.com/repos/" + repo
         method: "GET"
         headers: {
-            "User-Agent": "Node #{process.version}"
+            "User-Agent": "Node.js #{process.version} on Ubuntu 16.04"
             "Content-Type": "application/json"
         }
     }
@@ -39,6 +39,17 @@ handler = (msg, match, H) ->
     asyncReq options
     .then (payload) ->
         data = JSON.parse payload.body
+
+        DateUTC = (date) ->
+            #! Formats Dates in a way I hope everyone can understand.
+            date ?= new Date()
+            date  = new Date(date)
+                .toISOString()
+                .slice 0, 19
+                .replace 'T', ' '
+            date + " UTC"
+
+        lastUpdated = DateUTC data.updated_at
         #! coffeelint: disable=max_line_length
         embed = new Discord.RichEmbed()
             .setColor '#448aff'
@@ -49,8 +60,8 @@ handler = (msg, match, H) ->
             .addField "Language", data.language, yes
             .addField "License", data.license?.name or "None?", yes
             .addField "Default Branch", data.default_branch, yes
-            .addField "Last updated", new Date(data.updated_at).toDateString(), yes
-            .setFooter "All times UTC"
+            .addField "Last updated", "`#{lastUpdated}`", no
+            # .setFooter "All times UTC"
         #! coffeelint: enable=max_line_length
         msg.channel.send embed
 
