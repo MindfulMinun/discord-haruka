@@ -124,7 +124,10 @@
     regex: /^(?:(?:poke(?:mon)?)|(?:pkmn))\s*(\S[\s\S]*)?/i,
     handler: handler,
     //! coffeelint: disable=max_line_length
-    help: "```asciidoc\n=== Help for Pokémon ===\n*Aliases*: pkmn, pokemon, poke\n-h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,\n                      this command returns information on a specific Pokémon.\n```" //! coffeelint: enable=max_line_length
+    help: {
+      short: "-h pkmn <...>  :: Get information regarding a Pokémon (See -h help pkmn)",
+      long: "```asciidoc\n=== Help for Pokémon ===\n*Aliases*: pkmn, pokemon, poke\n-h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,\n                      this command returns information on a specific Pokémon.\n```" //! coffeelint: enable=max_line_length
+    }
   };
 
 }).call(this);

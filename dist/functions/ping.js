@@ -12,7 +12,10 @@
     name: "Ping",
     regex: /^(ping|pong|beep|boop|ding|dong)/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for Ping ===\n*Aliases*: ping, pong, beep, boop, ding, dong\n-h ping :: Replies \"Pong!\", nothing fancy.\n```"
+    help: {
+      short: "-h ping        :: Replies “Pong!”",
+      long: "```asciidoc\n=== Help for Ping ===\n*Aliases*: ping, pong, beep, boop, ding, dong\n-h ping :: Replies \"Pong!\", nothing fancy.\n```"
+    }
   };
 
 }).call(this);

@@ -4,10 +4,13 @@ Started: 2018-06-23
 ### Added
 - GitHub function:
     - `[2018-06-24]`: GitHub function: Retrieves information about a GitHub repository. Syntax: `-h github <user/repo>`
+    - `[2018-06-25]`: Added `.catch` statements
 
 ### Changed
 - Pokémon function:  
     - `[2018-06-24]`: The `RichEmbed` now displays data inline.
+- Help function and each function's `module.exports`:
+    - `[2018-06-25]`: `help` in each function's `module.exports` now has two properties, `short` and `long`. `short` appears in `-h help`, and `long` appears in `-h help <fn>`
 
 
 ### Removed

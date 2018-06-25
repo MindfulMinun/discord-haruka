@@ -120,12 +120,15 @@ module.exports = {
     regex: /^(?:(?:poke(?:mon)?)|(?:pkmn))\s*(\S[\s\S]*)?/i
     handler: handler
     #! coffeelint: disable=max_line_length
-    help: """
-        ```asciidoc
-        === Help for Pokémon ===
-        *Aliases*: pkmn, pokemon, poke
-        -h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,
-                              this command returns information on a specific Pokémon.
-        ```
-    """ #! coffeelint: enable=max_line_length
+    help:
+        short: "-h pkmn <...>  ::
+            Get information regarding a Pokémon (See -h help pkmn)"
+        long: """
+            ```asciidoc
+            === Help for Pokémon ===
+            *Aliases*: pkmn, pokemon, poke
+            -h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,
+                                  this command returns information on a specific Pokémon.
+            ```
+        """ #! coffeelint: enable=max_line_length
 }

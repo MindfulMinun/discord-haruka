@@ -15,7 +15,7 @@
         if (!err && ((200 <= (ref = response.statusCode) && ref < 400))) {
           return resolve({response, body});
         }
-        return reject({error, response, body});
+        return reject({err, response, body});
       });
     });
   };
@@ -39,6 +39,7 @@
     return asyncReq(options).then(function(payload) {
       var DateUTC, data, embed, lastUpdated, ref;
       data = JSON.parse(payload.body);
+      console.log(data);
       DateUTC = function(date) {
         //! Formats Dates in a way I hope everyone can understand.
         if (date == null) {
@@ -53,6 +54,12 @@
       // .setFooter "All times UTC"
       //! coffeelint: enable=max_line_length
       return msg.channel.send(embed);
+    }).catch(function(err) {
+      if (err.response.statusCode === 404) {
+        return msg.reply(["That repository wasn’t found. Make sure you’ve spelled the repository name correctly and try again.", "I couldn’t find that repository. Double-check the repository name and try again.", "I got a 404 error. Make sure you’ve spelled everything correctly and try again."].choose());
+      } else {
+        return msg.reply(["Sorry, but an unexpected error occurred.", "An unexpected error ocurred. Sorry about that."].choose());
+      }
     });
   };
 
@@ -60,7 +67,10 @@
     name: "GitHub",
     regex: /^(github|git)(\s+|$)/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for GitHub ===\n*Aliases*: github, git\n-h github <owner/repo> :: Retrieve information about a GitHub repository\nSome examples:\n    -h github jquery/jquery\n    -h github notwaldorf/tiny-care-terminal\n    -h github mindfulminun/discord-haruka\n```"
+    help: {
+      short: "-h github <..> :: Retrieve information about a GitHub repository",
+      long: "```asciidoc\n=== Help for GitHub ===\n*Aliases*: github, git\n-h github <owner/repo> :: Retrieve information about a GitHub repository\nSome examples:\n    -h github jquery/jquery\n    -h github notwaldorf/tiny-care-terminal\n    -h github mindfulminun/discord-haruka\n```"
+    }
   };
 
 }).call(this);

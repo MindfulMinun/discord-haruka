@@ -16,7 +16,10 @@
     name: "Say",
     regex: /^(?:say|println)\s*(\S[\s\S]*)?/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for Say ===\n*Aliases*: say, println\n-h say <stuff> :: Replies with <stuff>\n```"
+    help: {
+      short: "-h say <...>   :: Replies with <...>",
+      long: "```asciidoc\n=== Help for Say ===\n*Aliases*: say, println\n-h say <stuff> :: Replies with <stuff>\n```"
+    }
   };
 
 }).call(this);

@@ -9,7 +9,7 @@ asyncReq = (options) ->
         request options, (err, response, body) ->
             if not err and (200 <= response.statusCode < 400)
                 return resolve({response, body})
-            reject({error, response, body})
+            reject({err, response, body})
 
 #! ========================================
 #! Message handler
@@ -39,6 +39,7 @@ handler = (msg, match, H) ->
     asyncReq options
     .then (payload) ->
         data = JSON.parse payload.body
+        console.log data
 
         DateUTC = (date) ->
             #! Formats Dates in a way I hope everyone can understand.
@@ -64,21 +65,41 @@ handler = (msg, match, H) ->
             # .setFooter "All times UTC"
         #! coffeelint: enable=max_line_length
         msg.channel.send embed
+    .catch (err) ->
+        if err.response.statusCode is 404
+            msg.reply [
+                "That repository wasn’t found. Make sure you’ve spelled
+                    the repository name correctly and try again."
+                "I couldn’t find that repository. Double-check the repository
+                    name and try again."
+                "I got a 404 error. Make sure you’ve spelled
+                    everything correctly and try again."
+            ].choose()
+        else
+            msg.reply [
+                "Sorry, but an unexpected error occurred."
+                "An unexpected error ocurred. Sorry about that."
+            ].choose()
 
 
 module.exports = {
     name: "GitHub"
     regex: /^(github|git)(\s+|$)/i
     handler: handler
-    help: """
-        ```asciidoc
-        === Help for GitHub ===
-        *Aliases*: github, git
-        -h github <owner/repo> :: Retrieve information about a GitHub repository
-        Some examples:
-            -h github jquery/jquery
-            -h github notwaldorf/tiny-care-terminal
-            -h github mindfulminun/discord-haruka
-        ```
-    """
+    help: {
+        short: "-h github <..> ::
+            Retrieve information about a GitHub repository"
+        long: """
+            ```asciidoc
+            === Help for GitHub ===
+            *Aliases*: github, git
+            -h github <owner/repo> :: Retrieve information about a GitHub \
+            repository
+            Some examples:
+                -h github jquery/jquery
+                -h github notwaldorf/tiny-care-terminal
+                -h github mindfulminun/discord-haruka
+            ```
+        """
+    }
 }

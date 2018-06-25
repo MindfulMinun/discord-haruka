@@ -26,11 +26,14 @@ module.exports = {
     name: "Say"
     regex: /^(?:say|println)\s*(\S[\s\S]*)?/i
     handler: handler
-    help: """
-        ```asciidoc
-        === Help for Say ===
-        *Aliases*: say, println
-        -h say <stuff> :: Replies with <stuff>
-        ```
-    """
+    help:
+        short: "-h say <...>   ::
+            Replies with <...>"
+        long: """
+            ```asciidoc
+            === Help for Say ===
+            *Aliases*: say, println
+            -h say <stuff> :: Replies with <stuff>
+            ```
+        """
 }
