@@ -10,7 +10,7 @@
 
   module.exports = {
     name: "About",
-    regex: /^about/i,
+    regex: /^(about)(\s+|$)/i,
     handler: handler,
     help: {
       short: "-h about       :: General stuff about me.",

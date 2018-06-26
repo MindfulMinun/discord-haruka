@@ -23,7 +23,7 @@
 
   module.exports = {
     name: "Profile Image",
-    regex: /^(img|pfp|avatar)/i,
+    regex: /^(img|pfp|avatar)(\s+|$)/i,
     handler: handler,
     help: {
       short: "-h pfp [...]   :: Returns your (or someone else’s) profile image as a URL",

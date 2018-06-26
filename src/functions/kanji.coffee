@@ -14,9 +14,7 @@ asyncReq = (options) ->
             reject({err, response, body})
 
 handler = (msg, match, H) ->
-    kanji = match.input.tokenize()[1]
-
-    # console.log kanji
+    kanji = match.input.tokenize()?[1]
 
     options = {
         url: "https://kanjialive-api.p.mashape.com/api/public/kanji/" +
@@ -38,8 +36,6 @@ handler = (msg, match, H) ->
         E = E
             .map((v) -> [v.japanese, v.meaning.english].join ': ')[...12]
             .join '\n'
-
-        console.log E
 
         embed = new Discord.RichEmbed()
             # coffeelint: disable=max_line_length

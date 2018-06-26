@@ -10,15 +10,26 @@ Started: 2018-06-23
 - Kanji function:
     - `[2018-06-25]`: Kanji function: Looks up info about a Kanji character. Syntax: `-h kanji <kanji>`
 
+- Special functions:
+    - `[2018-06-26]`: Special functions are functions that listen to every message, used for only
+        _special circumstances_ (i.e., making an April fools prank, writing joke
+        replies, etc).
+    - `[2018-06-26]`: Added README for Special functions.
+
+- Everything:
+    - `[2018-06-25]`: Added `example-config.json` and included it in the README.
+    - `[2018-06-25]`: Standardized Regexes
+    - `[2018-06-26]`: Added boilerplates
+
 ### Changed
 - Pokémon function:  
     - `[2018-06-24]`: The `RichEmbed` now displays data inline.
 - Help function and each function's `module.exports`:
     - `[2018-06-25]`: `help` in each function's `module.exports` now has two properties, `short` and `long`. `short` appears in `-h help`, and `long` appears in `-h help <fn>`
 
-
 ### Removed
-_Nothing yet._
+- Config function:
+    - `[2018-06-26]`: Removed `_config` function, as it wasn’t being worked on.
 ___
 
 # [Release v1.1.0 (2018-06-23)](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.1.0)

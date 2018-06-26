@@ -10,7 +10,7 @@ handler = (msg, match, H) ->
 
 module.exports = {
     name: "About"
-    regex: /^about/i
+    regex: /^(about)(\s+|$)/i
     handler: handler
     help:
         short: "-h about       ::

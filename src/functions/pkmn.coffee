@@ -36,8 +36,10 @@ handler = (msg, match) ->
     pkmn    = null
     P       = {}
 
+    pokeRequest = match.input.tokenize()[1]
+
     try
-        if not match.last()
+        if not pokeRequest
             return msg.reply [
                 "Use `-h pkmn` followed by the Pokémon you want me to look up."
                 "I can look for Pokémon in my Pokédex if you use `-h pkmn `
@@ -47,7 +49,7 @@ handler = (msg, match) ->
             ].choose()
 
         species = JSON.parse(
-            await fetch SPECIES_URL + match.last().toLowerCase() + "/"
+            await fetch SPECIES_URL + pokeRequest.toLowerCase() + "/"
         )
         #! Postpone JSON.parse pkmn until it's needed
         pkmn = fetch PKMN_URL + species.id + "/"
@@ -117,7 +119,7 @@ handler = (msg, match) ->
 
 module.exports = {
     name: "Pokémon"
-    regex: /^(?:(?:poke(?:mon)?)|(?:pkmn))\s*(\S[\s\S]*)?/i
+    regex: /^(pkmn|pokemon|pok\émon|poke|poké)(\s+|$)/i
     handler: handler
     #! coffeelint: disable=max_line_length
     help:
@@ -126,7 +128,7 @@ module.exports = {
         long: """
             ```asciidoc
             === Help for Pokémon ===
-            *Aliases*: pkmn, pokemon, poke
+            *Aliases*: pkmn, pokemon, pokémon, poke, poké
             -h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,
                                   this command returns information on a specific Pokémon.
             ```

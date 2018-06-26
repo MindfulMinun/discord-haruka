@@ -22,27 +22,31 @@ As of `v1.1.0`, Haruka has 8 functions:
 
 ## Installation
 
-Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][github] and **create a fork** of Haruka. In the root directory, create a file called `config.json`, looking something like this:
+Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][github] and **create a fork** of Haruka. In the root directory, open the file called `example-config.json`, looking something like this:
 
 ```json
 {
-  "token": "your-token-goes-here",
-  "client_id": "your-client-id-goes-here"
+  "token": "https://discordapp.com/developers/applications/me",
+  "client_id": "https://discordapp.com/developers/applications/me",
+  "kanji-alive-api-key": "https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji"
 }
 ```
 
-Both `token` and `client_id` can be found in [your Discord apps][discord-my-apps].
+Replace each URL with its respective value. Both `token` and `client_id` can be found in [your Discord apps][discord-my-apps]. `kanji-alive-api-key` is your `X-Mashape-Key` header used for [KanjiAlive][kanjialive], the API used to get Kanji data. If you don't wish to use the Kanji function, rename `dist/functions/kanji.js` to `dist/functions/_kanji.js`.
 
-Finally, run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
+Finally, rename `example-config.json` to `config.json`, run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
 
 ## Contributing
 Install Haruka as [mentioned above](#installation): create a fork with your changes, and issue a Pull Request. Haruka’s written in CoffeeScript, you can build her by running `coffee -o dist/ -cw src/` in the Terminal with CoffeeScript installed. It's also recommended you have a CoffeeScript linter installed.
 
 ## License
 
+
+
 [MIT License][license]
 
 <!-- Reference links -->
+[kanjialive]: https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji "KanjiAlive API Documentation"
 [github]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
 [license]: https://github.com/MindfulMinun/discord-haruka/blob/master/LICENSE "discord-haruka/LICENSE"

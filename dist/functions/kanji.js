@@ -23,9 +23,8 @@
   };
 
   handler = function(msg, match, H) {
-    var kanji, options;
-    kanji = match.input.tokenize()[1];
-    // console.log kanji
+    var kanji, options, ref;
+    kanji = (ref = match.input.tokenize()) != null ? ref[1] : void 0;
     options = {
       url: "https://kanjialive-api.p.mashape.com/api/public/kanji/" + encodeURI(kanji),
       method: "GET",
@@ -43,14 +42,13 @@
       E = E.map(function(v) {
         return [v.japanese, v.meaning.english].join(': ');
       }).slice(0, 12).join('\n');
-      console.log(E);
       // coffeelint: disable=max_line_length
       embed = new Discord.RichEmbed().setTitle(`${K.character} — ${K.meaning.english}`).setColor('#448aff').setDescription(K.meaning.english).setURL("https://app.kanjialive.com/" + encodeURI(K.character)).addField("Onyomi", K.onyomi.katakana, true).addField("Kunyomi", K.kunyomi.hiragana, true).addField("Radical", R.character + `（${R.name.hiragana || R.name.katakana}）`, true).addField("Stroke count", K.strokes.count, true).addField("Examples", E);
       // coffeelint: enable=max_line_length
       return msg.channel.send(embed);
     }).catch(function(err) {
-      var ref;
-      if (((ref = JSON.parse(err != null ? err.body : void 0)) != null ? ref.error : void 0) === "No kanji found.") {
+      var ref1;
+      if (((ref1 = JSON.parse(err != null ? err.body : void 0)) != null ? ref1.error : void 0) === "No kanji found.") {
         return msg.reply(["Couldn’t find Kanji", "No results came up for that Kanji.", "漢字が見つかりません。"].choose());
       }
       return msg.reply(["An error occurred.", "Unfortunately, an error occurred.", "A nasty error occurred."].choose());

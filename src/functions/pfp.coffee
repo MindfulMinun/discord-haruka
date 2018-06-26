@@ -19,7 +19,7 @@ handler = (msg, match) ->
 
 module.exports = {
     name: "Profile Image"
-    regex: /^(img|pfp|avatar)/i
+    regex: /^(img|pfp|avatar)(\s+|$)/i
     handler: handler
     help:
         short: "-h pfp [...]   ::

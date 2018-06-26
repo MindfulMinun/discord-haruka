@@ -47,18 +47,19 @@
   //! ========================================
   //! Message handler
   handler = async function(msg, match) {
-    var P, PKMN_URL, SPECIES_URL, embed, err, pkmn, species;
+    var P, PKMN_URL, SPECIES_URL, embed, err, pkmn, pokeRequest, species;
     //! Define a few constants
     SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species/";
     PKMN_URL = "https://pokeapi.co/api/v2/pokemon/";
     species = null;
     pkmn = null;
     P = {};
+    pokeRequest = match.input.tokenize()[1];
     try {
-      if (!match.last()) {
+      if (!pokeRequest) {
         return msg.reply(["Use `-h pkmn` followed by the Pokémon you want me to look up.", "I can look for Pokémon in my Pokédex if you use `-h pkmn ` followed by a Pokémon's name or National Dex number.", "You’re missing a few arguments. Try `-h help pkmn` if you forgot this command’s syntax."].choose());
       }
-      species = JSON.parse((await fetch(SPECIES_URL + match.last().toLowerCase() + "/")));
+      species = JSON.parse((await fetch(SPECIES_URL + pokeRequest.toLowerCase() + "/")));
       //! Postpone JSON.parse pkmn until it's needed
       pkmn = fetch(PKMN_URL + species.id + "/");
       //! Break if Pokémon not found.
@@ -121,12 +122,12 @@
 
   module.exports = {
     name: "Pokémon",
-    regex: /^(?:(?:poke(?:mon)?)|(?:pkmn))\s*(\S[\s\S]*)?/i,
+    regex: /^(pkmn|pokemon|pok\émon|poke|poké)(\s+|$)/i,
     handler: handler,
     //! coffeelint: disable=max_line_length
     help: {
       short: "-h pkmn <...>  :: Get information regarding a Pokémon (See -h help pkmn)",
-      long: "```asciidoc\n=== Help for Pokémon ===\n*Aliases*: pkmn, pokemon, poke\n-h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,\n                      this command returns information on a specific Pokémon.\n```" //! coffeelint: enable=max_line_length
+      long: "```asciidoc\n=== Help for Pokémon ===\n*Aliases*: pkmn, pokemon, pokémon, poke, poké\n-h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,\n                      this command returns information on a specific Pokémon.\n```" //! coffeelint: enable=max_line_length
     }
   };
 

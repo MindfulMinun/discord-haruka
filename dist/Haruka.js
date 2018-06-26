@@ -14,13 +14,17 @@
               handler: Function
               help: String
           }, ...]
+          specials: [{
+              name: String
+              handler: Function
+          }, ...]
           prefix: Enum('-h', '#h')
           addFunction: Function
           try: Function
           config: JSON
       }
    */
-  var Haruka, HarukaFns, file, fnObj, fs, i, len;
+  var Haruka, HarukaFns, file, fnObj, fs, i, j, len, len1;
 
   Haruka = {};
 
@@ -29,6 +33,8 @@
   Haruka.version = "v1.2.0-dev";
 
   Haruka.functions = [];
+
+  Haruka.specials = [];
 
   Haruka.prefix = Haruka.dev ? '#h' : '-h';
 
@@ -46,6 +52,10 @@
     return Haruka.functions.push(fnObj);
   };
 
+  Haruka.addSpecial = function(fnObj) {
+    return Haruka.specials.push(fnObj);
+  };
+
   //! ========================================
   //! Take Haruka's functions and add them to the queue
   HarukaFns = fs.readdirSync('./dist/functions').filter(function(file) {
@@ -58,8 +68,33 @@
     Haruka.addFunction(fnObj);
   }
 
+  //! ========================================
+  //! Take Haruka's special funcitons and add them to the other queue
+  HarukaFns = fs.readdirSync('./dist/specials').filter(function(file) {
+    return file.endsWith('.js') && !file.startsWith("_");
+  });
+
+  for (j = 0, len1 = HarukaFns.length; j < len1; j++) {
+    file = HarukaFns[j];
+    fnObj = require(`../dist/specials/${file}`);
+    Haruka.addSpecial(fnObj);
+  }
+
   Haruka.try = function(msg) {
-    var fn, j, len1, ref, regexMatch, txt;
+    var fn, k, l, len2, len3, ref, ref1, regexMatch, txt;
+    ref = Haruka.specials;
+    //! ========================================
+    //! Run Specials first
+    for (k = 0, len2 = ref.length; k < len2; k++) {
+      fn = ref[k];
+      //! Break if handler returns a truthy value.
+      if (fn.handler(msg, Haruka)) {
+        return;
+      }
+    }
+    //! ========================================
+    //! Functions
+
     //! Tokenize input
     txt = msg.content.tokenize();
     txt[1] = txt[1] ? txt[1] : "help";
@@ -72,10 +107,10 @@
     if (Haruka.dev) {
       msg.reply("I'm in **development** mode, stuff may break. Use `#h` instead of `-h`.");
     }
-    ref = Haruka.functions;
+    ref1 = Haruka.functions;
     //! Run through all the commands and see if one matches.
-    for (j = 0, len1 = ref.length; j < len1; j++) {
-      fn = ref[j];
+    for (l = 0, len3 = ref1.length; l < len3; l++) {
+      fn = ref1[l];
       regexMatch = fn.regex.exec(txt[1]);
       if (regexMatch) {
         return fn.handler(msg, regexMatch, Haruka);

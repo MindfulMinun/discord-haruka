@@ -10,7 +10,7 @@
 
   module.exports = {
     name: "Ping",
-    regex: /^(ping|pong|beep|boop|ding|dong)/i,
+    regex: /^(ping|pong|beep|boop|ding|dong)(\s+|$)/i,
     handler: handler,
     help: {
       short: "-h ping        :: Replies “Pong!”",

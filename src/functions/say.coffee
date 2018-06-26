@@ -1,7 +1,8 @@
 #! ========================================
 #! Say
 handler = (msg, match) ->
-    if not match[1]
+    say = match.input.tokenize()[1]
+    if not say
         msg.reply [
             "Use `-h say` followed by what you want me to say."
             "You have to give me something to say, you can't just say “say.”"
@@ -20,11 +21,11 @@ handler = (msg, match) ->
             """
         ].choose()
     else
-        msg.channel.send "#{match[1]}"
+        msg.channel.send "#{say}"
 
 module.exports = {
     name: "Say"
-    regex: /^(?:say|println)\s*(\S[\s\S]*)?/i
+    regex: /^(say|println)(\s+|$)/i
     handler: handler
     help:
         short: "-h say <...>   ::
