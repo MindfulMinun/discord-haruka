@@ -16,11 +16,11 @@ client.on 'ready', ->
     if Haruka.dev
         console.log """
             Started Haruka in DEVELOPMENT mode.
-            Logged in as #{client.user.tag} on #{d.toUTCString()}.\n
+            Logged in as #{client.user.tag} on #{d.toUTCString()}.
         """
     else
         console.log """
-            Logged in as #{client.user.tag} on #{d.toUTCString()}.\n
+            Logged in as #{client.user.tag} on #{d.toUTCString()}.
         """
 client.on 'message', (msg) -> Haruka.try msg
 

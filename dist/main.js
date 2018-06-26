@@ -23,9 +23,9 @@
     d = new Date;
     client.user.setActivity('Try -h help');
     if (Haruka.dev) {
-      return console.log(`Started Haruka in DEVELOPMENT mode.\nLogged in as ${client.user.tag} on ${d.toUTCString()}.\n`);
+      return console.log(`Started Haruka in DEVELOPMENT mode.\nLogged in as ${client.user.tag} on ${d.toUTCString()}.`);
     } else {
-      return console.log(`Logged in as ${client.user.tag} on ${d.toUTCString()}.\n`);
+      return console.log(`Logged in as ${client.user.tag} on ${d.toUTCString()}.`);
     }
   });
 

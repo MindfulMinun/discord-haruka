@@ -6,4 +6,4 @@ replies, etc).
 
 <!-- Measuring tape, 80 characters ========================================= -->
 Specials are executed _before_ regular functions. All specials are executed, and
-    if a function returns a truthy value, Haruka will break out of `Haruka.try`.
+if a function returns a truthy value, Haruka will break out of `Haruka.try`.

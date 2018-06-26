@@ -9,16 +9,27 @@
 ###
 
 handler = (msg, Haruka) ->
-    # return no
-    console.log "#{msg.author.username}\##{msg.author.discriminator}\
-        #{if msg.author.bot then "[BOT]" else ""}:
-        #{msg.content}"
     if not (
-        msg.author.username      is "sadbot" and
-        msg.author.discriminator is "3862"   and #! discriminator is a string???
-        msg.author.bot           is yes
+        msg.author.id is "456207047482933251" and
+        msg.mentions.everyone is yes
     ) then return no
-    no
+    ###
+     * The if statement above checks if the message
+     *     - was from sadbot
+     *     - uses @here or @everyone
+     * If any statement is false, this Special doesn't execute.
+     * I won't check the contents of the message, I'm assuming that since
+     * the message mentions @here or @everyone, it's the nightly awoo message.
+    ###
+    msg.reply [
+        "`awOo`"
+        "Awoo!"
+        ":borntoawoo: awoo >_<"
+        ":regional_indicator_a: :regional_indicator_w:
+            :regional_indicator_o: :o2:" #! AWOO
+    ].choose()
+    return yes
+
 
 module.exports = {
     name: "Awoo"
