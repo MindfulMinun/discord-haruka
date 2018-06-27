@@ -1,3 +1,16 @@
+# Release v1.2.0
+
+Added two new functions:
+- GitHub function
+    - Retrieves information about a GitHub repository. Syntax: `-h github <user/repo>`
+- Kanji function
+    - Looks up info about a Kanji character. Syntax: `-h kanji <kanji>`
+
+Created Special functions, which are functions that listen to every message, used for only
+    _special circumstances_ (i.e., making an April fools prank, writing joke
+    replies, etc).
+
+
 # Development version v1.2.0-dev
 Started: 2018-06-23
 

@@ -12,7 +12,7 @@ handler = (msg, match, H) ->
                 secrets or something."
             "I’m an all-knowing being; I will answer any question
                 using `Math.random()`. Now then, what’s your question?"
-        ].choose()
+        ].choose() + " (Use `-h 8ball <question>`)"
 
     answer = [
         "It is certain."

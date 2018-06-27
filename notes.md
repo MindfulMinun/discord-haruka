@@ -8,7 +8,6 @@ Some reminders on how to do stuff.
 $ coffee -o dist/ -cw src/
 ```
 
-
 ### Copy files from local to Server
 ```bash
 #! In Haruka: Clear everything in Haruka

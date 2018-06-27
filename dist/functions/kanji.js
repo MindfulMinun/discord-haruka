@@ -49,7 +49,8 @@
     }).catch(function(err) {
       var ref1;
       if (((ref1 = JSON.parse(err != null ? err.body : void 0)) != null ? ref1.error : void 0) === "No kanji found.") {
-        return msg.reply(["Couldn’t find Kanji", "No results came up for that Kanji.", "漢字が見つかりません。"].choose());
+        // "漢字が見つかりません。"
+        return msg.reply(["Didn’t find any matching Kanji.", "No results came up for that Kanji."].choose());
       }
       return msg.reply(["An error occurred.", "Unfortunately, an error occurred.", "A nasty error occurred."].choose());
     });

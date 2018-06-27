@@ -13,7 +13,7 @@
 
   module.exports = {
     name: "Chat",
-    regex: /^(chat|talk|banter)/i,
+    regex: /^(chat|talk|banter)(\s+|$)/i,
     handler: handler,
     help: "```asciidoc\n=== Help for Chat ===\n*Aliases*: chat, talk, banter\n-h chat :: Start a conversation with me!\n```"
   };

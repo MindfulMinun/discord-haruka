@@ -53,9 +53,9 @@ handler = (msg, match, H) ->
     .catch (err) ->
         if JSON.parse(err?.body)?.error is "No kanji found."
             return msg.reply [
-                "Couldn’t find Kanji"
+                "Didn’t find any matching Kanji."
                 "No results came up for that Kanji."
-                "漢字が見つかりません。"
+                # "漢字が見つかりません。"
             ].choose()
 
         msg.reply [

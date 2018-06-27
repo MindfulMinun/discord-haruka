@@ -28,9 +28,9 @@
 
   Haruka = {};
 
-  Haruka.dev = true;
+  Haruka.dev = false;
 
-  Haruka.version = "v1.2.0-dev";
+  Haruka.version = "v1.2.0";
 
   Haruka.functions = [];
 

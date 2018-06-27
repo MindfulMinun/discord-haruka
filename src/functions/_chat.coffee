@@ -16,7 +16,7 @@ handler = (msg) ->
 
 module.exports = {
     name: "Chat"
-    regex: /^(chat|talk|banter)/i
+    regex: /^(chat|talk|banter)(\s+|$)/i
     handler: handler
     help: """
         ```asciidoc
