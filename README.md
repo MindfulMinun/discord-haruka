@@ -22,7 +22,7 @@ As of `v1.1.0`, Haruka has 8 functions:
 
 ## Installation
 
-Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][github] and **create a fork** of Haruka. In the root directory, open the file called `example-config.json`, looking something like this:
+Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][github] and get a copy of [Haruka’s latest release][releases]. In the root directory, open the file called `example-config.json`, looking something like this:
 
 ```json
 {
@@ -48,6 +48,7 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 <!-- Reference links -->
 [kanjialive]: https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji "KanjiAlive API Documentation"
 [github]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
+[releases]: https://github.com/MindfulMinun/discord-haruka/releases "Releases · MindfulMinun/discord-haruka"
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
 [license]: https://github.com/MindfulMinun/discord-haruka/blob/master/LICENSE "discord-haruka/LICENSE"
 [add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
