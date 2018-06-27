@@ -25,7 +25,7 @@
      */
     msg.reply([
       "`awOo`",
-      "Awoo!",
+      "Awoo~",
       ":borntoawoo: awoo >_<",
       ":regional_indicator_a: :regional_indicator_w: :regional_indicator_o: :o2:" //! AWOO
     ].choose());

@@ -5,7 +5,7 @@ handler = (msg, match, Haruka) ->
     msg.reply "My example function. Arguments: `#{args}`"
 
 module.exports = {
-    name: "Function name"
+    name: "Function"
     regex: /^(function|name)(\s+|$)/i
     handler: handler
     help:

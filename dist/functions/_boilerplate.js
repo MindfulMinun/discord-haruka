@@ -11,7 +11,7 @@
   };
 
   module.exports = {
-    name: "Function name",
+    name: "Function",
     regex: /^(function|name)(\s+|$)/i,
     handler: handler,
     help: {

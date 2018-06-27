@@ -37,7 +37,8 @@ fs = require 'fs'
 
 #! ========================================
 #! Helper functions
-Array::choose = -> this[Math.floor(Math.random() * this.length)]
+Array::choose = ->
+    this[Math.floor(Math.random() * this.length)]
 
 Haruka.addFunction = (fnObj) ->
     Haruka.functions.push fnObj
