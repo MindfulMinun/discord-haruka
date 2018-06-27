@@ -1,4 +1,4 @@
-# Release v1.2.0
+# [Release v1.2.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.2.0)
 
 Added two new functions:
 - GitHub function

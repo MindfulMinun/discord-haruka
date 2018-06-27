@@ -9,20 +9,22 @@ Haruka, your useless Discord bot. [Add Haruka][add]
 
 
 ## Commands
-As of `v1.1.0`, Haruka has 8 functions:
+As of `v1.2.0`, Haruka has 8 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
+- [`-h github`][github]: Retrieve information about a GitHub repository.
 - [`-h help`][help]: Returns a list of all the commands, much like this one.
 - [`-h invite`][invite]: Replies with a URL to invite Haruka to other servers.
-- [`-h pfp`][pfp]: Return a user’s profile image as a URL
+- [`-h kanji`][kanji]: Retrieve information about a Kanji character.
+- [`-h pfp`][pfp]: Return a user’s profile image as a URL.
 - [`-h ping`][ping]: Replies “Pong!”
 - [`-h pkmn`][pkmn]: Gets information about a Pokémon.
 - [`-h say`][say]: Replies with whatever you tell it to.
 
 ## Installation
 
-Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][github] and get a copy of [Haruka’s latest release][releases]. In the root directory, open the file called `example-config.json`, looking something like this:
+Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][repo] and get a copy of [Haruka’s latest release][releases]. In the root directory, open the file called `example-config.json`, looking something like this:
 
 ```json
 {
@@ -41,13 +43,13 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 
 ## License
 
-
-
 [MIT License][license]
+
+
 
 <!-- Reference links -->
 [kanjialive]: https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji "KanjiAlive API Documentation"
-[github]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
+[repo]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
 [releases]: https://github.com/MindfulMinun/discord-haruka/releases "Releases · MindfulMinun/discord-haruka"
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
 [license]: https://github.com/MindfulMinun/discord-haruka/blob/master/LICENSE "discord-haruka/LICENSE"
@@ -56,8 +58,10 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 <!-- Function links -->
 [8ball]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
 [about]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/about.coffee
+[github]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/github.coffee
 [help]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
 [invite]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
+[kanji]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
 [pfp]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
 [ping]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
 [pkmn]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
