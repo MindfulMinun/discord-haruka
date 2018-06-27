@@ -15,10 +15,9 @@ fetch = (url) ->
 
         client.get url, (r) ->
             data = ''
-
             #! A chunk of data has been recieved
             r.on 'data', (chunk) -> data += chunk
-            #! Whole response recieved, print result
+            #! Whole response recieved, return result
             r.on 'end', -> resolve data
         .on 'error', (err) ->
             reject err
@@ -37,10 +36,12 @@ handler = (msg, match) ->
     pkmn    = null
     P       = {}
 
+    pokeRequest = match.input.tokenize()[1]
+
     try
-        if not match.last()
+        if not pokeRequest
             return msg.reply [
-                "Use `-h pkmn ` followed by the Pokémon you want me to look up."
+                "Use `-h pkmn` followed by the Pokémon you want me to look up."
                 "I can look for Pokémon in my Pokédex if you use `-h pkmn `
                     followed by a Pokémon's name or National Dex number."
                 "You’re missing a few arguments. Try `-h help pkmn` if
@@ -48,7 +49,7 @@ handler = (msg, match) ->
             ].choose()
 
         species = JSON.parse(
-            await fetch SPECIES_URL + match.last().toLowerCase() + "/"
+            await fetch SPECIES_URL + pokeRequest.toLowerCase() + "/"
         )
         #! Postpone JSON.parse pkmn until it's needed
         pkmn = fetch PKMN_URL + species.id + "/"
@@ -101,9 +102,9 @@ handler = (msg, match) ->
             .setThumbnail pkmn.sprites.front_default
             .setTitle "#{capitalize P.name} — #{P.dexNumber}"
             .setDescription P.description
-            .addField "National Dex \#", P.dexNumber, true
-            .addField "Typing", P.types.join "/", true
-            .addField "Category", P.category, true
+            .addField "National Dex \#", P.dexNumber, yes
+            .addField "Typing", P.types.join("/"), yes
+            .addField "Category", P.category, yes
         msg.channel.send embed
     catch err
         console.log "========================================"
@@ -118,15 +119,18 @@ handler = (msg, match) ->
 
 module.exports = {
     name: "Pokémon"
-    regex: /^(?:(?:poke(?:mon)?)|(?:pkmn))\s*(\S[\s\S]*)?/i
+    regex: /^(pkmn|pokemon|pok\émon|poke|poké)(\s+|$)/i
     handler: handler
     #! coffeelint: disable=max_line_length
-    help: """
-        ```asciidoc
-        === Help for Pokémon ===
-        *Aliases*: pkmn, pokemon, poke
-        -h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,
-                              this command returns information on a specific Pokémon.
-        ```
-    """ #! coffeelint: enable=max_line_length
+    help:
+        short: "-h pkmn <...>  ::
+            Get information regarding a Pokémon (See -h help pkmn)"
+        long: """
+            ```asciidoc
+            === Help for Pokémon ===
+            *Aliases*: pkmn, pokemon, pokémon, poke, poké
+            -h pkmn <nameOrId> :: Given a Pokémon’s name or National Pokédex Number,
+                                  this command returns information on a specific Pokémon.
+            ```
+        """ #! coffeelint: enable=max_line_length
 }

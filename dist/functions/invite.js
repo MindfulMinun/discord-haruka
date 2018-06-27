@@ -15,7 +15,10 @@
     name: "Invite",
     regex: /^(invite|link)(\s+|$)/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for Invite ===\n*Aliases*: invite, link\n-h invite :: Replies with the URL to invite me to other servers.\n```"
+    help: {
+      short: "-h invite      :: Replies with the URL to invite me to other servers.",
+      long: "```asciidoc\n=== Help for Invite ===\n*Aliases*: invite, link\n-h invite :: Replies with the URL to invite me to other servers.\n```"
+    }
   };
 
 }).call(this);

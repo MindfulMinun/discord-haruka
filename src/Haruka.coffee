@@ -13,11 +13,11 @@
             handler: Function
             help: String
         }, ...]
+        specials: [{
+            name: String
+            handler: Function
+        }, ...]
         prefix: Enum('-h', '#h')
-        db: {
-            serverSettings: Datastore
-        }
-        defaultServerSettings: Object
         addFunction: Function
         try: Function
         config: JSON
@@ -25,9 +25,10 @@
 ###
 
 Haruka = {}
-Haruka.dev = no
-Haruka.version = "v1.1.0"
+Haruka.dev = yes
+Haruka.version = "v1.2.0-dev"
 Haruka.functions = []
+Haruka.specials  = []
 Haruka.prefix = if Haruka.dev then '#h' else '-h'
 
 #! ========================================
@@ -36,10 +37,14 @@ fs = require 'fs'
 
 #! ========================================
 #! Helper functions
-Array::choose = -> this[Math.floor(Math.random() * this.length)]
+Array::choose = ->
+    this[Math.floor(Math.random() * this.length)]
 
 Haruka.addFunction = (fnObj) ->
     Haruka.functions.push fnObj
+
+Haruka.addSpecial = (fnObj) ->
+    Haruka.specials.push fnObj
 
 #! ========================================
 #! Take Haruka's functions and add them to the queue
@@ -52,8 +57,28 @@ for file in HarukaFns
     fnObj = require "../dist/functions/#{file}"
     Haruka.addFunction fnObj
 
+#! ========================================
+#! Take Haruka's special funcitons and add them to the other queue
+HarukaFns = (
+    fs.readdirSync './dist/specials'
+    .filter (file) -> file.endsWith('.js') and not file.startsWith "_"
+)
+
+for file in HarukaFns
+    fnObj = require "../dist/specials/#{file}"
+    Haruka.addSpecial fnObj
+
 
 Haruka.try = (msg) ->
+    #! ========================================
+    #! Run Specials first
+    for fn in Haruka.specials
+        #! Break if handler returns a truthy value.
+        if fn.handler(msg, Haruka) then return
+
+    #! ========================================
+    #! Functions
+
     #! Tokenize input
     txt = msg.content.tokenize()
     txt[1] = if txt[1] then txt[1] else "help"

@@ -19,11 +19,14 @@ module.exports = {
     name: "Invite"
     regex: /^(invite|link)(\s+|$)/i
     handler: handler
-    help: """
-        ```asciidoc
-        === Help for Invite ===
-        *Aliases*: invite, link
-        -h invite :: Replies with the URL to invite me to other servers.
-        ```
-    """
+    help:
+        short: "-h invite      ::
+            Replies with the URL to invite me to other servers."
+        long: """
+            ```asciidoc
+            === Help for Invite ===
+            *Aliases*: invite, link
+            -h invite :: Replies with the URL to invite me to other servers.
+            ```
+        """
 }

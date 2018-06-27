@@ -20,9 +20,12 @@
 
   module.exports = {
     name: "8-ball",
-    regex: /^(?:8\-ball|8ball|ask)\s*/i,
+    regex: /^(?:8\-ball|8ball|ask)(\s+|$)/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for 8-ball ===\n*Aliases*: 8-ball, 8ball, ask\n-h 8ball <question> :: Answers any yes or no question with 47.2% certainty.\n```"
+    help: {
+      short: "-h 8ball <???> :: Answers any yes or no question.",
+      long: "```asciidoc\n=== Help for 8-ball ===\n*Aliases*: 8-ball, 8ball, ask\n-h 8ball <question> :: Answers any yes or no question with 47.2% certainty.\n```"
+    }
   };
 
 }).call(this);

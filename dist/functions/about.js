@@ -10,9 +10,12 @@
 
   module.exports = {
     name: "About",
-    regex: /^about/i,
+    regex: /^(about)(\s+|$)/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for About ===\n*Aliases*: None.\n-h about :: Prints some info about me, Haruka!\n```"
+    help: {
+      short: "-h about       :: General stuff about me.",
+      long: "```asciidoc\n=== Help for About ===\n*Aliases*: None.\n-h about :: Prints some info about me, Haruka!\n```"
+    }
   };
 
 }).call(this);

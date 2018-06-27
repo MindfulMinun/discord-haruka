@@ -10,13 +10,16 @@ handler = (msg, match, H) ->
 
 module.exports = {
     name: "About"
-    regex: /^about/i
+    regex: /^(about)(\s+|$)/i
     handler: handler
-    help: """
-        ```asciidoc
-        === Help for About ===
-        *Aliases*: None.
-        -h about :: Prints some info about me, Haruka!
-        ```
-    """
+    help:
+        short: "-h about       ::
+            General stuff about me."
+        long: """
+            ```asciidoc
+            === Help for About ===
+            *Aliases*: None.
+            -h about :: Prints some info about me, Haruka!
+            ```
+        """
 }

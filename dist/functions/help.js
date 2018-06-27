@@ -5,25 +5,39 @@
   var handler;
 
   handler = function(msg, match, H) {
-    var fn, helpMatch, i, len, ref;
-    if (match[1]) {
+    var allHelpList, fn, helpMatch, helpforCommand, i, len, ref;
+    helpforCommand = match.input.tokenize()[1];
+    if (helpforCommand) {
       ref = H.functions;
       for (i = 0, len = ref.length; i < len; i++) {
         fn = ref[i];
-        helpMatch = fn.regex.test(match[1]);
+        helpMatch = fn.regex.test(helpforCommand);
         if (helpMatch) {
-          return msg.channel.send(fn.help);
+          return msg.channel.send(fn.help.long);
         }
       }
     }
-    return msg.channel.send("Here’s a list of all my commands. Arguments in `<angle brackets>` are required, and those in `[regular brackets]` are optional.\nFor help for a specific command, use `-h help <command>`.\n```asciidoc\n=== Commands ===\n-h 8ball      :: Answers any yes or no question.\n-h about      :: General stuff about me.\n-h help [...] :: This list. What did you expect?\n-h invite     :: Replies with the URL to invite me to other servers.\n-h pfp [...]  :: Returns your (or someone else’s) profile image as a URL\n-h ping       :: Replies “Pong!”\n-h pkmn <...> :: Get information regarding a Pokémon (See -h help pkmn)\n-h say <...>  :: Replies with <...>\n```");
+    allHelpList = `Here’s a list of all my commands. Arguments in \`<angle brackets>\` are required, and those in \`[regular brackets]\` are optional.\nFor help for a specific command, use \`-h help <command>\`.\n\`\`\`asciidoc\n=== Commands ===\n${((function() {
+      var j, len1, ref1, results;
+      ref1 = H.functions;
+      results = [];
+      for (j = 0, len1 = ref1.length; j < len1; j++) {
+        fn = ref1[j];
+        results.push(fn.help.short);
+      }
+      return results;
+    })()).join('\n')}\n\`\`\``;
+    return msg.channel.send(allHelpList);
   };
 
   module.exports = {
     name: "Help",
-    regex: /^(?:help|h)(?:\s+(\S[\s\S]*))?\s*$/i,
+    regex: /^(help|h)(\s+|$)/i,
     handler: handler,
-    help: "```asciidoc\n=== Help for Help (so meta) ===\n*Aliases*: help, h\n-h help :: Returns a help menu listing all the commands.\n-h help [command] :: Returns a help menu for that specific command.\n```"
+    help: {
+      short: "-h help [...]  :: This list. What did you expect?",
+      long: "```asciidoc\n=== Help for Help (so meta) ===\n*Aliases*: help, h\n-h help :: Returns a help menu listing all the commands.\n-h help [command] :: Returns a help menu for that specific command.\n```"
+    }
   };
 
 }).call(this);
