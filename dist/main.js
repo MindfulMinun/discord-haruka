@@ -21,7 +21,10 @@
   client.on('ready', function() {
     var d;
     d = new Date;
-    client.user.setActivity('Try -h help');
+    // client.user.setActivity 'Try -h help'
+    client.user.setActivity('Hentai | -h help', {
+      type: 'WATCHING'
+    });
     if (Haruka.dev) {
       return console.log(`Started Haruka in DEVELOPMENT mode.\nLogged in as ${client.user.tag} on ${d.toUTCString()}.`);
     } else {

@@ -4,7 +4,8 @@
 # Config: don't want to leak out Haruka's info
 /config.json
 /config.cson
-data/
+logs/
+package-lock.json
 
 # IDEs and editors
 .idea

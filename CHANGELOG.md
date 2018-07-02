@@ -1,3 +1,18 @@
+# Development version v1.3.0
+
+### Added
+- Halt function
+    - `[2018-07-01]`: Created function: Users in `ops` in `config.json` can run the `-h halt` command to halt Haruka.
+
+### Changed
+- `[2018-07-01]`: Changed activity to `Watching Hentai | -h help` because I think I'm clever.
+
+### Removed
+- Nothing yet...
+
+
+---
+
 # [Release v1.2.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.2.0)
 
 Added two new functions:
@@ -10,6 +25,7 @@ Created Special functions, which are functions that listen to every message, use
     _special circumstances_ (i.e., making an April fools prank, writing joke
     replies, etc).
 
+___
 
 # Development version v1.2.0-dev
 Started: 2018-06-23

@@ -26,7 +26,9 @@
         results.push(fn.help.short);
       }
       return results;
-    })()).join('\n')}\n\`\`\``;
+    })()).filter(function(x) {
+      return !!x;
+    }).join('\n')}\n\`\`\``;
     return msg.channel.send(allHelpList);
   };
 

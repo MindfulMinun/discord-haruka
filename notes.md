@@ -33,3 +33,8 @@ $ pm2 start dist/main.js
 #! In Haruka: kills all pm2 daemons
 $ pm2 stop
 ```
+
+### Restart daemon
+```bash
+$ pm2 restart
+```

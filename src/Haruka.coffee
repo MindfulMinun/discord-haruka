@@ -25,8 +25,8 @@
 ###
 
 Haruka = {}
-Haruka.dev = no
-Haruka.version = "v1.2.0"
+Haruka.dev = yes
+Haruka.version = "v1.3.0-dev"
 Haruka.functions = []
 Haruka.specials  = []
 Haruka.prefix = if Haruka.dev then '#h' else '-h'

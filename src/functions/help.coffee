@@ -14,7 +14,11 @@ handler = (msg, match, H) ->
         For help for a specific command, use `-h help <command>`.
         ```asciidoc
         === Commands ===
-        #{(fn.help.short for fn in H.functions).join '\n'}
+        #{
+        (fn.help.short for fn in H.functions)
+            .filter (x) -> not not x
+            .join '\n'
+        }
         ```
     """
 

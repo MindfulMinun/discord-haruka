@@ -12,7 +12,9 @@ Haruka.config = config
 #! Add event listeners
 client.on 'ready', ->
     d = new Date
-    client.user.setActivity 'Try -h help'
+    # client.user.setActivity 'Try -h help'
+    client.user.setActivity 'Hentai | -h help', { type: 'WATCHING' }
+
     if Haruka.dev
         console.log """
             Started Haruka in DEVELOPMENT mode.
