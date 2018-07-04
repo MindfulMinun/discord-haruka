@@ -53,6 +53,11 @@
     return this[this.length - 1];
   };
 
+  Array.prototype.first = function() {
+    //! Retrieve this array’s first element (for chained calls)
+    return this[0];
+  };
+
   String.prototype.tokenize = function() {
     //! Split this string at the first occurrence of whitespace.
     return this.replace(/\s+/, '\x01').split('\x01');

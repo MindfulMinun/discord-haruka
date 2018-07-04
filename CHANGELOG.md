@@ -3,9 +3,12 @@
 ### Added
 - Halt function
     - `[2018-07-01]`: Created function: Users in `ops` in `config.json` can run the `-h halt` command to halt Haruka.
+- Version function
+    - `[2018-07-03]`: Created hidden function: `-h version` prints out Haruka’s current version, as well as the number of functions she has available.
 
 ### Changed
 - `[2018-07-01]`: Changed activity to `Watching Hentai | -h help` because I think I'm clever.
+- `[2018-07-04]`: Cleaned up the `pkmn` function.
 
 ### Removed
 - Nothing yet...

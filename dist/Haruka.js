@@ -24,7 +24,7 @@
           config: JSON
       }
    */
-  var Haruka, HarukaFns, file, fnObj, fs, i, j, len, len1;
+  var Haruka, HarukaFns, HarukaSpecials, f, fs;
 
   Haruka = {};
 
@@ -62,31 +62,39 @@
     return file.endsWith('.js') && !file.startsWith("_");
   });
 
-  for (i = 0, len = HarukaFns.length; i < len; i++) {
-    file = HarukaFns[i];
-    fnObj = require(`../dist/functions/${file}`);
-    Haruka.addFunction(fnObj);
-  }
+  (function() {
+    var i, len, results;
+    results = [];
+    for (i = 0, len = HarukaFns.length; i < len; i++) {
+      f = HarukaFns[i];
+      results.push(Haruka.addFunction(require(`../dist/functions/${f}`)));
+    }
+    return results;
+  })();
 
   //! ========================================
   //! Take Haruka's special funcitons and add them to the other queue
-  HarukaFns = fs.readdirSync('./dist/specials').filter(function(file) {
+  HarukaSpecials = fs.readdirSync('./dist/specials').filter(function(file) {
     return file.endsWith('.js') && !file.startsWith("_");
   });
 
-  for (j = 0, len1 = HarukaFns.length; j < len1; j++) {
-    file = HarukaFns[j];
-    fnObj = require(`../dist/specials/${file}`);
-    Haruka.addSpecial(fnObj);
-  }
+  (function() {
+    var i, len, results;
+    results = [];
+    for (i = 0, len = HarukaSpecials.length; i < len; i++) {
+      f = HarukaSpecials[i];
+      results.push(Haruka.addSpecial(require(`../dist/specials/${f}`)));
+    }
+    return results;
+  })();
 
   Haruka.try = function(msg) {
-    var fn, k, l, len2, len3, ref, ref1, regexMatch, txt;
+    var fn, i, j, len, len1, ref, ref1, regexMatch, txt;
     ref = Haruka.specials;
     //! ========================================
     //! Run Specials first
-    for (k = 0, len2 = ref.length; k < len2; k++) {
-      fn = ref[k];
+    for (i = 0, len = ref.length; i < len; i++) {
+      fn = ref[i];
       //! Break if handler returns a truthy value.
       if (fn.handler(msg, Haruka)) {
         return;
@@ -103,14 +111,16 @@
     if ((txt[0] !== Haruka.prefix) || msg.author.bot) {
       return;
     }
-    //! Show a warning if Haruka's in dev mode
-    if (Haruka.dev) {
-      msg.reply("I'm in **development** mode, stuff may break. Use `#h` instead of `-h`.");
-    }
     ref1 = Haruka.functions;
+    //! Show a warning if Haruka's in dev mode
+    //! This is actually very annoying, I regret adding this.
+    // if Haruka.dev
+    //     msg.reply "I'm in **development** mode, stuff may break.
+    //         Use `#h` instead of `-h`."
+
     //! Run through all the commands and see if one matches.
-    for (l = 0, len3 = ref1.length; l < len3; l++) {
-      fn = ref1[l];
+    for (j = 0, len1 = ref1.length; j < len1; j++) {
+      fn = ref1[j];
       regexMatch = fn.regex.exec(txt[1]);
       if (regexMatch) {
         return fn.handler(msg, regexMatch, Haruka);

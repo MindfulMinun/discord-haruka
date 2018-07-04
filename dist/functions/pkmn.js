@@ -79,26 +79,12 @@
       P.dexNumber = toDexNumber(species.id);
       //! Let the user know we're loading stuff
       msg.reply([`Information about ${P.name}, coming right up!`, `Looking through my Pokédex for ${P.name}...`, `Looking up ${P.name}, hold tight...`, `Getting info on ${P.name}...`, `Looking up ${P.name}’s favorite berries...`].choose());
-      P.description = (function() {
-        var f, i, len, ref;
-        ref = species.flavor_text_entries;
-        for (i = 0, len = ref.length; i < len; i++) {
-          f = ref[i];
-          if (f.language.name === "en") {
-            return f.flavor_text.replace(/\n/g, ' ');
-          }
-        }
-      })();
-      P.category = (function() {
-        var genus, i, len, ref;
-        ref = species.genera;
-        for (i = 0, len = ref.length; i < len; i++) {
-          genus = ref[i];
-          if (genus.language.name === "en") {
-            return genus.genus;
-          }
-        }
-      })();
+      P.description = species.flavor_text_entries.filter(function(f) {
+        return f.language.name === "en";
+      }).first().flavor_text.replace(/\n/g, ' ');
+      P.category = species.genera.filter(function(genus) {
+        return genus.language.name === "en";
+      }).first().genus;
       //! Postpone JSON.parse pkmn until it's needed
       pkmn = JSON.parse((await pkmn));
       P.types = pkmn.types.map(function(t) {

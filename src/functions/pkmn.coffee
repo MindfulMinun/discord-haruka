@@ -79,15 +79,16 @@ handler = (msg, match) ->
             "Looking up #{P.name}’s favorite berries..."
         ].choose()
 
-        P.description = do ->
-            for f in species.flavor_text_entries
-                if f.language.name is "en"
-                    return f.flavor_text.replace /\n/g, ' '
+        P.description = species.flavor_text_entries
+            .filter((f) -> f.language.name is "en")
+            .first()
+            .flavor_text
+            .replace(/\n/g, ' ')
 
-        P.category = do ->
-            for genus in species.genera
-                if genus.language.name is "en"
-                    return genus.genus
+        P.category = species.genera
+            .filter((genus) -> genus.language.name is "en")
+            .first()
+            .genus
 
         #! Postpone JSON.parse pkmn until it's needed
         pkmn = JSON.parse await pkmn

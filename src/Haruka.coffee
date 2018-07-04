@@ -53,21 +53,15 @@ HarukaFns = (
     .filter (file) -> file.endsWith('.js') and not file.startsWith "_"
 )
 
-for file in HarukaFns
-    fnObj = require "../dist/functions/#{file}"
-    Haruka.addFunction fnObj
+(Haruka.addFunction require "../dist/functions/#{f}" for f in HarukaFns)
 
 #! ========================================
 #! Take Haruka's special funcitons and add them to the other queue
-HarukaFns = (
+HarukaSpecials = (
     fs.readdirSync './dist/specials'
     .filter (file) -> file.endsWith('.js') and not file.startsWith "_"
 )
-
-for file in HarukaFns
-    fnObj = require "../dist/specials/#{file}"
-    Haruka.addSpecial fnObj
-
+(Haruka.addSpecial require "../dist/specials/#{f}" for f in HarukaSpecials)
 
 Haruka.try = (msg) ->
     #! ========================================
@@ -88,9 +82,10 @@ Haruka.try = (msg) ->
     if (txt[0] isnt Haruka.prefix) or msg.author.bot then return
 
     #! Show a warning if Haruka's in dev mode
-    if Haruka.dev
-        msg.reply "I'm in **development** mode, stuff may break.
-            Use `#h` instead of `-h`."
+    #! This is actually very annoying, I regret adding this.
+    # if Haruka.dev
+    #     msg.reply "I'm in **development** mode, stuff may break.
+    #         Use `#h` instead of `-h`."
 
     #! Run through all the commands and see if one matches.
     for fn in Haruka.functions
