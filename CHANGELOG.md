@@ -5,6 +5,8 @@
     - `[2018-07-01]`: Created function: Users in `ops` in `config.json` can run the `-h halt` command to halt Haruka.
 - Version function
     - `[2018-07-03]`: Created hidden function: `-h version` prints out Haruka’s current version, as well as the number of functions she has available.
+- Play function
+    - `[2018-07-05]`: Created function: `-h play <url or id>` plays YouTube videos. Code could be better written.
 
 ### Changed
 - `[2018-07-01]`: Changed activity to `Watching Hentai | -h help` because I think I'm clever.

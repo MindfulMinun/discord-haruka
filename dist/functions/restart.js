@@ -10,11 +10,11 @@
     force = match.input.tokenize()[1];
     if (ref = msg.author.id, indexOf.call(Haruka.config.ops, ref) >= 0) {
       if (/^(-f|--force)$/.test(force)) {
-        return msg.reply(["Halting...", "brb calling `process.exit()`", "i'm dead"].choose()).then(function() {
+        return msg.reply(["`process.exit()`", "lmao i'm dead", "i can’t drown my pm2 daemons, they know how to swim"].choose()).then(function() {
           return process.exit();
         });
       } else {
-        return msg.reply("Halting is a really dangerous command. Calling it will halt the Haruka proccess, #h help hand Haruka may not be restarted automatically. Furthermore, debug logs will be deleted. If you understand what you're actually doing, please run `-h halt --force` or `-h halt -f`.");
+        return msg.reply("Halting is a really dangerous command. Calling it will halt the Haruka proccess, and Haruka may not be restarted automatically. If you understand what you're actually doing, please run `-h halt --force` or `-h halt -f`.");
       }
     }
     return msg.reply(["You’re not an op, so I can’t let you do that.", "You can’t do that if you’re not an op.", "I refuse to let myself be controlled by the likes of you."].choose());

@@ -6,17 +6,16 @@ handler = (msg, match, Haruka) ->
     if msg.author.id in Haruka.config.ops
         if /^(-f|--force)$/.test force
             return msg.reply [
-                "Halting..."
-                "brb calling `process.exit()`"
-                "i'm dead"
+                "`process.exit()`"
+                "lmao i'm dead"
+                "i can’t drown my pm2 daemons, they know how to swim"
             ].choose()
             .then -> process.exit()
         else
             return msg.reply "
                 Halting is a really dangerous command. Calling it will halt the
-                Haruka proccess, #h help hand Haruka may not be restarted
-                automatically. Furthermore, debug logs will be deleted. If you
-                understand what you're actually doing, please run
+                Haruka proccess, and Haruka may not be restarted automatically.
+                If you understand what you're actually doing, please run
                 `-h halt --force` or `-h halt -f`.
             "
 
