@@ -8,15 +8,13 @@ handler = (msg, match) ->
             "You have to give me something to say, you can't just say “say.”"
             "Say what?"
             """
-            ```coffee
-            ###
+            ```
             SyntaxError: Expected 1 argument, saw 0.
                 at handler             (src/functions/say.coffee:4:20)
                 at Haruka.addFunction  (src/Haruka.coffee:26:24)
                 at fn.handler          (src/Haruka.coffee:45:28)
                 at Haruka.try          (src/Haruka.coffee:29:14)
                 at client.on 'message' (src/main.coffee:26:16)
-            ###
             ```
             """
         ].choose()
