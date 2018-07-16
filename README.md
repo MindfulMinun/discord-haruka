@@ -28,13 +28,16 @@ Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recomm
 
 ```json
 {
-  "token": "https://discordapp.com/developers/applications/me",
-  "client_id": "https://discordapp.com/developers/applications/me",
-  "kanji-alive-api-key": "https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji"
+  "token": "<https://discordapp.com/developers/applications/me>",
+  "client_id": "<https://discordapp.com/developers/applications/me>",
+  "kanji-alive-api-key": "<https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji>",
+  "ops": [
+    "<userID>"
+  ]
 }
 ```
 
-Replace each URL with its respective value. Both `token` and `client_id` can be found in [your Discord apps][discord-my-apps]. `kanji-alive-api-key` is your `X-Mashape-Key` header used for [KanjiAlive][kanjialive], the API used to get Kanji data. If you don't wish to use the Kanji function, rename `dist/functions/kanji.js` to `dist/functions/_kanji.js`.
+Replace each thing in `<angle brackets>` with its respective value. Both `token` and `client_id` can be found in [your Discord apps][discord-my-apps]. `kanji-alive-api-key` is your `X-Mashape-Key` header used for [KanjiAlive][kanjialive], the API used to get Kanji data. If you don't wish to use the Kanji function, rename `dist/functions/kanji.js` to `dist/functions/_kanji.js`. `"ops"` is an array of user IDs; a user ID represents a user on Discord, and these are used to determine who can run the `-h halt` command, which kills the Haruka process.
 
 Finally, rename `example-config.json` to `config.json`, run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
 

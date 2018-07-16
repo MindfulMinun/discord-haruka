@@ -12,6 +12,7 @@ $ coffee -o dist/ -cw src/
 ```bash
 #! In Haruka: Clear everything in Haruka
 $ rm -rf ~
+$ mkdir /root
 $ ls # Should return a newline
 $ logout
 ```

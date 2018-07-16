@@ -25,7 +25,7 @@
 ###
 
 Haruka = {}
-Haruka.dev = yes
+Haruka.dev = no
 Haruka.version = "v1.3.0-dev"
 Haruka.functions = []
 Haruka.specials  = []
