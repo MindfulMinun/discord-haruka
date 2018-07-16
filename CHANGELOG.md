@@ -1,4 +1,4 @@
-# Development version v1.3.0
+# Development version v1.2.1
 
 ### Added
 - Halt function
@@ -8,9 +8,13 @@
 - Play function
     - `[2018-07-05]`: Created function: `-h play <url or id>` plays YouTube videos. Code could be better written.
 
+- Aesthetic funciton
+    - `[2018-07-14]`: Created function: `-h ae <text>` turns text into ｗｉｄｅｒ，　ｍｏｒｅ　ａｅｓｔｈｅｔｉｃ　ｔｅｘｔ．
+
 ### Changed
 - `[2018-07-01]`: Changed activity to `Watching Hentai | -h help` because I think I'm clever.
 - `[2018-07-04]`: Cleaned up the `pkmn` function.
+- `[2018-07-14]`: Removed the `play` function from being added to Haruka, prefixed with an underscore.
 
 ### Removed
 - Nothing yet...
