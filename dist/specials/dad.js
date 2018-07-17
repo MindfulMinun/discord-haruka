@@ -21,7 +21,7 @@
     }
     //! Likewise, if they're unlucky, send the reply.
     reply = msg.content.replace(reg, '');
-    return msg.channel.send([`Hey ${r}, I’m Haruka.`, `Hi ${r}, I’m Haruka.`, `Hello ${r}, I’m Haruka. Nice to meet you.`].choose());
+    return msg.channel.send([`Hey ${reply}, I’m Haruka.`, `Hi ${reply}, I’m Haruka.`, `Hello ${reply}, I’m Haruka. Nice to meet you.`].choose());
   };
 
   module.exports = {

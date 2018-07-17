@@ -1,3 +1,7 @@
+# [Release v1.2.2](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.2.2)
+Killing bugs:
+- Fixes Haruka’s Dad special. This special would throw an error and wouldn't run, which has now been resolved.
+
 # [Release v1.2.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.2.1)
 
 Three new functions, one new special:

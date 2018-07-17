@@ -30,7 +30,7 @@
 
   Haruka.dev = false;
 
-  Haruka.version = "v1.2.1";
+  Haruka.version = "v1.2.2";
 
   Haruka.functions = [];
 

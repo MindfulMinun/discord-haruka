@@ -9,7 +9,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 
 
 ## Commands
-As of `v1.2.1`, Haruka has 13 functions:
+As of `v1.2.2`, Haruka has 13 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
