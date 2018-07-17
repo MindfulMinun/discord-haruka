@@ -1,6 +1,6 @@
 # Haruka
 
-Haruka, your useless Discord bot. [Add Haruka][add]
+Haruka, your useless Discord bot. [Add Haruka][add].
 
 - [Commands](#commands)
 - [Installation](#installation)
@@ -9,10 +9,11 @@ Haruka, your useless Discord bot. [Add Haruka][add]
 
 
 ## Commands
-As of `v1.2.0`, Haruka has 10 functions:
+As of `v1.2.1`, Haruka has 13 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
+- [`-h aesthetic`][ae]: Makes your text more ａｅｓｔｈｅｔｉｃ.
 - [`-h github`][github]: Retrieve information about a GitHub repository.
 - [`-h help`][help]: Returns a list of all the commands, much like this one.
 - [`-h invite`][invite]: Replies with a URL to invite Haruka to other servers.
@@ -20,7 +21,9 @@ As of `v1.2.0`, Haruka has 10 functions:
 - [`-h pfp`][pfp]: Return a user’s profile image as a URL.
 - [`-h ping`][ping]: Replies “Pong!”
 - [`-h pkmn`][pkmn]: Gets information about a Pokémon.
+- [`-h restart`][restart]: Restarts Haruka.
 - [`-h say`][say]: Replies with whatever you tell it to.
+- [`-h version`][version]: Prints out version information about Haruka
 
 ## Installation
 
@@ -37,7 +40,7 @@ Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recomm
 }
 ```
 
-Replace each thing in `<angle brackets>` with its respective value. Both `token` and `client_id` can be found in [your Discord apps][discord-my-apps]. `kanji-alive-api-key` is your `X-Mashape-Key` header used for [KanjiAlive][kanjialive], the API used to get Kanji data. If you don't wish to use the Kanji function, rename `dist/functions/kanji.js` to `dist/functions/_kanji.js`. `"ops"` is an array of user IDs; a user ID represents a user on Discord, and these are used to determine who can run the `-h halt` command, which kills the Haruka process.
+Replace each thing in `<angle brackets>` with its respective value. Both `token` and `client_id` can be found in [your Discord apps][discord-my-apps]. `kanji-alive-api-key` is your `X-Mashape-Key` header used for [KanjiAlive][kanjialive], the API used to get Kanji data. If you don't wish to use the Kanji function, rename `dist/functions/kanji.js` to `dist/functions/_kanji.js`. `ops` is an array of user IDs; a user ID represents a user on Discord, and these are used to determine who can run the `-h restart` command, which kills the Haruka process.
 
 Finally, rename `example-config.json` to `config.json`, run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
 
@@ -59,13 +62,16 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 [add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
 
 <!-- Function links -->
-[8ball]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
-[about]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/about.coffee
-[github]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/github.coffee
-[help]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
-[invite]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
-[kanji]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
-[pfp]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
-[ping]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
-[pkmn]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
-[say]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
+[8ball]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
+[about]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/about.coffee
+[ae]:      https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/aesthetic.coffee
+[github]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/github.coffee
+[help]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
+[invite]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
+[kanji]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
+[pfp]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
+[ping]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
+[pkmn]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
+[restart]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/restart.coffee
+[say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
+[version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee

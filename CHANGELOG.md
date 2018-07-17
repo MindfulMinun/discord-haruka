@@ -1,3 +1,17 @@
+# [Release v1.2.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.2.1)
+
+Three new functions, one new special:
+- Aesthetic function
+    - `-h ae <text>` turns text into ｗｉｄｅｒ，　ｍｏｒｅ　ａｅｓｔｈｅｔｉｃ　ｔｅｘｔ．
+- Version function
+    - `-h version` prints out Haruka’s current version, as well as the number of functions she has available.
+- Restart function
+    - Use `-h restart` to restart the Haruka instance. User must be in the `ops` list.
+- Dad special function
+    - If a message starts with "I’m" (or something like it), Haruka has a 1 in 10 chance of sending a sarcastic reply.
+
+---
+
 # Development version v1.2.1
 
 ### Added
@@ -7,8 +21,7 @@
     - `[2018-07-03]`: Created hidden function: `-h version` prints out Haruka’s current version, as well as the number of functions she has available.
 - Play function
     - `[2018-07-05]`: Created function: `-h play <url or id>` plays YouTube videos. Code could be better written.
-
-- Aesthetic funciton
+- Aesthetic function
     - `[2018-07-14]`: Created function: `-h ae <text>` turns text into ｗｉｄｅｒ，　ｍｏｒｅ　ａｅｓｔｈｅｔｉｃ　ｔｅｘｔ．
 
 ### Changed
