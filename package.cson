@@ -5,6 +5,7 @@ main: "dist/main.js"
 repository: "github:MindfulMinun/discord-haruka"
 scripts:
     start: "node dist/main.js"
+    debug: "node --inspect dist/main.js"
     test: "echo \"Error: no test specified\" && exit 1"
 author: "MindfulMinun"
 license: "MIT"

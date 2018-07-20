@@ -1,3 +1,17 @@
+# Development version v1.2.3
+
+### Added
+- Someone function
+    - `[2018-07-20]`: Created @someone function, use `-h @someone` to mention a random user, offline or online.
+
+### Changed
+- Use `npm run debug` as a shortcut for `node --inspect dist/main.js`.
+
+### Removed
+- Nothing yet...
+
+---
+
 # [Release v1.2.2](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.2.2)
 Killing bugs:
 - Fixes Haruka’s Dad special. This special would throw an error and wouldn't run, which has now been resolved.
