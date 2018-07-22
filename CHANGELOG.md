@@ -2,10 +2,13 @@
 
 ### Added
 - Someone function
-    - `[2018-07-20]`: Created @someone function, use `-h @someone` to mention a random user, offline or online.
+    - `[2018-07-20]`: Created someone function, use `-h @someone` to mention a random user, offline or online.
+- Emote fuction
+    - `[2018-07-21]`: Manage server emotes and emojis with `-h emote`.
 
 ### Changed
 - Use `npm run debug` as a shortcut for `node --inspect dist/main.js`.
+- Added bug report issue template.
 
 ### Removed
 - Nothing yet...

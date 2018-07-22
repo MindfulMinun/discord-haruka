@@ -7,12 +7,12 @@ Haruka  = require './Haruka.js'
 
 client = new Discord.Client
 Haruka.config = config
+Haruka.client = client
 
 #! ========================================
 #! Add event listeners
 client.on 'ready', ->
     d = new Date
-    # client.user.setActivity 'Try -h help'
     client.user.setActivity 'Hentai | -h help', { type: 'WATCHING' }
 
     if Haruka.dev
@@ -24,7 +24,18 @@ client.on 'ready', ->
         console.log """
             Logged in as #{client.user.tag} on #{d.toUTCString()}.
         """
-client.on 'message', (msg) -> Haruka.try msg
+client.on 'message', (msg) ->
+    try
+        Haruka.try msg
+    catch err
+        #! I hope this catches bugs
+        msg.channel.send """
+            **An exception has occurred:** This is a bug, this shouldn’t happen.
+            Create a GitHub issue or contact me via Discord (MindfulMinun#3386).
+            Information regarding the exception is provided below.
+            ```\n#{err}\n```
+        """
+        console.warn "\n===== Uncaught Fatal Error: =====\n", err
 
 #! Catch Uncaught rejections and continue normally.
 process.on 'unhandledRejection', (err) ->

@@ -29,9 +29,9 @@ module.exports = {
             === Help for Profile Image ===
             *Aliases*: img, pfp, avatar
             -h pfp :: Returns your profile image in a nice box with a URL.
-            -h pfp [@user @user ...] :: Returs those user’s profile image.
-            Note: You must @ each member directly. @[role], @here, and @everyone
-                  won't work.
+            -h pfp [@user @user ...] :: Returns those users’ profile image.
+            Note: You must mention each member directly. @[role], @here,
+                  and @everyone will not work.
             ```
         """
 }

@@ -100,7 +100,7 @@ module.exports = {
             ```asciidoc
             === Help for Play ===
             *Aliases*: play, yt, youtube
-            -h fn <URL or Video ID> :: Plays a given YouTube video \
+            -h play <URL or Video ID> :: Plays a given YouTube video \
             in a voice channel.
             ```
         """

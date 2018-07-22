@@ -94,7 +94,7 @@
     handler: handler,
     help: {
       short: "-h play <...>  :: Plays a YouTube video in a voice channel.",
-      long: "```asciidoc\n=== Help for Play ===\n*Aliases*: play, yt, youtube\n-h fn <URL or Video ID> :: Plays a given YouTube video in a voice channel.\n```"
+      long: "```asciidoc\n=== Help for Play ===\n*Aliases*: play, yt, youtube\n-h play <URL or Video ID> :: Plays a given YouTube video in a voice channel.\n```"
     }
   };
 

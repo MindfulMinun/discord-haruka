@@ -9,8 +9,8 @@ module.exports = {
     regex: /^(function|name)(\s+|$)/i
     handler: handler
     help:
-        short: "-h ping        ::
-            Does something."
+        short: "-h <fnName>    ::
+            Does a thing. Don’t forget to rename this."
         long: """
             ```asciidoc
             === Help for Function ===

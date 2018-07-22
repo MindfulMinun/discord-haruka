@@ -15,7 +15,7 @@
     regex: /^(function|name)(\s+|$)/i,
     handler: handler,
     help: {
-      short: "-h ping        :: Does something.",
+      short: "-h <fnName>    :: Does a thing. Don’t forget to rename this.",
       long: "```asciidoc\n=== Help for Function ===\n*Aliases*: list, of, aliases\n-h fn       :: Function without arguments.\n-h fn <arg> :: Function with arguments.\n```"
     }
   };

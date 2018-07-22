@@ -27,7 +27,7 @@
     handler: handler,
     help: {
       short: "-h pfp [...]   :: Returns your (or someone else’s) profile image as a URL",
-      long: "```asciidoc\n=== Help for Profile Image ===\n*Aliases*: img, pfp, avatar\n-h pfp :: Returns your profile image in a nice box with a URL.\n-h pfp [@user @user ...] :: Returs those user’s profile image.\nNote: You must @ each member directly. @[role], @here, and @everyone\n      won't work.\n```"
+      long: "```asciidoc\n=== Help for Profile Image ===\n*Aliases*: img, pfp, avatar\n-h pfp :: Returns your profile image in a nice box with a URL.\n-h pfp [@user @user ...] :: Returns those users’ profile image.\nNote: You must mention each member directly. @[role], @here,\n      and @everyone will not work.\n```"
     }
   };
 

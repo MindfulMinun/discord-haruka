@@ -16,12 +16,13 @@
 
   Haruka.config = config;
 
+  Haruka.client = client;
+
   //! ========================================
   //! Add event listeners
   client.on('ready', function() {
     var d;
     d = new Date;
-    // client.user.setActivity 'Try -h help'
     client.user.setActivity('Hentai | -h help', {
       type: 'WATCHING'
     });
@@ -33,7 +34,15 @@
   });
 
   client.on('message', function(msg) {
-    return Haruka.try(msg);
+    var err;
+    try {
+      return Haruka.try(msg);
+    } catch (error) {
+      err = error;
+      //! I hope this catches bugs
+      msg.channel.send(`**An exception has occurred:** This is a bug, this shouldn’t happen.\nCreate a GitHub issue or contact me via Discord (MindfulMinun#3386).\nInformation regarding the exception is provided below.\n\`\`\`\n${err}\n\`\`\``);
+      return console.warn("\n===== Uncaught Fatal Error: =====\n", err);
+    }
   });
 
   //! Catch Uncaught rejections and continue normally.
