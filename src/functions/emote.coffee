@@ -40,7 +40,7 @@ handler = (msg, match, Haruka) ->
             if e?
                 msg.guild.deleteEmoji(e,
                     "Haruka: Deleted emote as asked by
-                    #{msg.author.username} in Message #{msg.id}"
+                    #{msg.author.username} in Message<#{msg.id}>"
                 )
                 .then ->
                     msg.channel.send "Successfully deleted emote `:#{name}:`"

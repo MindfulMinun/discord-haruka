@@ -38,7 +38,7 @@
         }
         e = msg.guild.emojis.find("name", name);
         if (e != null) {
-          msg.guild.deleteEmoji(e, `Haruka: Deleted emote as asked by ${msg.author.username} in Message ${msg.id}`).then(function() {
+          msg.guild.deleteEmoji(e, `Haruka: Deleted emote as asked by ${msg.author.username} in Message<${msg.id}>`).then(function() {
             return msg.channel.send(`Successfully deleted emote \`:${name}:\``);
           }).catch(function(err) {
             return msg.channel.send(`An error occurred: \n\`\`\`\n${err}\n\`\`\``);

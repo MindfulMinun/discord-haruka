@@ -3,8 +3,12 @@
 ### Added
 - Someone function
     - `[2018-07-20]`: Created someone function, use `-h @someone` to mention a random user, offline or online.
-- Emote fuction
+- Emote function
     - `[2018-07-21]`: Manage server emotes and emojis with `-h emote`.
+- Now function
+    - `[2018-07-28]`: Get the current UTC time with `-h now`
+- Dab Special function
+    - `[2018-07-28]`: Reacts with a dabbing emote if you say "dab" or "dabbing" in a certain server.
 
 ### Changed
 - Use `npm run debug` as a shortcut for `node --inspect dist/main.js`.
