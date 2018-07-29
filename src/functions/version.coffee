@@ -7,7 +7,7 @@ handler = (msg, match, H) ->
         #{H.specials.length} specials."
 
 module.exports = {
-    name: "Function"
+    name: "Version"
     regex: /^(version|v)(\s+|$)/i
     handler: handler
     help:

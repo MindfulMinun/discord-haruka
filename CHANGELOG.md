@@ -1,3 +1,20 @@
+# [Release v1.3.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.0)
+Four new functions, one new special:
+- Someone function
+    - Use `-h @someone` to mention a user chosen at random.
+- Emote function
+    - Manage server emotes and emojis with `-h emote`
+- Now function
+    - Get the current UTC time with `-h now`
+- Purge function
+    - Delete messages in bulk using `-h purge`
+- Dab special function
+    - Reacts with a dabbing emote if you say "dab" or "dabbing" in a certain server.
+
+**Note:** `Haruka.version` and `Haruka.dev` have been moved to `config.json`
+
+---
+
 # Development version v1.3
 
 ### Added

@@ -58,7 +58,7 @@ handler = (msg, match, Haruka) ->
 
 
 module.exports = {
-    name: "Function"
+    name: "Now"
     regex: /^(now|time|date)(\s+|$)/i
     handler: handler
     help:

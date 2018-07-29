@@ -11,11 +11,11 @@
   };
 
   module.exports = {
-    name: "Function",
+    name: "Function name. Don’t forget to rename this",
     regex: /^(function|name)(\s+|$)/i,
     handler: handler,
     help: {
-      short: "-h <fnName>    :: Does a thing. Don’t forget to rename this.",
+      short: "-h <fnName>    :: Does a thing. Don’t forget to replace this.",
       long: "```asciidoc\n=== Help for Function ===\n*Aliases*: list, of, aliases\n-h fn       :: Function without arguments.\n-h fn <arg> :: Function with arguments.\n```"
     }
   };

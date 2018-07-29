@@ -53,7 +53,7 @@
   };
 
   module.exports = {
-    name: "Function",
+    name: "Emote",
     regex: execRegex,
     handler: handler,
     help: {

@@ -9,7 +9,7 @@
   };
 
   module.exports = {
-    name: "Function",
+    name: "Version",
     regex: /^(version|v)(\s+|$)/i,
     handler: handler,
     help: {

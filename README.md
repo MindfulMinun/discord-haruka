@@ -9,20 +9,24 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 
 
 ## Commands
-As of `v1.2.2`, Haruka has 13 functions:
+As of `v1.3.0`, Haruka has 13 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
 - [`-h aesthetic`][ae]: Makes your text more ａｅｓｔｈｅｔｉｃ.
+- [`-h emote`][emote]: Manages server emotes
 - [`-h github`][github]: Retrieve information about a GitHub repository.
 - [`-h help`][help]: Returns a list of all the commands, much like this one.
 - [`-h invite`][invite]: Replies with a URL to invite Haruka to other servers.
 - [`-h kanji`][kanji]: Retrieve information about a Kanji character.
+- [`-h now`][now]: Returns the current time in UTC
 - [`-h pfp`][pfp]: Return a user’s profile image as a URL.
 - [`-h ping`][ping]: Replies “Pong!”
 - [`-h pkmn`][pkmn]: Gets information about a Pokémon.
+- [`-h purge`][purge]: Deletes messages in bulk.
 - [`-h restart`][restart]: Restarts Haruka.
 - [`-h say`][say]: Replies with whatever you tell it to.
+- [`-h someone`][someone]: Mentions a user chosen at random.
 - [`-h version`][version]: Prints out version information about Haruka
 
 ## Installation
@@ -53,8 +57,6 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 
 [MIT License][license]
 
-
-
 <!-- Reference links -->
 [kanjialive]: https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji "KanjiAlive API Documentation"
 [repo]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
@@ -67,13 +69,17 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 [8ball]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
 [about]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/about.coffee
 [ae]:      https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/aesthetic.coffee
+[emote]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/emote.coffee
 [github]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/github.coffee
 [help]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
 [invite]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
 [kanji]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
+[now]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/now.coffee
 [pfp]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
 [ping]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
 [pkmn]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
+[purge]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/purge.coffee
 [restart]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/restart.coffee
 [say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
+[someone]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/someone.coffee
 [version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee
