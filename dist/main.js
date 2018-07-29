@@ -16,6 +16,10 @@
 
   Haruka.config = config;
 
+  Haruka.version = config.version;
+
+  Haruka.dev = config.dev;
+
   Haruka.client = client;
 
   //! ========================================

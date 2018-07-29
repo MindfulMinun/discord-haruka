@@ -1,4 +1,4 @@
-# Development version v1.2.3
+# Development version v1.3
 
 ### Added
 - Someone function
@@ -13,6 +13,7 @@
 ### Changed
 - Use `npm run debug` as a shortcut for `node --inspect dist/main.js`.
 - Added bug report issue template.
+- Moved `version` and `dev` to `config.json`
 
 ### Removed
 - Nothing yet...

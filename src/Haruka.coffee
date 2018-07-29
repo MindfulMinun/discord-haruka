@@ -7,6 +7,7 @@
 
     Haruka {
         dev: Boolean
+        version: String<SemVer>
         functions: [{
             name: String
             regex: RegExp
@@ -25,8 +26,8 @@
 ###
 
 Haruka = {}
-Haruka.dev = yes
-Haruka.version = "v1.2.3-dev"
+#! Dev and Version have moved to main.coffee,
+#! and are determined from config.json
 Haruka.functions = []
 Haruka.specials  = []
 Haruka.prefix = if Haruka.dev then '#h' else '-h'

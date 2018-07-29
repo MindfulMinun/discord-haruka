@@ -7,13 +7,15 @@ Haruka  = require './Haruka.js'
 
 client = new Discord.Client
 Haruka.config = config
+Haruka.version = config.version
+Haruka.dev = config.dev
 Haruka.client = client
 
 #! ========================================
 #! Add event listeners
 client.on 'ready', ->
     d = new Date
-    client.user.setActivity 'Hentai | -h help', { type: 'WATCHING' }
+    client.user.setActivity 'Hentai | -h help', type: 'WATCHING'
 
     if Haruka.dev
         console.log """
