@@ -9,6 +9,7 @@ client = new Discord.Client
 Haruka.config = config
 Haruka.version = config.version
 Haruka.dev = config.dev
+Haruka.prefix = if Haruka.dev then '#h' else '-h'
 Haruka.client = client
 
 #! ========================================

@@ -20,6 +20,8 @@
 
   Haruka.dev = config.dev;
 
+  Haruka.prefix = Haruka.dev ? '#h' : '-h';
+
   Haruka.client = client;
 
   //! ========================================

@@ -29,13 +29,11 @@
 
   Haruka = {};
 
-  //! Dev and Version have moved to main.coffee,
+  //! Dev, Version, and Prefix have moved to main.coffee,
   //! and are determined from config.json
   Haruka.functions = [];
 
   Haruka.specials = [];
-
-  Haruka.prefix = Haruka.dev ? '#h' : '-h';
 
   //! ========================================
   //! Modules

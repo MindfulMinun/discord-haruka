@@ -26,11 +26,10 @@
 ###
 
 Haruka = {}
-#! Dev and Version have moved to main.coffee,
+#! Dev, Version, and Prefix have moved to main.coffee,
 #! and are determined from config.json
 Haruka.functions = []
 Haruka.specials  = []
-Haruka.prefix = if Haruka.dev then '#h' else '-h'
 
 #! ========================================
 #! Modules
