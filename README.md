@@ -7,9 +7,8 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [Contributing](#contributing)
 - [License](#license)
 
-
 ## Commands
-As of `v1.3.0`, Haruka has 13 functions:
+As of `v1.3.0`, Haruka has 17 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
@@ -51,7 +50,7 @@ Replace each thing in `<angle brackets>` with its respective value. Both `token`
 Finally, rename `example-config.json` to `config.json`, run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
 
 ## Contributing
-Install Haruka as [mentioned above](#installation): create a fork with your changes, and issue a Pull Request. Haruka’s written in CoffeeScript, you can build her by running `coffee -o dist/ -cw src/` in the Terminal with CoffeeScript installed. It's also recommended you have a CoffeeScript linter installed.
+First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of several component parts, and understanding how they work will ease development. Install Haruka as [mentioned above](#installation), create a fork with your changes, and issue a Pull Request. Haruka’s written in CoffeeScript, you can build her by running `coffee -o dist/ -cw src/` in the root directory with CoffeeScript installed. It’s also recommended you have a CoffeeScript linter installed.
 
 ## License
 
@@ -64,6 +63,7 @@ Install Haruka as [mentioned above](#installation): create a fork with your chan
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
 [license]: https://github.com/MindfulMinun/discord-haruka/blob/master/LICENSE "discord-haruka/LICENSE"
 [add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
+[haruka-teardown]: https://benjic.xyz/2018-07-30/haruka-teardown/ "Haruka Teardown"
 
 <!-- Function links -->
 [8ball]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee

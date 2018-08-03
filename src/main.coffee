@@ -3,7 +3,7 @@
 fs      = require 'fs'
 Discord = require 'discord.js'
 config  = require '../config.json'
-Haruka  = require './Haruka.js'
+Haruka  = require './Haruka'
 
 client = new Discord.Client
 Haruka.config = config
@@ -32,11 +32,12 @@ client.on 'message', (msg) ->
         Haruka.try msg
     catch err
         #! I hope this catches bugs
+        r = new RegExp(process.cwd(), 'gi')
         msg.channel.send """
             **An exception has occurred:** This is a bug, this shouldn’t happen.
             Create a GitHub issue or contact me via Discord (MindfulMinun#3386).
             Information regarding the exception is provided below.
-            ```\n#{err}\n```
+            ```\n#{err.stack.replace(r, '~')}\n```
         """
         console.warn "\n===== Uncaught Fatal Error: =====\n", err
 

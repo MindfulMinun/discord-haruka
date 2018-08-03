@@ -1,3 +1,11 @@
+# Development version v1.4
+
+### Changed
+- Main.coffee:
+    - Uncaught errors now print their stack traces.
+
+---
+
 # [Release v1.3.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.0)
 Four new functions, one new special:
 - Someone function
