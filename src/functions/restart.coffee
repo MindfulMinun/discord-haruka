@@ -27,7 +27,7 @@ handler = (msg, match, Haruka) ->
     ].choose()
 
 module.exports = {
-    name: "Halt"
+    name: "Restart"
     regex: /^(halt|restart)(\s+|$)/i
     handler: handler
     help:

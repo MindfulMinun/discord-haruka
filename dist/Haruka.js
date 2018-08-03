@@ -3,8 +3,8 @@
   //! ========================================
   //! Creating Haruka
   /*
-   * The message handlers will be passed a snapshot of the Haruka instance.
-   * The Haruka instance will have the following structure:
+   * The message handlers will be passed a snapshot of the Haruka object.
+   * The Haruka object has the following structure:
 
       Haruka {
           dev: Boolean
@@ -13,7 +13,7 @@
               name: String
               regex: RegExp
               handler: Function
-              help: String
+              help: Object
           }, ...]
           specials: [{
               name: String
@@ -25,7 +25,7 @@
           config: JSON
       }
    */
-  var Haruka, HarukaFns, HarukaSpecials, f, fs;
+  var Haruka, fs;
 
   Haruka = {};
 
@@ -40,50 +40,20 @@
   fs = require('fs');
 
   //! ========================================
-  //! Helper functions
-  Array.prototype.choose = function() {
-    return this[Math.floor(Math.random() * this.length)];
-  };
-
-  Haruka.addFunction = function(fnObj) {
-    return Haruka.functions.push(fnObj);
-  };
-
-  Haruka.addSpecial = function(fnObj) {
-    return Haruka.specials.push(fnObj);
-  };
-
-  //! ========================================
   //! Take Haruka's functions and add them to the queue
-  HarukaFns = fs.readdirSync('./dist/functions').filter(function(file) {
-    return file.endsWith('.js') && !file.startsWith("_");
+  fs.readdirSync(`${__dirname}/functions`).filter(function(filename) {
+    return /^(?:[^_]).+(?:\.(?:coffee|js))/.test(filename);
+  }).forEach(function(filename) {
+    return Haruka.functions.push(require(`${__dirname}/functions/${filename}`));
   });
-
-  (function() {
-    var i, len, results;
-    results = [];
-    for (i = 0, len = HarukaFns.length; i < len; i++) {
-      f = HarukaFns[i];
-      results.push(Haruka.addFunction(require(`../dist/functions/${f}`)));
-    }
-    return results;
-  })();
 
   //! ========================================
-  //! Take Haruka's special funcitons and add them to the other queue
-  HarukaSpecials = fs.readdirSync('./dist/specials').filter(function(file) {
-    return file.endsWith('.js') && !file.startsWith("_");
+  //! Likewise, take Haruka's special functions and add them to the other queue
+  fs.readdirSync(`${__dirname}/specials`).filter(function(filename) {
+    return /^(?:[^_]).+(?:\.(?:coffee|js))/.test(filename);
+  }).forEach(function(filename) {
+    return Haruka.specials.push(require(`${__dirname}/specials/${filename}`));
   });
-
-  (function() {
-    var i, len, results;
-    results = [];
-    for (i = 0, len = HarukaSpecials.length; i < len; i++) {
-      f = HarukaSpecials[i];
-      results.push(Haruka.addSpecial(require(`../dist/specials/${f}`)));
-    }
-    return results;
-  })();
 
   Haruka.try = function(msg) {
     var fn, i, j, len, len1, ref, ref1, regexMatch, txt;
@@ -109,12 +79,6 @@
       return;
     }
     ref1 = Haruka.functions;
-    //! Show a warning if Haruka's in dev mode
-    //! This is actually very annoying, I regret adding this.
-    // if Haruka.dev
-    //     msg.reply "I'm in **development** mode, stuff may break.
-    //         Use `#h` instead of `-h`."
-
     //! Run through all the commands and see if one matches.
     for (j = 0, len1 = ref1.length; j < len1; j++) {
       fn = ref1[j];

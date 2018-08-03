@@ -2,8 +2,8 @@
 #! Creating Haruka
 
 ###
- * The message handlers will be passed a snapshot of the Haruka instance.
- * The Haruka instance will have the following structure:
+ * The message handlers will be passed a snapshot of the Haruka object.
+ * The Haruka object has the following structure:
 
     Haruka {
         dev: Boolean
@@ -12,7 +12,7 @@
             name: String
             regex: RegExp
             handler: Function
-            help: String
+            help: Object
         }, ...]
         specials: [{
             name: String
@@ -36,32 +36,24 @@ Haruka.specials  = []
 fs = require 'fs'
 
 #! ========================================
-#! Helper functions
-Array::choose = ->
-    this[Math.floor(Math.random() * this.length)]
-
-Haruka.addFunction = (fnObj) ->
-    Haruka.functions.push fnObj
-
-Haruka.addSpecial = (fnObj) ->
-    Haruka.specials.push fnObj
-
-#! ========================================
 #! Take Haruka's functions and add them to the queue
-HarukaFns = (
-    fs.readdirSync './dist/functions'
-    .filter (file) -> file.endsWith('.js') and not file.startsWith "_"
-)
-
-(Haruka.addFunction require "../dist/functions/#{f}" for f in HarukaFns)
+fs.readdirSync "#{__dirname}/functions"
+    .filter (filename) ->
+        /^(?:[^_]).+(?:\.(?:coffee|js))/.test filename
+    .forEach (filename) ->
+        Haruka.functions.push(
+            require "#{__dirname}/functions/#{filename}"
+        )
 
 #! ========================================
-#! Take Haruka's special funcitons and add them to the other queue
-HarukaSpecials = (
-    fs.readdirSync './dist/specials'
-    .filter (file) -> file.endsWith('.js') and not file.startsWith "_"
-)
-(Haruka.addSpecial require "../dist/specials/#{f}" for f in HarukaSpecials)
+#! Likewise, take Haruka's special functions and add them to the other queue
+fs.readdirSync "#{__dirname}/specials"
+    .filter (filename) ->
+        /^(?:[^_]).+(?:\.(?:coffee|js))/.test filename
+    .forEach (filename) ->
+        Haruka.specials.push(
+            require "#{__dirname}/specials/#{filename}"
+        )
 
 Haruka.try = (msg) ->
     #! ========================================
@@ -80,12 +72,6 @@ Haruka.try = (msg) ->
     #! Check if the message starts with the prefix,
     #! and it's not from another bot.
     if (txt[0] isnt Haruka.prefix) or msg.author.bot then return
-
-    #! Show a warning if Haruka's in dev mode
-    #! This is actually very annoying, I regret adding this.
-    # if Haruka.dev
-    #     msg.reply "I'm in **development** mode, stuff may break.
-    #         Use `#h` instead of `-h`."
 
     #! Run through all the commands and see if one matches.
     for fn in Haruka.functions
