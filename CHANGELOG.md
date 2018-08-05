@@ -3,6 +3,8 @@
 ### Changed
 - Main.coffee:
     - Uncaught errors now print their stack traces.
+- Purge
+    - Users must now have relevant permissions before purging messages.
 
 ---
 
