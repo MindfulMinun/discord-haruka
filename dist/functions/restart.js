@@ -17,7 +17,7 @@
         return msg.reply("Halting is a really dangerous command. Calling it will halt the Haruka proccess, and Haruka may not be restarted automatically. If you understand what you're actually doing, please run `-h halt --force` or `-h halt -f`.");
       }
     }
-    return msg.reply(["You’re not an op, so I can’t let you do that.", "You can’t do that if you’re not an op.", "I refuse to let myself be controlled by the likes of you."].choose());
+    return msg.reply(["You’re not a Haruka op, so I can’t let you do that.", "You can’t do that, that’s illegal.", "I refuse to let myself be controlled by the likes of you."].choose());
   };
 
   module.exports = {

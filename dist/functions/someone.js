@@ -5,10 +5,12 @@
   var handler;
 
   handler = function(msg, match, Haruka) {
-    var lucky;
+    var lucky, ref, ref1;
     //! Choose a random member
-    lucky = msg.guild.members.array().choose();
-    return msg.channel.send([`${lucky}, you’re the chosen one.`, `${lucky}, you’ve been summoned.`, `${lucky}, consider yourself lucky.`].choose());
+    lucky = (ref = msg.channel) != null ? (ref1 = ref.members) != null ? ref1.array().choose() : void 0 : void 0;
+    if (lucky != null) {
+      return msg.channel.send([`${lucky}, you’re the chosen one.`, `${lucky}, you’ve been summoned.`, `${lucky}, consider yourself lucky.`].choose());
+    }
   };
 
   module.exports = {

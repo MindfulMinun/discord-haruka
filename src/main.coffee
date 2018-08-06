@@ -50,15 +50,12 @@ process.on 'unhandledRejection', (err) ->
 Array::choose = ->
     #! Choose a random element from this array.
     this[Math.floor(Math.random() * this.length)]
-
 Array::last = ->
     #! Retrieve this array's last element.
     this[this.length - 1]
-
 Array::first = ->
     #! Retrieve this array’s first element (for chained calls)
     this[0]
-
 String::tokenize = ->
     #! Split this string at the first occurrence of whitespace.
     this.replace(/\s+/, '\x01').split '\x01'

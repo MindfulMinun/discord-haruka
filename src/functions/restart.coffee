@@ -20,8 +20,8 @@ handler = (msg, match, Haruka) ->
             "
 
     msg.reply [
-        "You’re not an op, so I can’t let you do that."
-        "You can’t do that if you’re not an op."
+        "You’re not a Haruka op, so I can’t let you do that."
+        "You can’t do that, that’s illegal."
         "I refuse to let myself be controlled
             by the likes of you."
     ].choose()

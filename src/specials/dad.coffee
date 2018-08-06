@@ -16,7 +16,7 @@ handler = (msg, Haruka) ->
 
     #! Likewise, if they're unlucky, send the reply.
     reply = msg.content.replace(reg, '')
-    msg.channel.send [
+    msg.channel?.send [
         "Hey #{reply}, I’m Haruka."
         "Hi #{reply}, I’m Haruka."
         "Hello #{reply}, I’m Haruka. Nice to meet you."

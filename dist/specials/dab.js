@@ -5,13 +5,13 @@
   var handler;
 
   handler = function(msg, Haruka) {
-    var rin_dab;
+    var ref, rin_dab;
     // React with the dabbing emote every time some1 says
     // "dab" or "dabbing" in timgor's server
 
     // Check if the message was sent from tim's server
     // Check if the message includes "dab" or "dabbing"
-    if (msg.guild.id !== "443094449233592325") {
+    if (((ref = msg.guild) != null ? ref.id : void 0) !== "443094449233592325") {
       return;
     }
     // If a message contains "dab" or "dabbing", react with the :rin_dab: emote

@@ -30,9 +30,19 @@
   //! Aesthetic
   handler = function(msg, match, Haruka) {
     var txt;
-    txt = match.input.tokenize()[1];
+    txt = msg.cleanContent.replace(new RegExp(`^(${Haruka.prefix})\\s+(aesthetic|wide|ae)\\s+`, 'gi'), '');
     if (txt == null) {
-      return msg.channel.send(["Function was called without sufficient arguments.", "Use `-h help aesthetic` for help on this function.", "Use `-h aesthetic` followed by whatever you want me to “aesthetic-ize”.", "```\nSyntaxError: Expected 1 argument, saw 0.\n    at handler             (src/functions/aesthetic.coffee:4:20)\n    at Haruka.addFunction  (src/Haruka.coffee:26:24)\n    at fn.handler          (src/Haruka.coffee:45:28)\n    at Haruka.try          (src/Haruka.coffee:29:14)\n    at client.on 'message' (src/main.coffee:26:16)\n```"].choose());
+      // """
+      // ```
+      // SyntaxError: Expected 1 argument, saw 0.
+      //     at handler             (src/functions/aesthetic.coffee:4:20)
+      //     at Haruka.addFunction  (src/Haruka.coffee:26:24)
+      //     at fn.handler          (src/Haruka.coffee:45:28)
+      //     at Haruka.try          (src/Haruka.coffee:29:14)
+      //     at client.on 'message' (src/main.coffee:26:16)
+      // ```
+      // """
+      return msg.channel.send(["Function was called without sufficient arguments.", "Use `-h help aesthetic` for help on this function.", "Use `-h aesthetic` followed by whatever you want me to “aesthetic-ize”."].choose());
     }
     return msg.channel.send(toFullwidth(txt));
   };
@@ -42,8 +52,8 @@
     regex: /^(aesthetic|wide|ae)(\s+|$)/i,
     handler: handler,
     help: {
-      short: "-h aesthetic … :: Makes your text more ａｅｓｔｈｅｔｉｃ.",
-      long: "```asciidoc\n=== Help for Aesthetic ===\n*Aliases*: aesthetic, wide, ae\n-h aesthetic <...> :: Converts <...> into fullwidth characters.\n```"
+      short: "-h ae <text>   :: Makes your text more ａｅｓｔｈｅｔｉｃ.",
+      long: "```asciidoc\n=== Help for Aesthetic ===\n*Aliases*: aesthetic, wide, ae\n-h aesthetic <text> :: Converts <text> into fullwidth characters.\n```"
     }
   };
 

@@ -2,13 +2,14 @@
 #! Someone
 handler = (msg, match, Haruka) ->
     #! Choose a random member
-    lucky = msg.guild.members.array().choose()
+    lucky = msg.channel?.members?.array().choose()
 
-    msg.channel.send [
-        "#{lucky}, you’re the chosen one."
-        "#{lucky}, you’ve been summoned."
-        "#{lucky}, consider yourself lucky."
-    ].choose()
+    if lucky?
+        msg.channel.send [
+            "#{lucky}, you’re the chosen one."
+            "#{lucky}, you’ve been summoned."
+            "#{lucky}, consider yourself lucky."
+        ].choose()
 
 module.exports = {
     name: "Someone"

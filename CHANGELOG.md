@@ -5,6 +5,8 @@
     - Uncaught errors now print their stack traces.
 - Purge
     - Users must now have relevant permissions before purging messages.
+- Dad (Special)
+    - DM'ing Haruka causes an error loop to occur, fixed with a single `?`, another reason to love CoffeeScript.
 
 ---
 

@@ -37,22 +37,25 @@ toFullwidth = (txt) ->
 #! ========================================
 #! Aesthetic
 handler = (msg, match, Haruka) ->
-    txt = match.input.tokenize()[1]
+    txt = msg.cleanContent.replace(
+        new RegExp("^(#{Haruka.prefix})\\s+(aesthetic|wide|ae)\\s+", 'gi'),
+        ''
+    )
     if not txt? then return msg.channel.send [
         "Function was called without sufficient arguments."
         "Use `-h help aesthetic` for help on this function."
         "Use `-h aesthetic` followed by whatever
             you want me to “aesthetic-ize”."
-        """
-        ```
-        SyntaxError: Expected 1 argument, saw 0.
-            at handler             (src/functions/aesthetic.coffee:4:20)
-            at Haruka.addFunction  (src/Haruka.coffee:26:24)
-            at fn.handler          (src/Haruka.coffee:45:28)
-            at Haruka.try          (src/Haruka.coffee:29:14)
-            at client.on 'message' (src/main.coffee:26:16)
-        ```
-        """
+        # """
+        # ```
+        # SyntaxError: Expected 1 argument, saw 0.
+        #     at handler             (src/functions/aesthetic.coffee:4:20)
+        #     at Haruka.addFunction  (src/Haruka.coffee:26:24)
+        #     at fn.handler          (src/Haruka.coffee:45:28)
+        #     at Haruka.try          (src/Haruka.coffee:29:14)
+        #     at client.on 'message' (src/main.coffee:26:16)
+        # ```
+        # """
     ].choose()
     msg.channel.send toFullwidth txt
 
@@ -61,13 +64,13 @@ module.exports = {
     regex: /^(aesthetic|wide|ae)(\s+|$)/i
     handler: handler
     help:
-        short: "-h aesthetic … ::
+        short: "-h ae <text>   ::
             Makes your text more ａｅｓｔｈｅｔｉｃ."
         long: """
             ```asciidoc
             === Help for Aesthetic ===
             *Aliases*: aesthetic, wide, ae
-            -h aesthetic <...> :: Converts <...> into fullwidth characters.
+            -h aesthetic <text> :: Converts <text> into fullwidth characters.
             ```
         """
 }

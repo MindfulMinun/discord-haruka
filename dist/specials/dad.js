@@ -5,7 +5,7 @@
   var handler;
 
   handler = function(msg, Haruka) {
-    var reg, reply;
+    var ref, reg, reply;
     reg = /^(?:i(?:['’]|(?:\s+a))?m)\s+/i;
     // Matches "im ", "i'm ", "i’m ", and "i am "
     // Case insensitive, whitespace required.
@@ -21,7 +21,7 @@
     }
     //! Likewise, if they're unlucky, send the reply.
     reply = msg.content.replace(reg, '');
-    return msg.channel.send([`Hey ${reply}, I’m Haruka.`, `Hi ${reply}, I’m Haruka.`, `Hello ${reply}, I’m Haruka. Nice to meet you.`].choose());
+    return (ref = msg.channel) != null ? ref.send([`Hey ${reply}, I’m Haruka.`, `Hi ${reply}, I’m Haruka.`, `Hello ${reply}, I’m Haruka. Nice to meet you.`].choose()) : void 0;
   };
 
   module.exports = {

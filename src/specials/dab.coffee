@@ -7,7 +7,7 @@ handler = (msg, Haruka) ->
 
     # Check if the message was sent from tim's server
     # Check if the message includes "dab" or "dabbing"
-    if msg.guild.id isnt "443094449233592325" then return
+    if msg.guild?.id isnt "443094449233592325" then return
 
     # If a message contains "dab" or "dabbing", react with the :rin_dab: emote
     if /\b(dab(bing)?)\b/gi.test msg.content

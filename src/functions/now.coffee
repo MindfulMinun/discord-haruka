@@ -32,7 +32,7 @@ weekdays = [
 handler = (msg, match, Haruka) ->
     #! Use the message sent time bc I don't want to deal with lag.
     now = new Date msg.createdTimestamp
-    d = ""
+    # d = ""
 
     Y = now.getUTCFullYear()
     M = months[now.getUTCMonth()]
@@ -42,7 +42,7 @@ handler = (msg, match, Haruka) ->
     m = (now.getUTCMinutes() + "").padStart(2, '0')
     s = (now.getUTCSeconds() + "").padStart(2, '0')
 
-    d += "#{W}, #{M} #{D}, #{Y} #{h}:#{m}:#{s}"
+    d = "#{W}, #{M} #{D}, #{Y} #{h}:#{m}:#{s}"
 
     embed = new Discord.RichEmbed()
         .setColor '#448aff'
