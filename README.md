@@ -8,7 +8,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [License](#license)
 
 ## Commands
-As of `v1.3.1`, Haruka has 17 functions:
+As of `v1.3.2`, Haruka has 17 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
@@ -34,7 +34,7 @@ Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recomm
 
 ```json
 {
-  "version": "1.3.1",
+  "version": "1.3.2",
   "dev": true,
   "token": "<https://discordapp.com/developers/applications/me>",
   "client_id": "<https://discordapp.com/developers/applications/me>",

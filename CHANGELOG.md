@@ -1,4 +1,4 @@
-# [Release v1.3.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.1)
+# [Release v1.3.2](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.2)
 
 - Uncaught errors now throw print their stack traces.
 
