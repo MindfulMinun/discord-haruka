@@ -1,4 +1,15 @@
-# Development version v1.4
+# [Release v1.3.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.1)
+
+- Uncaught errors now throw print their stack traces.
+
+Killing bugs:
+- Purge: Users must now have relevant permissions before purging messages.
+- Dad: No longer causes an infinite loop in DMs.
+
+
+---
+
+# Development version v1.3.1
 
 ### Changed
 - Main.coffee:

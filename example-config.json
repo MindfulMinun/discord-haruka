@@ -1,5 +1,5 @@
 {
-    "version": "1.3.0",
+    "version": "v1.3.1",
     "dev": true,
     "token": "<https://discordapp.com/developers/applications/me>",
     "client_id": "<https://discordapp.com/developers/applications/me>",
