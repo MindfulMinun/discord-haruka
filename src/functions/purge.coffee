@@ -24,10 +24,10 @@ handler = (msg, match, Haruka) ->
 
     amount = parseInt(args)
 
-    if not (2 <= amount <= 1000) then return msg.reply [
+    if not (1 <= amount <= 1000) then return msg.reply [
         "The amount specified must be a positive integer less than 1000."
         "The amount of messages to delete must be a number greater than
-            or equal to 2 and less than or equal to 1000."
+            0 and less than or equal to 1000."
     ].choose()
 
     msg.channel.fetchMessages(limit: amount)
