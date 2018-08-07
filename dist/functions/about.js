@@ -5,7 +5,7 @@
   var handler;
 
   handler = function(msg, match, H) {
-    return msg.reply(`Hi, I’m Haruka, your useless bot (\`${H.version}\`). I’m made out of CoffeeScript and dedication. I was created by MindfulMinun, check him out here:\n - https://twitter.com/MindfulMinun`);
+    return msg.reply(`Hi, I’m Haruka, your useless bot (\`${H.version}\`). I’m made out of CoffeeScript and dedication. I was created by MindfulMinun.\n - **Twitter:** https://twitter.com/MindfulMinun\n - **GitHub repo:** https://github.com/MindfulMinun/discord-haruka/\n - **How I work:** https://benjic.xyz/2018-07-30/haruka-teardown/?s=1`);
   };
 
   module.exports = {

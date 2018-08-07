@@ -37,6 +37,7 @@ client.on 'message', (msg) ->
             **An exception has occurred:** This is a bug, this shouldn’t happen.
             Create a GitHub issue or contact me via Discord (MindfulMinun#3386).
             Information regarding the exception is provided below.
+            (I hope Monika has nothing to do with this.)
             ```\n#{err.stack.replace(r, '~')}\n```
         """
         console.warn "\n===== Uncaught Fatal Error: =====\n", err

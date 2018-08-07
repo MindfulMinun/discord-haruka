@@ -14,7 +14,6 @@
     handler: handler,
     help: {
       hidden: true,
-      short: "",
       long: "```asciidoc\n=== Help for Version ===\n*Aliases*: version, v\n-h version  :: Prints out version information about Haruka.\n```"
     }
   };

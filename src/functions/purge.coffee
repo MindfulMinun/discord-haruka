@@ -4,13 +4,13 @@ handler = (msg, match, Haruka) ->
     args = match.input.tokenize()[1]
 
     # First, check if the user can even delete messages
-    # NOTE: I haven’t run this code yet, I’m offline.
-    allowed = (msg.author
-        .permissionsIn msg.channel
-        .has "MANAGE_MESSAGES")
+    allowed = (
+        msg.member?.permissionsIn(msg.channel)?.has("MANAGE_MESSAGES")
+    )
 
     if not allowed then return msg.channel.send [
-        "You don’t have permission to manage messages, #{msg.author}."
+        "You don’t have permission to manage messages
+            in this channel, #{msg.author}."
         "#{msg.author}, You can’t do that, you don’t have permissions to do so."
         "Sorry #{msg.author}, but you’re not allowed to delete messages."
     ].choose()
@@ -55,6 +55,7 @@ module.exports = {
             *Aliases*: purge, delete
             -h purge <amount> :: Deletes specified amount of \
                 messages in that channel.
+            *Note:* Both you and I must have permission to delete messages.
             ```
         """
 }

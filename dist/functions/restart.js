@@ -26,7 +26,6 @@
     handler: handler,
     help: {
       hidden: true,
-      short: "",
       long: "```asciidoc\n=== Help for Halt ===\n*Aliases*: halt, restart\n-h halt :: Halts Haruka (Must have super-rare™ permissions)\n```"
     }
   };

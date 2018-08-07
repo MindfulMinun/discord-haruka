@@ -1,3 +1,20 @@
+# Development version v1.3.3
+
+### Added
+- About
+    - Added some more information.
+### Changed
+- Help
+    - If `<FunctionObj>.hidden` is truthy, `<FunctionObj>.short` can be left undefined.
+- Invite
+    - Removed the need for `Haruka.config.client_id`
+- Purge
+    - It works now. :tada:
+### Removed
+`config.client_id` isn’t needed, so it’s been removed from `example-config`. Leaving it in there won’t make a difference, but it’s deprecated.
+
+---
+
 # [Release v1.3.2](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.2)
 
 - Uncaught errors now throw print their stack traces.

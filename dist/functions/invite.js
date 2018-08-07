@@ -5,12 +5,11 @@
   var handler;
 
   handler = function(msg, match, H) {
-    return msg.reply(["Invite me to another server using the following link: \n", 'https://discordapp.com/oauth2/authorize?', 'client_id=', H.config.client_id, '&scope=bot', '&permissions=', '125966'].join(''));
+    return H.client.generateInvite(["ADMINISTRATOR", "KICK_MEMBERS", "BAN_MEMBERS", "EMBED_LINKS", "READ_MESSAGE_HISTORY", "SEND_MESSAGES", "MANAGE_MESSAGES", "ATTACH_FILES"]).then(function(link) {
+      return msg.reply(`Invite me to other servers using the following link: \n ${link}`);
+    });
   };
 
-  //! Permissions:
-  // Admin, Kick / Ban members, Read msgs, Embed links, Read history,
-  // Send msgs, Manage msgs, Attach files, View voice channels
   module.exports = {
     name: "Invite",
     regex: /^(invite|link)(\s+|$)/i,

@@ -12,7 +12,6 @@ module.exports = {
     handler: handler
     help:
         hidden: yes
-        short: ""
         long: """
             ```asciidoc
             === Help for Version ===

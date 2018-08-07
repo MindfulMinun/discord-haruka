@@ -47,7 +47,7 @@
       err = error;
       //! I hope this catches bugs
       r = new RegExp(process.cwd(), 'gi');
-      msg.channel.send(`**An exception has occurred:** This is a bug, this shouldn’t happen.\nCreate a GitHub issue or contact me via Discord (MindfulMinun#3386).\nInformation regarding the exception is provided below.\n\`\`\`\n${err.stack.replace(r, '~')}\n\`\`\``);
+      msg.channel.send(`**An exception has occurred:** This is a bug, this shouldn’t happen.\nCreate a GitHub issue or contact me via Discord (MindfulMinun#3386).\nInformation regarding the exception is provided below.\n(I hope Monika has nothing to do with this.)\n\`\`\`\n${err.stack.replace(r, '~')}\n\`\`\``);
       return console.warn("\n===== Uncaught Fatal Error: =====\n", err);
     }
   });

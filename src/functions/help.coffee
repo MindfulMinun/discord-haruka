@@ -15,8 +15,9 @@ handler = (msg, match, H) ->
         ```asciidoc
         === Commands ===
         #{
-        (fn.help.short for fn in H.functions)
-            .filter (x) -> not not x
+        (fn.help for fn in H.functions)
+            .filter (x) -> not x.hidden
+            .map (x) -> x.short
             .join '\n'
         }
         ```

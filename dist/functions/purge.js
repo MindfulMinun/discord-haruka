@@ -5,13 +5,12 @@
   var handler;
 
   handler = function(msg, match, Haruka) {
-    var allowed, amount, args;
+    var allowed, amount, args, ref, ref1;
     args = match.input.tokenize()[1];
     // First, check if the user can even delete messages
-    // NOTE: I haven’t run this code yet, I’m offline.
-    allowed = msg.author.permissionsIn(msg.channel).has("MANAGE_MESSAGES");
+    allowed = (ref = msg.member) != null ? (ref1 = ref.permissionsIn(msg.channel)) != null ? ref1.has("MANAGE_MESSAGES") : void 0 : void 0;
     if (!allowed) {
-      return msg.channel.send([`You don’t have permission to manage messages, ${msg.author}.`, `${msg.author}, You can’t do that, you don’t have permissions to do so.`, `Sorry ${msg.author}, but you’re not allowed to delete messages.`].choose());
+      return msg.channel.send([`You don’t have permission to manage messages in this channel, ${msg.author}.`, `${msg.author}, You can’t do that, you don’t have permissions to do so.`, `Sorry ${msg.author}, but you’re not allowed to delete messages.`].choose());
     }
     // 2nd, check if quantity was specified and if it's within 0 and 1000
     if (!args) {
@@ -38,7 +37,7 @@
     handler: handler,
     help: {
       short: "-h purge <n>   :: Deletes messages in bulk.",
-      long: "```asciidoc\n=== Help for Purge ===\n*Aliases*: purge, delete\n-h purge <amount> :: Deletes specified amount of messages in that channel.\n```"
+      long: "```asciidoc\n=== Help for Purge ===\n*Aliases*: purge, delete\n-h purge <amount> :: Deletes specified amount of messages in that channel.\n*Note:* Both you and I must have permission to delete messages.\n```"
     }
   };
 

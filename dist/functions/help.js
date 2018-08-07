@@ -23,11 +23,13 @@
       results = [];
       for (j = 0, len1 = ref1.length; j < len1; j++) {
         fn = ref1[j];
-        results.push(fn.help.short);
+        results.push(fn.help);
       }
       return results;
     })()).filter(function(x) {
-      return !!x;
+      return !x.hidden;
+    }).map(function(x) {
+      return x.short;
     }).join('\n')}\n\`\`\``;
     return msg.channel.send(allHelpList);
   };
