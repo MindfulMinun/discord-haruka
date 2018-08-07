@@ -1,8 +1,21 @@
+# [Release v1.3.3](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.3)
+
+Changes:
+- About
+    - Added some more information.
+
+Killing bugs:
+- Purge
+    - It works now. :tada:
+
+---
+
 # Development version v1.3.3
 
 ### Added
 - About
     - Added some more information.
+
 ### Changed
 - Help
     - If `<FunctionObj>.hidden` is truthy, `<FunctionObj>.short` can be left undefined.
@@ -10,6 +23,7 @@
     - Removed the need for `Haruka.config.client_id`
 - Purge
     - It works now. :tada:
+
 ### Removed
 `config.client_id` isn’t needed, so it’s been removed from `example-config`. Leaving it in there won’t make a difference, but it’s deprecated.
 
@@ -72,9 +86,6 @@ Four new functions, one new special:
 - Added bug report issue template.
 - Moved `version` and `dev` to `config.json`
 
-### Removed
-- Nothing yet...
-
 ---
 
 # [Release v1.2.2](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.2.2)
@@ -111,10 +122,6 @@ Three new functions, one new special:
 - `[2018-07-01]`: Changed activity to `Watching Hentai | -h help` because I think I'm clever.
 - `[2018-07-04]`: Cleaned up the `pkmn` function.
 - `[2018-07-14]`: Removed the `play` function from being added to Haruka, prefixed with an underscore.
-
-### Removed
-- Nothing yet...
-
 
 ---
 

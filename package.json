@@ -1,6 +1,6 @@
 {
     "name": "discord-haruka",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "description": "A useless Discord bot.",
     "main": "dist/main.js",
     "repository": "github:MindfulMinun/discord-haruka",
@@ -13,7 +13,6 @@
     "license": "MIT",
     "dependencies": {
         "discord.js": "^11.3.2",
-        "fs": "0.0.1-security",
         "request": "^2.87.0"
     }
 }
