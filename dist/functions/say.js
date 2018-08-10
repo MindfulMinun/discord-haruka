@@ -5,7 +5,7 @@
   var handler;
 
   handler = function(msg, match) {
-    var say;
+    var ref, ref1, ref2, ref3, say;
     say = match.input.tokenize()[1];
     if (!say) {
       // """
@@ -20,7 +20,33 @@
       // """
       return msg.reply(["Use `-h say` followed by what you want me to say.", "You have to give me something to say, you can't just say “say.”", "Say what?"].choose());
     } else {
-      return msg.channel.send(`${say}`);
+      if (((ref = msg.guild) != null ? ref.id : void 0) === "443094449233592325" && say.match(/@(everyone|here)/gi)) {
+        //! Due to popular demand, any1 who uses @here or
+        //! @everyone in tim's server will get kicked.
+
+        // Search for the "WARNED" role
+        if ((ref1 = msg.member) != null ? ref1.roles.find('id', '477135610524598282') : void 0) {
+          //! If the member has it, kick them.
+          return (ref2 = msg.member) != null ? ref2.kick("Attempted to mention @everyone with Haruka.").then(function() {
+            var ref3;
+            return (ref3 = msg.channel) != null ? ref3.send(`**Kicked ${msg.author} (${msg.author.tag}) from the server.** Reason: Abusing \`-h say\`.`) : void 0;
+          }).catch(function(err) {
+            var ref3;
+            console.log(err);
+            return (ref3 = msg.channel) != null ? ref3.send(`Couldn’t kick ${msg.author}: ${err}`) : void 0;
+          }) : void 0;
+        } else {
+          //! If the member doesn’t have the role, add it and warn them.
+          return (ref3 = msg.member) != null ? ref3.addRole('477135610524598282', "Abusing `-h say`").then(function() {
+            return msg.reply(["Don’t do that. Do it again and you’ll get kicked.", "Don’t do that. You’ve been warned."].choose());
+          }) : void 0;
+        }
+      } else {
+        //! So ppl don’t use `-h say @everyone`
+        return msg.channel.send(`${say}`, {
+          disableEveryone: true
+        });
+      }
     }
   };
 

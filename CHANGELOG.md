@@ -1,3 +1,10 @@
+# Development version v1.3.4
+
+### Added
+- Abusing `-h say @everyone` or `-h say @here` in a certain server will kick that user.
+
+---
+
 # [Release v1.3.3](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.3)
 
 Changes:
