@@ -30,7 +30,7 @@
   //! Aesthetic
   handler = function(msg, match, Haruka) {
     var txt;
-    txt = msg.cleanContent.replace(new RegExp(`^(${Haruka.prefix})\\s+(aesthetic|wide|ae)\\s+`, 'gi'), '');
+    txt = msg.cleanContent.replace(new RegExp(`^(${Haruka.prefix})\\s+(aesthetic|wide|ae)\\s+`, 'i'), '');
     if (txt == null) {
       // """
       // ```

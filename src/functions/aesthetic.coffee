@@ -38,7 +38,7 @@ toFullwidth = (txt) ->
 #! Aesthetic
 handler = (msg, match, Haruka) ->
     txt = msg.cleanContent.replace(
-        new RegExp("^(#{Haruka.prefix})\\s+(aesthetic|wide|ae)\\s+", 'gi'),
+        new RegExp("^(#{Haruka.prefix})\\s+(aesthetic|wide|ae)\\s+", 'i'),
         ''
     )
     if not txt? then return msg.channel.send [
