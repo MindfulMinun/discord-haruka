@@ -7,10 +7,10 @@
   handler = function(msg, match, Haruka) {
     var txt;
     txt = match.input.tokenize()[1];
-    txt = msg.cleanContent.replace(new RegExp(`^(${Haruka.prefix})\\s+(reverse|backwards)\\s+`, 'i'), '');
     if (!txt) {
       return msg.reply(['Reverse what?', '?tahw esreveR', 'What do you want me to reverse?', '?esrever ot em tnaw uoy od tahW', 'Give me some text to reverse.', '.esrever ot txet emos em eviG'].choose());
     } else {
+      txt = msg.cleanContent.replace(new RegExp(`^(${Haruka.prefix})\\s+(reverse|backwards)`, 'i'), '');
       txt = txt.split('').reverse().join('');
       return msg.channel.send(txt, {
         disableEveryone: true

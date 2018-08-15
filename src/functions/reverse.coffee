@@ -2,10 +2,6 @@
 #! Reverse
 handler = (msg, match, Haruka) ->
     txt = match.input.tokenize()[1]
-    txt = msg.cleanContent.replace(
-        new RegExp("^(#{Haruka.prefix})\\s+(reverse|backwards)\\s+", 'i'),
-        ''
-    )
     if not txt
         msg.reply [
             'Reverse what?'
@@ -16,6 +12,10 @@ handler = (msg, match, Haruka) ->
             '.esrever ot txet emos em eviG'
         ].choose()
     else
+        txt = msg.cleanContent.replace(
+            new RegExp("^(#{Haruka.prefix})\\s+(reverse|backwards)", 'i'),
+            ''
+        )
         txt = txt.split('').reverse().join('')
         msg.channel.send txt, disableEveryone: yes
 
