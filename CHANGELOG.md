@@ -4,6 +4,8 @@
 - Abusing `-h say @everyone` or `-h say @here` in a certain server will kick that user.
 - Reverse
     - Use `-h reverse` to reverse some text.
+- Someone
+    - Added options for choosing members that are `online`, `offline`, `idle`, and `dnd`. The `-h @someone` function without any arguments now looks for online users by default.
 
 ### Changed
 - Purge
