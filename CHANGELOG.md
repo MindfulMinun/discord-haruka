@@ -5,6 +5,10 @@
 - Reverse
     - Use `-h reverse` to reverse some text.
 
+### Changed
+- Purge
+    - Limit is now 100, inline with Discord’s default limit.
+
 ---
 
 # [Release v1.3.3](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.3)
