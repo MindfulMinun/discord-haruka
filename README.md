@@ -80,6 +80,7 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [pkmn]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
 [purge]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/purge.coffee
 [restart]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/restart.coffee
+[reverse]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/reverse.coffee
 [say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
 [someone]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/someone.coffee
 [version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee

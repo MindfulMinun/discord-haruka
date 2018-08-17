@@ -5,6 +5,7 @@
 /config.json
 /config.cson
 logs/
+log*.*
 package-lock.json
 
 # IDEs and editors
