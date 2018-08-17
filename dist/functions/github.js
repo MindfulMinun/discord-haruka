@@ -65,8 +65,8 @@
     regex: /^(github|git)(\s+|$)/i,
     handler: handler,
     help: {
-      short: "-h github <..> :: Retrieve information about a GitHub repository",
-      long: "```asciidoc\n=== Help for GitHub ===\n*Aliases*: github, git\n-h github <owner/repo> :: Retrieve information about a GitHub repository\nSome examples:\n    -h github jquery/jquery\n    -h github notwaldorf/tiny-care-terminal\n    -h github mindfulminun/discord-haruka\n```"
+      short: "-h github <..> :: Get information on any GitHub repository.",
+      long: "```asciidoc\n=== Help for GitHub ===\n*Aliases*: github, git\n-h github <owner/repo> :: Retrieve information about a GitHub repository\nSome examples:\n    -h github lodash/lodash\n    -h github MindfulMinun/discord-haruka\n    -h github TheTimgor/sadbot\n```"
     }
   };
 

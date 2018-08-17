@@ -88,7 +88,7 @@ module.exports = {
     handler: handler
     help: {
         short: "-h github <..> ::
-            Retrieve information about a GitHub repository"
+            Get information on any GitHub repository."
         long: """
             ```asciidoc
             === Help for GitHub ===
@@ -96,9 +96,9 @@ module.exports = {
             -h github <owner/repo> :: Retrieve information about a GitHub \
             repository
             Some examples:
-                -h github jquery/jquery
-                -h github notwaldorf/tiny-care-terminal
-                -h github mindfulminun/discord-haruka
+                -h github lodash/lodash
+                -h github MindfulMinun/discord-haruka
+                -h github TheTimgor/sadbot
             ```
         """
     }

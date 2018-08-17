@@ -1,3 +1,17 @@
+# [Release v1.3.4](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.4)
+
+### What’s new
+- Reverse
+    - Use `-h reverse` to reverse some text.
+- Someone
+    - Added options for choosing members that are `online`, `offline`, `idle`, and `dnd`. The `-h @someone` function without any arguments now looks for online users by default.
+
+### Changes:
+- `-h say @everyone` and `-h say @here` will no longer mention everyone.
+- The `-h purge` function will now only delete up to the last 100 messages as per the Discord API.
+
+---
+
 # Development version v1.3.4
 
 ### Added

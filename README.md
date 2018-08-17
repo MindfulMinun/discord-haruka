@@ -8,7 +8,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [License](#license)
 
 ## Commands
-As of `v1.3.3`, Haruka has 17 functions:
+As of `v1.3.4`, Haruka has 18 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
@@ -24,9 +24,10 @@ As of `v1.3.3`, Haruka has 17 functions:
 - [`-h pkmn`][pkmn]: Gets information about a Pokémon.
 - [`-h purge`][purge]: Deletes messages in bulk.
 - [`-h restart`][restart]: Restarts Haruka.
+- [`-h reverse`][reverse]: Reverses some text.
 - [`-h say`][say]: Replies with whatever you tell it to.
 - [`-h someone`][someone]: Mentions a user chosen at random.
-- [`-h version`][version]: Prints out version information about Haruka
+- [`-h version`][version]: Prints out version information about Haruka.
 
 ## Installation
 
@@ -34,8 +35,8 @@ Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recomm
 
 ```json
 {
-  "version": "1.3.2",
-  "dev": true,
+  "version": "1.3.4",
+  "dev": false,
   "token": "<https://discordapp.com/developers/applications/me>",
   "kanji-alive-api-key": "<https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji>",
   "ops": [
