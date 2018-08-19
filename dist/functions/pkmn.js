@@ -2,41 +2,41 @@
 (function() {
   //! ========================================
   //! Pokémon
-  var Discord, capitalize, fetch, handler, toDexNumber;
+  var Discord, capitalize, dasherize, handler, r, request, toDexNumber, undasherize;
 
   Discord = require('discord.js');
 
-  //! Helper Functions
-  //! Fetch
-  fetch = function(url) {
+  request = require('request');
+
+  r = function(options) {
     return new Promise(function(resolve, reject) {
-      var client, http, https;
-      http = require('http');
-      https = require('https');
-      client = http;
-      if (url.toString().indexOf("https") === 0) {
-        client = https;
-      }
-      return client.get(url, function(r) {
-        var data;
-        data = '';
-        //! A chunk of data has been recieved
-        r.on('data', function(chunk) {
-          return data += chunk;
-        });
-        //! Whole response recieved, return result
-        return r.on('end', function() {
-          return resolve(data);
-        });
-      }).on('error', function(err) {
-        return reject(err);
+      return request(options, function(err, response, body) {
+        var ref, shouldResolve;
+        shouldResolve = [!err, (200 <= (ref = response != null ? response.statusCode : void 0) && ref < 400), !JSON.parse(body).error].every(function(v) {
+          return v;
+        }) === true;
+        if (shouldResolve) {
+          return resolve(JSON.parse(body));
+        } else {
+          return reject(JSON.parse(body));
+        }
       });
     });
   };
 
-  //! Capitalize
+  //! String utils
   capitalize = function(txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1);
+  };
+
+  dasherize = function(str) {
+    return str.toLowerCase().replace(/[^A-Za-z0-9\s]/g, '').replace(/\s+/g, '-');
+  };
+
+  undasherize = function(str) {
+    return str.split('-').map(function(s) {
+      return capitalize(s);
+    }).join(' ');
   };
 
   //! ToDexNumber
@@ -46,69 +46,187 @@
 
   //! ========================================
   //! Message handler
-  handler = async function(msg, match) {
-    var P, PKMN_URL, SPECIES_URL, embed, err, pkmn, pokeRequest, species;
-    //! Define a few constants
-    SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species/";
-    PKMN_URL = "https://pokeapi.co/api/v2/pokemon/";
-    species = null;
-    pkmn = null;
-    P = {};
-    pokeRequest = match.input.tokenize()[1];
-    try {
-      if (!pokeRequest) {
-        return msg.reply(["Use `-h pkmn` followed by the Pokémon you want me to look up.", "I can look for Pokémon in my Pokédex if you use `-h pkmn ` followed by a Pokémon's name or National Dex number.", "You’re missing a few arguments. Try `-h help pkmn` if you forgot this command’s syntax."].choose());
-      }
-      species = JSON.parse((await fetch(SPECIES_URL + pokeRequest.toLowerCase() + "/")));
-      //! Postpone JSON.parse pkmn until it's needed
-      pkmn = fetch(PKMN_URL + species.id + "/");
-      //! Break if Pokémon not found.
-      if (species.detail === "Not found.") {
-        return msg.reply(["My database is telling me that that Pokémon doesn’t exist?", "Error 404: Pokémon Not Found", "I couldn’t find that Pokémon in my Pokédex. Try asking a Professor instead?"].choose());
-      }
-      P.name = (function() {
-        var i, len, name, ref;
-        ref = species.names;
-        for (i = 0, len = ref.length; i < len; i++) {
-          name = ref[i];
-          if (name.language.name === "en") {
-            return name.name;
-          }
-        }
-      })();
+  handler = function(msg, match, Haruka) {
+    var P, pkmn, pokeRequest, species;
+    pokeRequest = dasherize(match.input.tokenize()[1]);
+    if (!pokeRequest) {
+      return msg.reply(["Use `-h pkmn` followed by the Pokémon you want me to look up.", "I can look for Pokémon in my Pokédex if you use `-h pkmn` followed by a Pokémon's name or its National Dex number.", "You’re missing an argument. Try `-h help pkmn` if you forgot this command’s syntax."].choose());
+    }
+    [P, species, pkmn] = [{}, null, null];
+    //! Fetch pkmn
+    return r(`https://pokeapi.co/api/v2/pokemon-species/${pokeRequest}/`).then(function(s) {
+      var PPromise;
+      species = s;
+      PPromise = r(`https://pokeapi.co/api/v2/pokemon/${species.id}/`);
+      P.name = species.names.filter(function(n) {
+        return n.language.name === "en";
+      }).choose().name;
       P.dexNumber = toDexNumber(species.id);
-      //! Let the user know we're loading stuff
-      msg.reply([`Information about ${P.name}, coming right up!`, `Looking through my Pokédex for ${P.name}...`, `Looking up ${P.name}, hold tight...`, `Getting info on ${P.name}...`, `Looking up ${P.name}’s favorite berries...`].choose());
       P.description = species.flavor_text_entries.filter(function(f) {
         return f.language.name === "en";
-      }).first().flavor_text.replace(/\n/g, ' ');
+      }).choose().flavor_text.replace(/\s+/g, ' ');
       P.category = species.genera.filter(function(genus) {
         return genus.language.name === "en";
-      }).first().genus;
-      //! Postpone JSON.parse pkmn until it's needed
-      pkmn = JSON.parse((await pkmn));
+      }).choose().genus;
+      return PPromise;
+    }).then(function(p) {
+      pkmn = p;
+      P.abilities = pkmn.abilities.map(function(a) {
+        return undasherize(a.ability.name);
+      }).join(', ');
+      P.sprite = pkmn.sprites.front_default;
       P.types = pkmn.types.map(function(t) {
         return capitalize(t.type.name);
       });
-      //! Create the embed object
-      embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://www.smogon.com/dex/sm/pokemon/${(P.name === "Meowstic" ? "meowstic-m" : species.name)}/`).setThumbnail(pkmn.sprites.front_default).setTitle(`${capitalize(P.name)} — ${P.dexNumber}`).setDescription(P.description).addField("National Dex \#", P.dexNumber, true).addField("Typing", P.types.join("/"), true).addField("Category", P.category, true);
-      return msg.channel.send(embed);
-    } catch (error) {
-      err = error;
-      console.log("========================================");
-      console.log(err);
-      console.log({
-        species: species,
-        pkmn: pkmn,
-        P: P
+      P.movepool = pkmn.moves.length + " moves";
+      P.stats = pkmn.stats.map(function(s) {
+        switch (s.stat.name) {
+          case "hp":
+            return {
+              pos: 0,
+              txt: `HP: ${s.base_stat}`
+            };
+          case "attack":
+            return {
+              pos: 1,
+              txt: `Atk: ${s.base_stat}`
+            };
+          case "defense":
+            return {
+              pos: 2,
+              txt: `Def: ${s.base_stat}`
+            };
+          case "special-attack":
+            return {
+              pos: 3,
+              txt: `SpA: ${s.base_stat}`
+            };
+          case "special-defense":
+            return {
+              pos: 4,
+              txt: `SpD: ${s.base_stat}`
+            };
+          case "speed":
+            return {
+              pos: 5,
+              txt: `Spd: ${s.base_stat}`
+            };
+        }
       });
-      return msg.reply(["Uhh, an error occurred. Did you type everything in properly?", "An error occurred, make sure you're using the right command.", "Something happened, an error occurred. Check your command and try again."].choose());
-    }
+      return P.stats = P.stats.sort(function(a, b) {
+        return a.pos - b.pos;
+      }).map(function(x) {
+        return x.txt;
+      }).join('; ');
+    }).then(function() {
+      var embed;
+      //! Create the embed object
+      embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://www.smogon.com/dex/sm/pokemon/${P.name}/`).setThumbnail(P.sprite).setTitle(`${capitalize(P.name)} — ${P.dexNumber}`).setDescription(P.description).addField("National Dex \#", P.dexNumber, true).addField("Typing", P.types.join("/"), true).addField("Category", P.category, true).addField("Movepool", P.movepool, true).addField("Abilities", P.abilities).addField("Base stats", P.stats);
+      return msg.channel.send(embed);
+    }).catch(function(err) {
+      console.log(err);
+      if (err.detail === "Not found.") {
+        return msg.reply(["That Pokémon doesn’t seem to exist in my Pokédex, did you type its name correctly?", "I couldn’t find that Pokémon in my Pokédex. Try asking a Professor instead?"].choose());
+      } else {
+        return msg.reply(["An error occurred while fetching the Pokémon. Sorry about that.", "An exception was thrown while fetching the Pokémon."].choose());
+      }
+    });
   };
 
+  /*
+  _handler = (msg, match) ->
+      #! Define a few constants
+      SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species/"
+      PKMN_URL    = "https://pokeapi.co/api/v2/pokemon/"
+      species = null
+      pkmn    = null
+      P       = {}
+
+      pokeRequest = match.input.tokenize()[1]
+
+      try
+          if not pokeRequest
+  return msg.reply [
+      "Use `-h pkmn` followed by the Pokémon you want me to look up."
+      "I can look for Pokémon in my Pokédex if you use `-h pkmn `
+          followed by a Pokémon's name or National Dex number."
+      "You’re missing a few arguments. Try `-h help pkmn` if
+          you forgot this command’s syntax."
+  ].choose()
+
+          species = JSON.parse(
+  await fetch SPECIES_URL + pokeRequest.toLowerCase() + "/"
+          )
+          #! Postpone JSON.parse pkmn until it's needed
+          pkmn = fetch PKMN_URL + species.id + "/"
+
+          #! Break if Pokémon not found.
+          if species.detail is "Not found."
+  return msg.reply [
+      "My database is telling me that that Pokémon doesn’t exist?"
+      "Error 404: Pokémon Not Found"
+      "I couldn’t find that Pokémon in my Pokédex.
+          Try asking a Professor instead?"
+  ].choose()
+
+          P.name = (do ->
+  for name in species.names
+      if name.language.name is "en"
+          return name.name
+          )
+          P.dexNumber = toDexNumber species.id
+
+          #! Let the user know we're loading stuff
+          msg.reply [
+  "Information about #{P.name}, coming right up!"
+  "Looking through my Pokédex for #{P.name}..."
+  "Looking up #{P.name}, hold tight..."
+  "Getting info on #{P.name}..."
+  "Looking up #{P.name}’s favorite berries..."
+          ].choose()
+
+          P.description = species.flavor_text_entries
+  .filter((f) -> f.language.name is "en")
+  .first()
+  .flavor_text
+  .replace(/\n/g, ' ')
+
+          P.category = species.genera
+  .filter((genus) -> genus.language.name is "en")
+  .first()
+  .genus
+
+          #! Postpone JSON.parse pkmn until it's needed
+          pkmn = JSON.parse await pkmn
+          P.types = pkmn.types.map((t) -> capitalize t.type.name)
+
+          #! Create the embed object
+          embed = new Discord.RichEmbed()
+  .setColor '#448aff'
+  .setURL "https://www.smogon.com/dex/sm/pokemon/#{
+      if P.name is "Meowstic" then "meowstic-m" else species.name
+  }/"
+  .setThumbnail pkmn.sprites.front_default
+  .setTitle "#{capitalize P.name} — #{P.dexNumber}"
+  .setDescription P.description
+  .addField "National Dex \#", P.dexNumber, yes
+  .addField "Typing", P.types.join("/"), yes
+  .addField "Category", P.category, yes
+          msg.channel.send embed
+      catch err
+          console.log "========================================"
+          console.log err
+          console.log {species: species, pkmn: pkmn, P: P}
+          msg.reply [
+  "Uhh, an error occurred. Did you type everything in properly?"
+  "An error occurred, make sure you're using the right command."
+  "Something happened, an error occurred.
+      Check your command and try again."
+   * ].choose()
+   */
   module.exports = {
     name: "Pokémon",
-    regex: /^(pkmn|pokemon|pok\émon|poke|poké)(\s+|$)/i,
+    regex: /^(pkmn|pokemon|pokémon|poke|poké)(\s+|$)/i,
     handler: handler,
     //! coffeelint: disable=max_line_length
     help: {

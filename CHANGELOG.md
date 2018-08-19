@@ -1,3 +1,12 @@
+# Development version v1.3.5?
+
+### Changed
+- Pokémon
+    - Rewrote entire function (lol)
+    - Embed will now show Movepool size, Abilities, and Base Stats
+
+----
+
 # [Release v1.3.4](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.3.4)
 
 ### What’s new
