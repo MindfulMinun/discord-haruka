@@ -4,6 +4,11 @@
 - Pokémon
     - Rewrote entire function (lol)
     - Embed will now show Movepool size, Abilities, and Base Stats
+- Ping 🏓
+    - Now tells you how long it took Haruka to respond.
+
+### Killing bugs
+If a Haruka command contains `dab`, she won't run that command. This has now been resolved.
 
 ----
 

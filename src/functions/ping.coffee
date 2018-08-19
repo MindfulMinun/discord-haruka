@@ -1,6 +1,10 @@
 #! ========================================
 #! Ping
-handler = (msg) -> msg.reply "Pong!"
+handler = (msg, match, Haruka) ->
+    msg.reply "Pong!"
+    .then (reply) ->
+        delta = reply.createdTimestamp - msg.createdTimestamp
+        reply.edit("#{reply.content} (#{delta}ms)")
 
 module.exports = {
     name: "Ping"
@@ -13,7 +17,8 @@ module.exports = {
             ```asciidoc
             === Help for Ping ===
             *Aliases*: ping, pong, beep, boop, ding, dong
-            -h ping :: Replies "Pong!", nothing fancy.
+            -h ping :: Replies "Pong!" along with the duration it \
+                       took Haruka to reply.
             ```
         """
 }

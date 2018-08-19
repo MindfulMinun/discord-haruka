@@ -18,7 +18,7 @@
     if (/\b(dab(bing)?)\b/gi.test(msg.content)) {
       rin_dab = msg.guild.emojis.find('name', 'rin_dab');
       msg.react(rin_dab);
-      return true;
+      return false;
     }
   };
 

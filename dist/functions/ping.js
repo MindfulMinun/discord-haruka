@@ -4,8 +4,12 @@
   //! Ping
   var handler;
 
-  handler = function(msg) {
-    return msg.reply("Pong!");
+  handler = function(msg, match, Haruka) {
+    return msg.reply("Pong!").then(function(reply) {
+      var delta;
+      delta = reply.createdTimestamp - msg.createdTimestamp;
+      return reply.edit(`${reply.content} (${delta}ms)`);
+    });
   };
 
   module.exports = {
@@ -14,7 +18,7 @@
     handler: handler,
     help: {
       short: "-h ping        :: Replies “Pong!”",
-      long: "```asciidoc\n=== Help for Ping ===\n*Aliases*: ping, pong, beep, boop, ding, dong\n-h ping :: Replies \"Pong!\", nothing fancy.\n```"
+      long: "```asciidoc\n=== Help for Ping ===\n*Aliases*: ping, pong, beep, boop, ding, dong\n-h ping :: Replies \"Pong!\" along with the duration it took Haruka to reply.\n```"
     }
   };
 
