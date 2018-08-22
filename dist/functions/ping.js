@@ -5,7 +5,20 @@
   var handler;
 
   handler = function(msg, match, Haruka) {
-    return msg.reply("Pong!").then(function(reply) {
+    var input;
+    input = match[1].toLowerCase();
+    return ((function() {
+      switch (input) {
+        case "ping":
+          return msg.reply("Pong!");
+        case "beep":
+          return msg.reply("Boop!");
+        case "ding":
+          return msg.reply("Dong!");
+        default:
+          return msg.reply("Pong!");
+      }
+    })()).then(function(reply) {
       var delta;
       delta = reply.createdTimestamp - msg.createdTimestamp;
       return reply.edit(`${reply.content} (${delta}ms)`);
@@ -14,11 +27,11 @@
 
   module.exports = {
     name: "Ping",
-    regex: /^(ping|pong|beep|boop|ding|dong)(\s+|$)/i,
+    regex: /^(ping|beep|ding)(\s+|$)/i,
     handler: handler,
     help: {
       short: "-h ping        :: Replies “Pong!”",
-      long: "```asciidoc\n=== Help for Ping ===\n*Aliases*: ping, pong, beep, boop, ding, dong\n-h ping :: Replies \"Pong!\" along with the duration it took Haruka to reply.\n```"
+      long: "```asciidoc\n=== Help for Ping ===\n*Aliases*: ping, beep, ding\n-h ping :: Replies \"Pong!\" along with the time it took to reply.\n-h beep :: Replies \"Boop!\" along with the time it took to reply.\n-h ding :: Replies \"Dong!\" along with the time it took to reply.\n```"
     }
   };
 
