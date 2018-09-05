@@ -8,7 +8,7 @@ handler = (msg, Haruka) ->
     # Case insensitive, whitespace required.
 
     #! Break if regex doesn't match.
-    if not reg.test msg.content then return no
+    if (not reg.test(msg.content)) or msg.author.bot then return no
 
     #! If the person's fortunate enough to get a number higher than
     #! 1 / 10, they’re spared.

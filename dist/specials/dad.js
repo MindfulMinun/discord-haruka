@@ -11,7 +11,7 @@
     // Case insensitive, whitespace required.
 
     //! Break if regex doesn't match.
-    if (!reg.test(msg.content)) {
+    if ((!reg.test(msg.content)) || msg.author.bot) {
       return false;
     }
     //! If the person's fortunate enough to get a number higher than

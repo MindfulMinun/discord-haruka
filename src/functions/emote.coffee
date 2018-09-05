@@ -19,7 +19,7 @@ handler = (msg, match, Haruka) ->
 
             msg.guild.createEmoji(image, name, null,
                 "Haruka: Created emote as asked by
-                #{msg.author.username} in Message #{msg.id}"
+                #{msg.author.username} in Message<#{msg.id}>"
             )
             .then ->
                 e = msg.guild.emojis.find("name", name)

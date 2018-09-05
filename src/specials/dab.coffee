@@ -5,9 +5,9 @@ handler = (msg, Haruka) ->
     # React with the dabbing emote every time some1 says
     # "dab" or "dabbing" in timgor's server
 
-    # Check if the message was sent from tim's server
+    # Check if the message was sent from tim's server (not by a bot)
     # Check if the message includes "dab" or "dabbing"
-    if msg.guild?.id isnt "443094449233592325" then return
+    if msg.author.bot or msg.guild?.id isnt "443094449233592325" then return
 
     # If a message contains "dab" or "dabbing", react with the :rin_dab: emote
     if /\b(dab(bing)?)\b/gi.test msg.content

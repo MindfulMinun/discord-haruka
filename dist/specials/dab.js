@@ -9,9 +9,9 @@
     // React with the dabbing emote every time some1 says
     // "dab" or "dabbing" in timgor's server
 
-    // Check if the message was sent from tim's server
+    // Check if the message was sent from tim's server (not by a bot)
     // Check if the message includes "dab" or "dabbing"
-    if (((ref = msg.guild) != null ? ref.id : void 0) !== "443094449233592325") {
+    if (msg.author.bot || ((ref = msg.guild) != null ? ref.id : void 0) !== "443094449233592325") {
       return;
     }
     // If a message contains "dab" or "dabbing", react with the :rin_dab: emote

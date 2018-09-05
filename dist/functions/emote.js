@@ -20,7 +20,7 @@
         if ((name == null) || (image == null)) {
           return msg.reply("Attachment or URL wasn't provided. Use `-h help emote` for help with this command.");
         }
-        msg.guild.createEmoji(image, name, null, `Haruka: Created emote as asked by ${msg.author.username} in Message ${msg.id}`).then(function() {
+        msg.guild.createEmoji(image, name, null, `Haruka: Created emote as asked by ${msg.author.username} in Message<${msg.id}>`).then(function() {
           var e;
           e = msg.guild.emojis.find("name", name);
           return msg.channel.send(`Emote created: \`:${name}:\``).then(function(sent) {
