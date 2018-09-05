@@ -8,7 +8,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [License](#license)
 
 ## Commands
-As of `v1.3.4`, Haruka has 18 functions:
+As of `v1.4.0`, Haruka has 18 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
@@ -27,15 +27,15 @@ As of `v1.3.4`, Haruka has 18 functions:
 - [`-h reverse`][reverse]: Reverses some text.
 - [`-h say`][say]: Replies with whatever you tell it to.
 - [`-h someone`][someone]: Mentions a user chosen at random.
-- [`-h version`][version]: Prints out version information about Haruka.
+- [`-h version`][version]: Prints out technical information about Haruka.
 
 ## Installation
 
-Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][repo] and get a copy of [Haruka’s latest release][releases]. In the root directory, open the file called `example-config.json`, looking something like this:
+Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][repo] and get a copy of [Haruka’s latest release][releases]. In the root directory, open the file called `example-config.json`. The most important bits are as follows.:
 
 ```json
 {
-  "version": "1.3.4",
+  "version": "<Version number>",
   "dev": false,
   "token": "<https://discordapp.com/developers/applications/me>",
   "kanji-alive-api-key": "<https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji>",
@@ -78,7 +78,7 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [pfp]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
 [ping]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
 [pkmn]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
-[purge]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/purge.coffee
+[purge]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/purge.coffee
 [restart]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/restart.coffee
 [reverse]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/reverse.coffee
 [say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee

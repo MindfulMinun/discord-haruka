@@ -1,3 +1,20 @@
+# [Release v1.4.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.4.0)
+
+### Changed
+- About & Version
+    - These functions now use beautiful RichEmbeds.
+    - Version now prints uptime.
+- Pokémon
+    - Embed will now show Movepool size, Abilities, and Base Stats
+- Ping 🏓
+    - Now tells you how long it took Haruka to respond.
+    - Using "Ping", "beep", or "ding" now have their own responses.
+
+### Killing bugs
+If a Haruka command contains `dab`, she won't run that command. This has now been resolved.
+
+----
+
 # Development version v1.3.5
 
 ### Changed
