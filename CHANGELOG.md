@@ -1,12 +1,21 @@
-# Development version v1.3.5?
+# Development version v1.3.5
 
 ### Changed
+- About & Version
+    - These functions now use beautiful RichEmbeds.
+    - Version now prints uptime.
 - Pokémon
     - Rewrote entire function (lol)
     - Embed will now show Movepool size, Abilities, and Base Stats
 - Ping 🏓
     - Now tells you how long it took Haruka to respond.
     - Using "Ping", "beep", or "ding" now have their own responses.
+- config.json
+    - Added `about` field. This is what’ll be displayed when `-h about` or `-h version`
+      is called. See `example-config.json`.
+- package.json
+    - Added `npm run watch` and `npm run serve` for quicker development.
+      Now I don’t need `notes.md`, so that’s been deleted.
 
 ### Killing bugs
 If a Haruka command contains `dab`, she won't run that command. This has now been resolved.
