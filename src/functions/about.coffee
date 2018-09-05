@@ -1,14 +1,19 @@
 #! ========================================
 #! About
+Discord = require 'discord.js'
+
 handler = (msg, match, H) ->
-    msg.reply "
-        Hi, I’m Haruka, your useless bot (`#{H.version}`).
-        I’m made out of CoffeeScript and dedication. I was created
-        by MindfulMinun.\n
-        - **Twitter:** https://twitter.com/MindfulMinun\n
-        - **GitHub repo:** https://github.com/MindfulMinun/discord-haruka/\n
-        - **How I work:** https://benjic.xyz/2018-07-30/haruka-teardown/?s=1
-    "
+    chosenBlob = H.config.about.blobs.choose()
+    if Array.isArray chosenBlob then chosenBlob = chosenBlob.choose()
+
+    embed = new Discord.RichEmbed()
+        .setColor '#448aff'
+        .setTitle "Haruka #{H.version}"
+        .setDescription H.config.about.description
+        .addField "Links", H.config.about.links
+        .setFooter "#{chosenBlob}"
+        .setTimestamp H.client.readyAt
+    msg.channel.send embed
 
 module.exports = {
     name: "About"

@@ -8,6 +8,7 @@
         "start": "node dist/main.js",
         "debug": "node --inspect dist/main.js",
         "watch": "coffee -o dist/ -cw src/",
+        "serve": "pm2 start dist/main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "MindfulMinun",
