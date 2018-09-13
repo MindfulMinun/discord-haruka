@@ -16,5 +16,8 @@
     "dependencies": {
         "discord.js": "^11.3.2",
         "request": "^2.87.0"
+    },
+    "devDependencies": {
+        "coffeescript": "^2.3.1"
     }
 }

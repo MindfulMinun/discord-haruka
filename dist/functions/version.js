@@ -2,9 +2,11 @@
 (function() {
   //! ========================================
   //! Version
-  var Discord, formattedTime, handler;
+  var Discord, formattedTime, handler, pkgname, ref, ref1;
 
   Discord = require('discord.js');
+
+  pkgname = (ref = ((ref1 = require('../../package.json')) != null ? ref1.name : void 0) != null) != null ? ref : 'discord-haruka';
 
   formattedTime = function(secs) {
     var h, m, r, s;
@@ -24,7 +26,7 @@
     if (Array.isArray(chosenBlob)) {
       chosenBlob = chosenBlob.choose();
     }
-    embed = new Discord.RichEmbed().setColor('#448aff').setTitle(`Haruka ${H.version}`).addField("Uptime", formattedTime(H.client.uptime / 1000)).setFooter(`${process.env.npm_package_name}@${H.version}`).setTimestamp(H.client.readyAt);
+    embed = new Discord.RichEmbed().setColor('#448aff').setTitle(`Haruka ${H.version}`).addField("Uptime", formattedTime(H.client.uptime / 1000)).setFooter(`${pkgname}@${H.version}`).setTimestamp(H.client.readyAt);
     return msg.channel.send(embed);
   };
 

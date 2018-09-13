@@ -1,7 +1,11 @@
 # Development version v1.4.1
 
+### Added
+- Adde CoffeeScript as a `devDependency`
+
 ### Changed
-- Nothing yet...
+- Version's embed footer now defaults to `discord-haruka`, so `undefined` shouldn’t show up.
+
 
 ---
 

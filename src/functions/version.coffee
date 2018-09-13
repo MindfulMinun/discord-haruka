@@ -1,6 +1,8 @@
 #! ========================================
 #! Version
 Discord = require 'discord.js'
+pkgname = require('../../package.json')?.name? ? 'discord-haruka'
+
 formattedTime = (secs) ->
     h = ~~(secs / 3600)
     m = ~~((secs % 3600) / 60)
@@ -20,7 +22,7 @@ handler = (msg, match, H) ->
         .setColor '#448aff'
         .setTitle "Haruka #{H.version}"
         .addField "Uptime", formattedTime(H.client.uptime / 1000)
-        .setFooter "#{process.env.npm_package_name}@#{H.version}"
+        .setFooter "#{pkgname}@#{H.version}"
         .setTimestamp H.client.readyAt
     msg.channel.send embed
 
