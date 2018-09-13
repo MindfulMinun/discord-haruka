@@ -1,3 +1,10 @@
+# Development version v1.4.1
+
+### Changed
+- Nothing yet...
+
+---
+
 # [Release v1.4.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v1.4.0)
 
 ### Changed
