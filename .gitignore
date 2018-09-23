@@ -1,5 +1,5 @@
-#! ========================================
-#! .gitignore
+# ========================================
+# .gitignore
 
 # Config: don't want to leak out Haruka's info
 /config.json
@@ -7,6 +7,7 @@
 logs/
 log*.*
 package-lock.json
+docs/
 
 # IDEs and editors
 .idea

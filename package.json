@@ -2,12 +2,13 @@
     "name": "discord-haruka",
     "version": "1.4.0",
     "description": "A useless Discord bot.",
-    "main": "dist/main.js",
+    "main": "dist/Haruka.js",
     "repository": "github:MindfulMinun/discord-haruka",
     "scripts": {
         "start": "node dist/main.js",
         "debug": "node --inspect dist/main.js",
-        "watch": "coffee -o dist/ -cw src/",
+        "build": "rm -rf docs/ && jsdoc -c jsdoc.json -R README.md ./dist/",
+        "watch": "rm -rf dist/ && coffee -o dist/ -bcw src/",
         "serve": "pm2 start dist/main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -18,6 +19,7 @@
         "request": "^2.87.0"
     },
     "devDependencies": {
-        "coffeescript": "^2.3.1"
+        "coffeescript": "^2.3.1",
+        "foodoc": "0.0.9"
     }
 }

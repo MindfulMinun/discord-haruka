@@ -1,4 +1,5 @@
 {
+    "name": "discord-haruka",
     "version": "<SemVer version number>",
     "dev": false,
     "token": "<https://discordapp.com/developers/applications/me>",

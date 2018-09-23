@@ -1,0 +1,13 @@
+{
+    "templates": {
+        "systemName": "Haruka",
+        "systemSummary": "A useless Discord bot.",
+        "systemColor": "#448aff",
+        "__copyright": "Idk what to put here"
+    },
+    "opts": {
+        "destination": "./docs/",
+        "template": "./node_modules/foodoc/template",
+        "recurse": true
+    }
+}

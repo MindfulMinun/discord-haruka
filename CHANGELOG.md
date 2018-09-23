@@ -1,11 +1,13 @@
-# Development version v1.4.1
+# Development version v2.0.0
+
+### Big changes
+Haruka’s now a module with a simple API.
 
 ### Added
 - Adde CoffeeScript as a `devDependency`
 
 ### Changed
 - Version's embed footer now defaults to `discord-haruka`, so `undefined` shouldn’t show up.
-
 
 ---
 
