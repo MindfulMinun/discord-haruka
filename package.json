@@ -7,7 +7,7 @@
     "scripts": {
         "start": "node dist/main.js",
         "debug": "node --inspect dist/main.js",
-        "build": "rm -rf docs/ && jsdoc -c jsdoc.json -R README.md ./dist/",
+        "build": "rm -rf dist/ && rm -rf docs/ && coffee -o dist/ -bc src/ && jsdoc -c jsdoc.json -R README.md ./dist/",
         "watch": "rm -rf dist/ && coffee -o dist/ -bcw src/",
         "serve": "pm2 start dist/main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
