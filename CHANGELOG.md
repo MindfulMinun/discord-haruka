@@ -5,6 +5,7 @@ Haruka’s now a module with a simple API.
 
 ### Added
 - Adde CoffeeScript as a `devDependency`
+- A buttload of type definitions for JSDoc
 
 ### Changed
 - Version's embed footer now defaults to `discord-haruka`, so `undefined` shouldn’t show up.

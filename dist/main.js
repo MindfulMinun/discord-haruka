@@ -30,10 +30,11 @@ haruka.client.on('ready', function() {
 });
 
 haruka.client.on('message', function(msg) {
-  debugger;
   var err, r;
   try {
-    return haruka.try(msg);
+    if (!haruka.try(msg)) {
+      return msg.reply(["Hmm, I'm not sure what you mean by that.", "Sorry, I don't know what you meant by that.", "I’m not sure I understand.", "I’m not sure what you mean."].choose() + " Try `-h help` for a list of commands.");
+    }
   } catch (error) {
     err = error;
     //! I hope this catches bugs

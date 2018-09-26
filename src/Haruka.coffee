@@ -1,8 +1,32 @@
-#! ========================================
-#! The Haruka class
+# ========================================
+# The Haruka class
 
 fs = require 'fs'
 Discord = require 'discord.js'
+
+###*
+ * Describes a Haruka function. These functions are passed to
+ * the Haruka instance via Haruka::add()
+ * @typedef {Object} HarukaFn
+ * @property {String} name - The function name.
+ * @property {HarukaHandler} handler - The Haruka message handler
+ * @property {RegExp} [regex] - The regular expression that should trigger
+ * this function. If this function is a special function, omit this property.
+ * @property {Object} [help] - This function's help descriptions.
+ * @property {String} [help.short] - This function's short help description.
+ * Can be omitted if help.hidden is set to true.
+ * @property {String} help.long - This function's long help description.
+ * @property {Boolean} [help.hidden=true] - Whether this function should show up
+ * in the generic help list. Defaults to true.
+###
+
+###*
+ * Describes a Haruka message handler.
+ * @callback HarukaHandler
+ * @param {Message} msg - A DiscordJS Discord message
+ * @param {Array} [match] - The RegExp match that triggered this message, if any
+ * @param {Haruka} H - The Haruka instance this function is attached to.
+###
 
 ###*
  * The Haruka class.
@@ -20,20 +44,29 @@ Discord = require 'discord.js'
 class Haruka
     constructor: (options) ->
         # Set a couple variables for later
-        @client  = new Discord.Client
-        @config  = options.config ? {}
+        @client = new Discord.Client
+        @config = options.config ? {}
         @version = options.version ? @config.version
-        @prefix  = options.prefix ? @config.prefix ?
+        ###*
+         * Haruka's function prefix, such as `-h`.
+         * It musn't contain any whitespace.
+         * @type {String}
+        ###
+        @prefix = options.prefix ? @config.prefix ?
             throw Error "Haruka requires a command prefix."
+        if /\s/.test @prefix
+            throw Error "Haruka’s prefix should not contain any whitespace."
 
         ###*
          * A collection of functions, meant to be added via
          * `Haruka::add('function', fn)`
+         * @type {Array<HarukaFn>}
         ###
         @functions = []
         ###*
          * A collection of special functions, meant to be
          * added via `Haruka::add('special', fn)`
+         * @type {Array<HarukaFn>}
         ###
         @specials  = []
 
@@ -47,42 +80,35 @@ class Haruka
      * @version 2.0.0
     ###
     try: (msg) ->
-        #! ========================================
-        #! Run Specials first
+        # ========================================
+        # Run Specials first
         for fn in @specials
-            #! Break if handler returns a truthy value.
+            # Break if handler returns a truthy value.
             if temp = fn.handler(msg, @) then return temp
 
-        #! ========================================
-        #! Functions
+        # ========================================
+        # Functions
 
-        #! Tokenize input
+        # Tokenize input
         txt = msg.content.tokenize()
         txt[1] = if txt[1] then txt[1] else "help"
 
-        #! Check if the message starts with the prefix,
-        #! and it's not from another bot.
+        # Check if the message starts with the prefix,
+        # and it's not from another bot.
         if (txt[0] isnt @prefix) or msg.author.bot then return
 
-        #! Run through all the commands and see if one matches.
+        # Run through all the commands and see if one matches.
         for fn in @functions
             regexMatch = fn.regex.exec txt[1]
             if regexMatch
                 return fn.handler(msg, regexMatch, @)
-
-        #! Catchall
-        msg.reply [
-            "Hmm, I'm not sure what you mean by that."
-            "Sorry, I don't know what you meant by that."
-            "I’m not sure I understand."
-            "I’m not sure what you mean."
-        ].choose() + " Try `-h help` for a list of commands."
 
     ###*
      * Adds a function to Haruka’s queue
      * @author MindfulMinun
      * @param {String} type - An enumerated string, either
         "function" or "special"
+     * @param {HarukaFn} fn - A Haruka message handler function.
      * @returns {Haruka} The Haruka object with the function added to it.
      * @since Sep 23, 2018 - 2.0.0
      * @version 2.0.0
