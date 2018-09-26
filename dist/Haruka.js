@@ -120,13 +120,15 @@ Haruka = class Haruka {
         return fn.handler(msg, regexMatch, this);
       }
     }
+    // Catchall
+    return msg.reply(["Hmm, I'm not sure what you mean by that.", "Sorry, I don't know what you meant by that.", "I’m not sure I understand.", "I’m not sure what you mean."].choose() + " Try `-h help` for a list of commands.");
   }
 
   /**
    * Adds a function to Haruka’s queue
    * @author MindfulMinun
    * @param {String} type - An enumerated string, either
-      "function" or "special"
+  "function" or "special"
    * @param {HarukaFn} fn - A Haruka message handler function.
    * @returns {Haruka} The Haruka object with the function added to it.
    * @since Sep 23, 2018 - 2.0.0

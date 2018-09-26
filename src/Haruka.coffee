@@ -103,6 +103,14 @@ class Haruka
             if regexMatch
                 return fn.handler(msg, regexMatch, @)
 
+        # Catchall
+        return msg.reply [
+            "Hmm, I'm not sure what you mean by that."
+            "Sorry, I don't know what you meant by that."
+            "I’m not sure I understand."
+            "I’m not sure what you mean."
+        ].choose() + " Try `-h help` for a list of commands."
+
     ###*
      * Adds a function to Haruka’s queue
      * @author MindfulMinun

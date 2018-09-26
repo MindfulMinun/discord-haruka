@@ -3,11 +3,12 @@
         "systemName": "Haruka",
         "systemSummary": "A useless Discord bot.",
         "systemColor": "#448aff",
-        "__copyright": "Idk what to put here",
+        "copyright": "Made with love by MindfulMinun. Software and documentation released under the MIT License.",
         "stylesheets": [
             "data:text/css,body{font-family:\"Roboto\", \"Helvetica Neue\", Arial, sans-serif}",
             "https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Roboto+Mono"
-        ]
+        ],
+        "favicon": "icon.png"
     },
     "opts": {
         "destination": "./docs/",

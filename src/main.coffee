@@ -26,13 +26,7 @@ haruka.client.on 'ready', ->
         """
 haruka.client.on 'message', (msg) ->
     try
-        if not haruka.try msg
-            msg.reply [
-                "Hmm, I'm not sure what you mean by that."
-                "Sorry, I don't know what you meant by that."
-                "I’m not sure I understand."
-                "I’m not sure what you mean."
-            ].choose() + " Try `-h help` for a list of commands."
+        haruka.try msg
     catch err
         #! I hope this catches bugs
         r = new RegExp(process.cwd(), 'gi')

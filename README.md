@@ -1,3 +1,5 @@
+[API Docs][docs] | [GitHub][repo] | [npm][npm] | [Teardown][haruka-teardown]
+
 # Haruka
 
 Haruka, your useless Discord bot. [Add Haruka][add].
@@ -57,13 +59,15 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [MIT License][license]
 
 <!-- Reference links -->
+[docs]: https://haruka.benjic.xyz/ "Haruka API Documentation"
+[repo]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka · GitHub"
+[haruka-teardown]: https://benjic.xyz/2018-07-30/haruka-teardown/ "Haruka Teardown"
+[npm]: https://www.npmjs.com/package/discord-haruka "discord-haruka · npm"
 [kanjialive]: https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji "KanjiAlive API Documentation"
-[repo]: https://github.com/MindfulMinun/discord-haruka "MindfulMinun/discord-haruka"
 [releases]: https://github.com/MindfulMinun/discord-haruka/releases "Releases · MindfulMinun/discord-haruka"
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
 [license]: https://github.com/MindfulMinun/discord-haruka/blob/master/LICENSE "discord-haruka/LICENSE"
 [add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
-[haruka-teardown]: https://benjic.xyz/2018-07-30/haruka-teardown/ "Haruka Teardown"
 
 <!-- Function links -->
 [8ball]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
