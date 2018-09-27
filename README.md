@@ -10,7 +10,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [License](#license)
 
 ## Commands
-As of `v1.4.0`, Haruka has 18 functions:
+As of `v2.0.0`, Haruka has 18 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
@@ -20,6 +20,7 @@ As of `v1.4.0`, Haruka has 18 functions:
 - [`-h help`][help]: Returns a list of all the commands, much like this one.
 - [`-h invite`][invite]: Replies with a URL to invite Haruka to other servers.
 - [`-h kanji`][kanji]: Retrieve information about a Kanji character.
+- [`-h kick`][kick]: Kicks all of the mentioned users.
 - [`-h now`][now]: Returns the current time in UTC
 - [`-h pfp`][pfp]: Return a user’s profile image as a URL.
 - [`-h ping`][ping]: Replies “Pong!”
@@ -78,6 +79,7 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [help]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
 [invite]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
 [kanji]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
+[kick]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kick.coffee
 [now]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/now.coffee
 [pfp]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
 [ping]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
