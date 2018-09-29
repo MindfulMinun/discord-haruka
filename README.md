@@ -17,6 +17,7 @@ As of `v2.0.0`, Haruka has 18 functions:
 - [`-h aesthetic`][ae]: Makes your text more ａｅｓｔｈｅｔｉｃ.
 - [`-h emote`][emote]: Manages server emotes
 - [`-h github`][github]: Retrieve information about a GitHub repository.
+- [`-h health`][health]: Tips to improve your bodily health.
 - [`-h help`][help]: Returns a list of all the commands, much like this one.
 - [`-h invite`][invite]: Replies with a URL to invite Haruka to other servers.
 - [`-h kanji`][kanji]: Retrieve information about a Kanji character.
@@ -76,6 +77,7 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [ae]:      https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/aesthetic.coffee
 [emote]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/emote.coffee
 [github]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/github.coffee
+[health]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/health.coffee
 [help]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
 [invite]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
 [kanji]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
