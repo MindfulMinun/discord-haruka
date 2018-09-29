@@ -8,6 +8,10 @@ Haruka’s now a module with a simple API.
 - A buttload of type definitions for JSDoc
 - Kick
     - Does what you expect: eject people from a server.
+- Health
+    - Sends you tips to improve your bodily health.
+- Ping
+    - Haruka now replies to "Awoo!", "uwu", and "owo" (case insensitive)
 
 ### Changed
 - Version's embed footer now defaults to `discord-haruka`, so `undefined` shouldn’t show up.
