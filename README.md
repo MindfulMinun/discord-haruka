@@ -10,7 +10,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [License](#license)
 
 ## Commands
-As of `v2.0.0`, Haruka has 18 functions:
+As of `v2.0.0`, Haruka has 21 functions:
 
 - [`-h 8ball`][8ball]: Answers any yes or no question.
 - [`-h about`][about]: General stuff about Haruka.
@@ -32,6 +32,7 @@ As of `v2.0.0`, Haruka has 18 functions:
 - [`-h say`][say]: Replies with whatever you tell it to.
 - [`-h someone`][someone]: Mentions a user chosen at random.
 - [`-h version`][version]: Prints out technical information about Haruka.
+- [`-h xkcd`][xkcd]: Fetches xkcd comics.
 
 ## Installation
 
@@ -92,3 +93,4 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
 [someone]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/someone.coffee
 [version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee
+[xkcd]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/xkcd.coffee

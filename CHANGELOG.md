@@ -12,6 +12,8 @@ Haruka’s now a module with a simple API.
     - Sends you tips to improve your bodily health.
 - Ping
     - Haruka now replies to "Awoo!", "uwu", and "owo" (case insensitive)
+- xkcd
+    - Fetches [xkcd](https://xkcd.com) comics, yay!
 
 ### Changed
 - Version's embed footer now defaults to `discord-haruka`, so `undefined` shouldn’t show up.
