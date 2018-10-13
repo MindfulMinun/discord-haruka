@@ -14,6 +14,8 @@ Haruka’s now a module with a simple API.
     - Haruka now replies to "Awoo!", "uwu", and "owo" (case insensitive)
 - xkcd
     - Fetches [xkcd](https://xkcd.com) comics, yay!
+- Anime
+    - Looks up info for an anime, you weeb.
 
 ### Changed
 - Version's embed footer now defaults to `discord-haruka`, so `undefined` shouldn’t show up.

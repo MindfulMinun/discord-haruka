@@ -9,12 +9,12 @@ handler = function(msg, Haruka) {
   // Matches "im ", "i'm ", "i’m ", and "i am "
   // Case insensitive, whitespace required.
 
-  //! Break if regex doesn't match.
+  // Break if regex doesn't match.
   if ((!reg.test(msg.content)) || msg.author.bot) {
     return false;
   }
-  //! If the person's fortunate enough to get a number higher than
-  //! 1 / 10, they’re spared.
+  // If the person's fortunate enough to get a number higher than
+  // 1 / 10, they’re spared.
   if ((1 / 10) <= Math.random()) {
     return false;
   }
