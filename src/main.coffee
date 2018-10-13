@@ -7,6 +7,20 @@ Haruka = require './Haruka'
 haruka = new Haruka({
     prefix: if config.dev then '#h' else '-h'
     config: config
+    default: (msg) ->
+        console.log @
+        c = msg.content.replace(@prefix, '').trim()
+        if not c
+            # Call the Help function if no arguments provided.
+            help = @functions.find((f) -> console.log f; f.name is 'Help')
+            help.handler(msg, (input: ''), @)
+        else
+            msg.reply [
+                "Hmm, I'm not sure what you mean by that."
+                "Sorry, I don't know what you meant by that."
+                "I’m not sure I understand."
+                "I’m not sure what you mean."
+            ].choose() + " Try `-h help` for a list of commands."
 })
 
 # ========================================

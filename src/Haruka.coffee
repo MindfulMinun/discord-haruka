@@ -5,6 +5,27 @@ fs = require 'fs'
 Discord = require 'discord.js'
 
 ###*
+ * The options object Haruka should be instantiated with.
+ * @typedef {Object} HarukaOptions
+ * @property {Object} config - The configuration file.
+    See `example-config.json`
+ * @property {String} version - Haruka’s version.
+    Defaults to `options.config.version`
+ * @property {String} prefix - Haruka’s command prefix, such as `-h`.
+    This must be defined.
+ * @property {HarukaDefault} default - Haruka’s catch-all function.
+    If Haruka detects that her prefix was sent but no function was called,
+    this function can warn the sender.
+###
+
+###*
+ * A catchall function, called when a message starts with Haruka's prefix,
+ * but no function matched its regular expression.
+ * @callback HarukaDefault
+ * @param {Message} msg - A DiscordJS Discord message.
+###
+
+###*
  * Describes a Haruka function. These functions are passed to
  * the Haruka instance via Haruka::add()
  * @typedef {Object} HarukaFn
@@ -12,7 +33,7 @@ Discord = require 'discord.js'
  * @property {HarukaHandler} handler - The Haruka message handler
  * @property {RegExp} [regex] - The regular expression that should trigger
  * this function. If this function is a special function, omit this property.
- * @property {Object} [help] - This function's help descriptions.
+ * @property {Object} help - This function's help descriptions.
  * @property {String} [help.short] - This function's short help description.
  * Can be omitted if help.hidden is set to true.
  * @property {String} help.long - This function's long help description.
@@ -21,23 +42,18 @@ Discord = require 'discord.js'
 ###
 
 ###*
- * Describes a Haruka message handler.
+ * A Haruka message handler.
  * @callback HarukaHandler
  * @param {Message} msg - A DiscordJS Discord message
- * @param {Array} [match] - The RegExp match that triggered this message, if any
+ * @param {Array} [match] - The RegExp match that triggered this message.
+    This argument is omitted if this function is a Special function.
  * @param {Haruka} H - The Haruka instance this function is attached to.
 ###
 
 ###*
  * The Haruka class.
  * @author MindfulMinun
- * @param {Object} options - Haruka’s options.
- * @param {Object} options.config - The configuration file.
-    See `example-config.json`
- * @param {Object} options.version - Haruka’s version.
-    Defaults to `options.config.version`
- * @param {Object} options.prefix - Haruka’s command prefix, such as `-h`.
-    This must be defined.
+ * @param {HarukaOptions} options - Haruka’s options.
  * @since 2.0.0
  * @version 2.0.0
 ###
@@ -47,6 +63,7 @@ class Haruka
         @client = new Discord.Client
         @config = options.config ? {}
         @version = options.version ? @config.version
+        @default = options.default
         ###*
          * Haruka's function prefix, such as `-h`.
          * It musn't contain any whitespace.
@@ -71,11 +88,14 @@ class Haruka
         @specials  = []
 
     ###*
-     * Haruka will attempt to reply to the given Discord message.
+     * Haruka will attempt to reply to the given Discord message
+     * if it starts with the prefix. If it can't find one,
+     * it will call the `default` function passed during instantiation.
      * @author MindfulMinun
      * @param {Message} msg - The discord.js Discord message
-     * @returns {*} The return value of the handler function
-        or `undefined` if none was called.
+     * @returns {*} The return value of the handler function or
+        `undefined` if the message was sent by a bot or doesn't
+        start with the prefix.
      * @since 0.1.0
      * @version 2.0.0
     ###
@@ -89,30 +109,24 @@ class Haruka
         # ========================================
         # Functions
 
-        # Tokenize input
-        txt = msg.content.tokenize()
-        txt[1] = if txt[1] then txt[1] else "help"
-
         # Check if the message starts with the prefix,
         # and it's not from another bot.
-        if (txt[0] isnt @prefix) or msg.author.bot then return
+        if (not msg.content.startsWith @prefix) or msg.author.bot then return
+
+        commands = msg.content.replace(@prefix, '').trim()
 
         # Run through all the commands and see if one matches.
         for fn in @functions
-            regexMatch = fn.regex.exec txt[1]
+            regexMatch = fn.regex.exec commands
             if regexMatch
                 return fn.handler(msg, regexMatch, @)
 
         # Catchall
-        return msg.reply [
-            "Hmm, I'm not sure what you mean by that."
-            "Sorry, I don't know what you meant by that."
-            "I’m not sure I understand."
-            "I’m not sure what you mean."
-        ].choose() + " Try `-h help` for a list of commands."
+        return @default(msg)
 
     ###*
-     * Adds a function to Haruka’s queue
+     * Adds a function to Haruka. This function will be called if a
+     * message's content matches its RegExp
      * @author MindfulMinun
      * @param {String} type - An enumerated string, either
         "function" or "special"

@@ -11,7 +11,24 @@ Haruka = require('./Haruka');
 // Start
 haruka = new Haruka({
   prefix: config.dev ? '#h' : '-h',
-  config: config
+  config: config,
+  default: function(msg) {
+    var c, help;
+    console.log(this);
+    c = msg.content.replace(this.prefix, '').trim();
+    if (!c) {
+      // Call the Help function if no arguments provided.
+      help = this.functions.find(function(f) {
+        console.log(f);
+        return f.name === 'Help';
+      });
+      return help.handler(msg, {
+        input: ''
+      }, this);
+    } else {
+      return msg.reply(["Hmm, I'm not sure what you mean by that.", "Sorry, I don't know what you meant by that.", "I’m not sure I understand.", "I’m not sure what you mean."].choose() + " Try `-h help` for a list of commands.");
+    }
+  }
 });
 
 // ========================================
