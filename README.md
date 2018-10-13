@@ -12,27 +12,28 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 ## Commands
 As of `v2.0.0`, Haruka has 21 functions:
 
-- [`-h 8ball`][8ball]: Answers any yes or no question.
-- [`-h about`][about]: General stuff about Haruka.
-- [`-h aesthetic`][ae]: Makes your text more ａｅｓｔｈｅｔｉｃ.
-- [`-h emote`][emote]: Manages server emotes
-- [`-h github`][github]: Retrieve information about a GitHub repository.
-- [`-h health`][health]: Tips to improve your bodily health.
-- [`-h help`][help]: Returns a list of all the commands, much like this one.
-- [`-h invite`][invite]: Replies with a URL to invite Haruka to other servers.
-- [`-h kanji`][kanji]: Retrieve information about a Kanji character.
-- [`-h kick`][kick]: Kicks all of the mentioned users.
-- [`-h now`][now]: Returns the current time in UTC
-- [`-h pfp`][pfp]: Return a user’s profile image as a URL.
-- [`-h ping`][ping]: Replies “Pong!”
-- [`-h pkmn`][pkmn]: Gets information about a Pokémon.
-- [`-h purge`][purge]: Deletes messages in bulk.
-- [`-h restart`][restart]: Restarts Haruka.
-- [`-h reverse`][reverse]: Reverses some text.
-- [`-h say`][say]: Replies with whatever you tell it to.
-- [`-h someone`][someone]: Mentions a user chosen at random.
-- [`-h version`][version]: Prints out technical information about Haruka.
-- [`-h xkcd`][xkcd]: Fetches xkcd comics.
+- [`-h 8ball`][f-8ball]: Answers any yes or no question.
+- [`-h about`][f-about]: General stuff about Haruka.
+- [`-h aesthetic`][f-ae]: Makes your text more ａｅｓｔｈｅｔｉｃ.
+- [`-h anime`][f-anime]: Looks up information for an anime, you weeb.
+- [`-h emote`][f-emote]: Manages server emotes
+- [`-h github`][f-github]: Retrieve information about a GitHub repository.
+- [`-h health`][f-health]: Tips to improve your bodily health.
+- [`-h help`][f-help]: Returns a list of all the commands, much like this one.
+- [`-h invite`][f-invite]: Replies with a URL to invite Haruka to other servers.
+- [`-h kanji`][f-kanji]: Retrieve information about a Kanji character.
+- [`-h kick`][f-kick]: Kicks all of the mentioned users.
+- [`-h now`][f-now]: Returns the current time in UTC
+- [`-h pfp`][f-pfp]: Return a user’s profile image as a URL.
+- [`-h ping`][f-ping]: Replies “Pong!”
+- [`-h pkmn`][f-pkmn]: Gets information about a Pokémon.
+- [`-h purge`][f-purge]: Deletes messages in bulk.
+- [`-h restart`][f-restart]: Restarts Haruka.
+- [`-h reverse`][f-reverse]: Reverses some text.
+- [`-h say`][f-say]: Replies with whatever you tell it to.
+- [`-h someone`][f-someone]: Mentions a user chosen at random.
+- [`-h version`][f-version]: Prints out technical information about Haruka.
+- [`-h xkcd`][f-xkcd]: Fetches xkcd comics.
 
 ## Installation
 
@@ -73,24 +74,25 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
 
 <!-- Function links -->
-[8ball]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
-[about]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/about.coffee
-[ae]:      https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/aesthetic.coffee
-[emote]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/emote.coffee
-[github]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/github.coffee
-[health]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/health.coffee
-[help]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
-[invite]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
-[kanji]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
-[kick]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kick.coffee
-[now]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/now.coffee
-[pfp]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
-[ping]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
-[pkmn]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
-[purge]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/purge.coffee
-[restart]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/restart.coffee
-[reverse]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/reverse.coffee
-[say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
-[someone]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/someone.coffee
-[version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee
-[xkcd]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/xkcd.coffee
+[f-8ball]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
+[f-about]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/about.coffee
+[f-ae]:      https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/aesthetic.coffee
+[f-anime]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/anime.coffee
+[f-emote]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/emote.coffee
+[f-github]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/github.coffee
+[f-health]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/health.coffee
+[f-help]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/help.coffee
+[f-invite]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
+[f-kanji]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
+[f-kick]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kick.coffee
+[f-now]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/now.coffee
+[f-pfp]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
+[f-ping]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
+[f-pkmn]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pkmn.coffee
+[f-purge]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/purge.coffee
+[f-restart]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/restart.coffee
+[f-reverse]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/reverse.coffee
+[f-say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
+[f-someone]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/someone.coffee
+[f-version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee
+[f-xkcd]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/xkcd.coffee

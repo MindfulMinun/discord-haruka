@@ -1,3 +1,23 @@
+# [Release v2.0.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.0.0)
+
+### Big changes
+Haruka’s now a module with a simple API. [See her documentation.](https://haruka.benjic.xyz)
+
+### New functions!
+- Kick
+    - Does what you expect: eject people from a server.
+- Health
+    - Sends you tips to improve your bodily health.
+- Ping
+    - Haruka now replies to "Awoo!", "uwu", and "owo" (case insensitive)
+- xkcd
+    - Fetches [xkcd](https://xkcd.com) comics, yay!
+- Anime
+    - Looks up info for an anime, you weeb.
+
+
+---
+
 # Development version v2.0.0
 
 ### Big changes
