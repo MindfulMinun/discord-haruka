@@ -1,3 +1,19 @@
+<!--
+    vX.Y.Z
+    X should be incremented if there are major changes or major backwards incompatibilities
+    Y should be incremented if new backwards-compatible changes are made.
+    Z should be incremented if backwards-compatible bug fixes are implemented.
+    See https://semver.org/lang/es/
+-->
+
+# Development version v2.1.0
+
+- Updated `README.md` function count to be correct.
+- Anime
+    - Now shows the weighted score, number of episodes, status, and next airing time for any given anime.
+    - Next airing time is calculated via a helper located in `/src/helpers/relative.coffee`
+---
+
 # [Release v2.0.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.0.0)
 
 ### Big changes

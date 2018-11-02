@@ -2,6 +2,7 @@
 #! Anime
 Discord = require 'discord.js'
 request = require 'request'
+relative = require "#{__dirname}/../helpers/relative"
 
 asyncReq = (options) ->
     new Promise (resolve, reject) ->
@@ -21,6 +22,11 @@ query = '''
                 native
             }
             description(asHtml: false)
+            averageScore
+            nextAiringEpisode {
+                airingAt
+            }
+            status
             siteUrl
             episodes
             duration
@@ -65,6 +71,10 @@ handler = (msg, match, Haruka) ->
                 else
                     temp.replace(/<[^>]*>/g, '') + '...'
 
+            status = [
+                "FINISHED", "RELEASING", "NOT_YET_RELEASED", "CANCELLED"
+            ].indexOf a.status
+
             embed = new Discord.RichEmbed()
                 .setColor '#448aff'
                 .setTitle (
@@ -80,6 +90,26 @@ handler = (msg, match, Haruka) ->
             if a.duration?
                 embed.addField("Duration", "#{a.duration} min", yes)
 
+            if a.episodes?
+                embed.addField("Number of Episodes", "#{a.episodes}", yes)
+
+            if a.averageScore?
+                embed.addField("Score", "#{a.averageScore} / 100", yes)
+
+            if status isnt -1
+                status = switch status
+                    when 0 then "Completed"
+                    when 1 then "Currently airing"
+                    when 2 then "Not yet airing"
+                    when 3 then "Cancelled"
+                embed.addField("Status", status, yes)
+
+            if a.nextAiringEpisode?.airingAt?
+                nextAiringDate = new Date a.nextAiringEpisode.airingAt * 1000
+                embed.addField("Next episode airs...", "#{
+                    relative nextAiringDate
+                }", yes)
+
             if a.genres?.length > 0
                 embed.addField("Genres", a.genres.join(', '), yes)
 
@@ -87,13 +117,13 @@ handler = (msg, match, Haruka) ->
         .catch (err, body) ->
             console.log ...arguments
             if not body
-                msg.channel.send [
+                return msg.channel.send [
                     "Hmm, I couldn’t find that anime. Did you spell it right?"
                 ]
-            if body.errors
-                msg.channel.send """
+            if body?.errors
+                return msg.channel.send """
                     A server error occurred, it's not my fault this time :D
-                    
+
                     ```json
                     #{JSON.stringify body.errors}
                     ```
