@@ -12,6 +12,8 @@
 - Anime
     - Now shows the weighted score, number of episodes, status, and next airing time for any given anime.
     - Next airing time is calculated via a helper located in `/src/helpers/relative.coffee`
+- Someone
+    - Only allowed to use `-h someone` if the user is allowed to mention `@everyone`.
 ---
 
 # [Release v2.0.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.0.0)

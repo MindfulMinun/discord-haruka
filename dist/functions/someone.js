@@ -9,6 +9,9 @@ handler = function(msg, match, Haruka) {
   if (msg.guild == null) {
     return msg.reply(["You have to be in a server to use this command.", "This command only works in servers, not DMs or GroupDMs.", "It doesn’t look like you’re in a server, so I can’t run that command."].choose());
   }
+  if (!msg.member.hasPermission('MENTION_EVERYONE')) {
+    return msg.reply(["Sorry, you can’t (ab)use that command.", "You’re not allowed to use that command.", "You must be able to mention everyone before using that command."].choose());
+  }
   args = match.input.tokenize()[1];
   members = (ref = msg.channel) != null ? ref.members : void 0;
   lucky = (function() {
@@ -48,8 +51,7 @@ module.exports = {
   regex: /^@?(someone|somebody)(\s+|$)/i,
   handler: handler,
   help: {
-    // P for presence
     short: "-h someone [p] :: Mentions a random user.",
-    long: "```asciidoc\n=== Help for Someone ===\n*Aliases*: @someone, @somebody, someone, somebody\n-h someone         :: Mentions a random user that’s online.\n-h someone online  :: Mentions a random user that’s online.\n-h someone offline :: Mentions a random user that’s offline.\n-h someone idle    :: Mentions a random user that’s idle.\n-h someone dnd     :: Mentions a random user that’s in Do Not Disturb.\n*Note*: This function only works in servers, not DMs or GroupDMs.\n```"
+    long: "```asciidoc\n=== Help for Someone ===\n*Aliases*: @someone, @somebody, someone, somebody\n-h someone         :: Mentions a random user that’s online.\n-h someone online  :: Mentions a random user that’s online.\n-h someone offline :: Mentions a random user that’s offline.\n-h someone idle    :: Mentions a random user that’s idle.\n-h someone dnd     :: Mentions a random user that’s in Do Not Disturb.\n*Note*: This function only works in servers, not DMs or GroupDMs.\n*Note*: You must be able to use @everyone before using this command.\n```"
   }
 };

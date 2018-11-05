@@ -8,6 +8,13 @@ handler = (msg, match, Haruka) ->
         "It doesn’t look like you’re in a server, so I can’t run that command."
     ].choose()
 
+    if not msg.member.hasPermission 'MENTION_EVERYONE'
+        return msg.reply [
+            "Sorry, you can’t (ab)use that command."
+            "You’re not allowed to use that command."
+            "You must be able to mention everyone before using that command."
+        ].choose()
+
     args = match.input.tokenize()[1]
     members = msg.channel?.members
     lucky = switch args
@@ -40,7 +47,6 @@ module.exports = {
     regex: /^@?(someone|somebody)(\s+|$)/i
     handler: handler
     help:
-        # P for presence
         short: "-h someone [p] ::
             Mentions a random user."
         long: """
@@ -54,6 +60,7 @@ module.exports = {
             -h someone dnd     :: Mentions a random user that’s \
                 in Do Not Disturb.
             *Note*: This function only works in servers, not DMs or GroupDMs.
+            *Note*: You must be able to use @everyone before using this command.
             ```
         """
 }
