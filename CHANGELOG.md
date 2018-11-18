@@ -14,6 +14,13 @@
     - Next airing time is calculated via a helper located in `/src/helpers/relative.coffee`
 - Someone
     - Only allowed to use `-h someone` if the user is allowed to mention `@everyone`.
+
+### Specials:
+
+- owo
+    - Has a 1 in 3 chance of replying with "what's this" or some variant of it
+- Who up
+    - Replies to [sadbot](https://github.com/TheTimgor/sadbot)
 ---
 
 # [Release v2.0.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.0.0)

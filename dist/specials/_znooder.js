@@ -4,10 +4,13 @@
 var handler;
 
 handler = function(msg, Haruka) {
-  if (msg.author.id === "120719403015864324") {
-    return msg.delete().then(function() {
+  var ref;
+  if (((ref = msg.author) != null ? ref.id : void 0) === "120719403015864324") {
+    msg.delete().then(function() {
       return msg.channel.send(['*znooder has been snoozed*', '*znooder has been snoozed* :)'].choose());
     });
+    // Message doesn't call Haruka, exit prematurely
+    return true;
   }
 };
 
