@@ -12,6 +12,16 @@
 - Anime
     - Now shows the weighted score, number of episodes, status, and next airing time for any given anime.
     - Next airing time is calculated via a helper located in `/src/helpers/relative.coffee`
+- Dab
+    - If the :rin_dab: emote exists in any server, react with it.
+- Help:
+    - Updated RegExp to accept the empty string
+- Main:
+    - Updated the fallback function to disregard the empty string, since Help's RegExp accounts for that.
+- Pokémon
+    - Fixed a critical bug that caused Haruka to silently crash. Bug caused by Pokéapi returning an HTML-formatted 404 when Haruka expected JSON, causing `JSON.parse` to throw an unrecoverable error.
+- Say
+    - Dead simple: just disableEveryone. No need for role management.
 - Someone
     - Only allowed to use `-h someone` if the user is allowed to mention `@everyone`.
 

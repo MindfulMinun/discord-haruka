@@ -2,8 +2,8 @@
 #! Help
 handler = (msg, match, H) ->
 
-    helpforCommand = match.input.tokenize()[1]
-    if helpforCommand
+    helpforCommand = match?[1]?
+    if helpforCommand?
         for fn in H.functions
             helpMatch = fn.regex.test helpforCommand
             if helpMatch then return msg.channel.send fn.help.long
@@ -27,7 +27,7 @@ handler = (msg, match, H) ->
 
 module.exports = {
     name: "Help"
-    regex: /^(help|h)(\s+|$)/i
+    regex: /^(?:(?:\s*$)|(?:(?:help|h)(?:\s+(\S[\s\S]*))?))/i
     handler: handler
     help:
         short: "-h help [...]  ::

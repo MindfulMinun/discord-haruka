@@ -57,7 +57,9 @@ handler = (msg, match, Haruka) ->
         # ```
         # """
     ].choose()
-    msg.channel.send toFullwidth txt
+
+    # Better safe than sorry, disableEveryone
+    msg.channel.send toFullwidth(txt), disableEveryone: yes
 
 module.exports = {
     name: "Aesthetic"

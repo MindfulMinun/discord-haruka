@@ -3,16 +3,13 @@
 
 handler = (msg, Haruka) ->
     # React with the dabbing emote every time some1 says
-    # "dab" or "dabbing" in timgor's server
+    # "dab" or "dabbing" in any server
 
-    # Check if the message was sent from tim's server (not by a bot)
-    # Check if the message includes "dab" or "dabbing"
-    if msg.author.bot or msg.guild?.id isnt "443094449233592325" then return
-
-    # If a message contains "dab" or "dabbing", react with the :rin_dab: emote
-    if /\b(dab(bing)?)\b/gi.test msg.content
-        rin_dab = msg.guild.emojis.find('name', 'rin_dab')
-        msg.react rin_dab
+    # If a message contains "dab" or "dabbing",
+    # react with the :rin_dab: emote if it exists
+    if /\b(dab(b?ing)?)\b/gi.test msg.content
+        rin_dab = msg.guild.emojis.find((e) -> e.name is 'rin_dab')
+        if rin_dab? then msg.react rin_dab
         return no
 
 module.exports = {

@@ -10,14 +10,14 @@ request = require('request');
 r = function(options) {
   return new Promise(function(resolve, reject) {
     return request(options, function(err, response, body) {
-      var ref, shouldResolve;
-      shouldResolve = [!err, (200 <= (ref = response != null ? response.statusCode : void 0) && ref < 400), !JSON.parse(body).error].every(function(v) {
-        return v;
-      }) === true;
-      if (shouldResolve) {
+      var ref;
+      if ((!err) && ((200 <= (ref = response != null ? response.statusCode : void 0) && ref <= 400)) && (!JSON.parse(body).error)) {
         return resolve(JSON.parse(body));
       } else {
-        return reject(JSON.parse(body));
+        // Don't do JSON.body, pokeapi likes to return
+        // HTML-formatted 404s instead of error messages.
+        // This is the reason Haruka was crashing.
+        return reject([err, response, body]);
       }
     });
   });
@@ -63,6 +63,7 @@ handler = function(msg, match, Haruka) {
     P.description = species.flavor_text_entries.filter(function(f) {
       return f.language.name === "en";
     }).choose().flavor_text.replace(/\s+/g, ' ');
+    // Replace multiple occurrences of whitespace with just one space.
     P.category = species.genera.filter(function(genus) {
       return genus.language.name === "en";
     }).choose().genus;
@@ -122,11 +123,15 @@ handler = function(msg, match, Haruka) {
     embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://www.smogon.com/dex/sm/pokemon/${P.name}/`).setThumbnail(P.sprite).setTitle(`${capitalize(P.name)} — ${P.dexNumber}`).setDescription(P.description).addField("National Dex \#", P.dexNumber, true).addField("Typing", P.types.join("/"), true).addField("Category", P.category, true).addField("Movepool", P.movepool, true).addField("Abilities", P.abilities).addField("Base stats", P.stats);
     return msg.channel.send(embed);
   }).catch(function(err) {
-    console.log(err);
-    if (err.detail === "Not found.") {
-      return msg.reply(["That Pokémon doesn’t seem to exist in my Pokédex, did you type its name correctly?", "I couldn’t find that Pokémon in my Pokédex. Try asking a Professor instead?"].choose());
+    var body, ref, response;
+    [err, response, body] = err;
+    try {
+      body = JSON.parse(body);
+    } catch (error) {}
+    if (!((200 <= (ref = response != null ? response.statusCode : void 0) && ref <= 400))) {
+      return msg.reply(["Sorry, but I couldn't find that Pokémon. Did you spell its name right?", "I’m not finding that Pokémon in my Pokédex. Perhaps try entering a Pokédex number instead?"].choose());
     } else {
-      return msg.reply(["An error occurred while fetching the Pokémon. Sorry about that.", "An exception was thrown while fetching the Pokémon."].choose());
+      return msg.reply(["An unexpected error occurred while fetching the Pokémon. This shouldn’t typically happen, try again in a few seconds.", "A wild, unrecoverable error occurred! Errors like this shouldn’t typically happen, try again in a few seconds."].choose());
     }
   });
 };

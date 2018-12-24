@@ -5,8 +5,8 @@ var handler;
 
 handler = function(msg, match, H) {
   var allHelpList, fn, helpMatch, helpforCommand, i, len, ref;
-  helpforCommand = match.input.tokenize()[1];
-  if (helpforCommand) {
+  helpforCommand = (match != null ? match[1] : void 0) != null;
+  if (helpforCommand != null) {
     ref = H.functions;
     for (i = 0, len = ref.length; i < len; i++) {
       fn = ref[i];
@@ -35,7 +35,7 @@ handler = function(msg, match, H) {
 
 module.exports = {
   name: "Help",
-  regex: /^(help|h)(\s+|$)/i,
+  regex: /^(?:(?:\s*$)|(?:(?:help|h)(?:\s+(\S[\s\S]*))?))/i,
   handler: handler,
   help: {
     short: "-h help [...]  :: This list. What did you expect?",

@@ -18,7 +18,7 @@ asyncReq = function(options) {
         // coffeelint: enable=max_line_length
         return resolve(JSON.parse(body));
       }
-      return reject(err, body);
+      return reject([err, response, body]);
     });
   });
 };
@@ -68,7 +68,7 @@ handler = function(msg, match, Haruka) {
       embed.addField("Number of Episodes", `${a.episodes}`, true);
     }
     if (a.averageScore != null) {
-      embed.addField("Score", `${a.averageScore} / 100`, true);
+      embed.addField("Score", `${a.averageScore} out of 100`, true);
     }
     if (status !== -1) {
       status = (function() {
@@ -92,8 +92,13 @@ handler = function(msg, match, Haruka) {
     if (((ref3 = a.genres) != null ? ref3.length : void 0) > 0) {
       embed.addField("Genres", a.genres.join(', '), true);
     }
-    return msg.channel.send(`Results for “${animeRequest}”`, embed);
-  }).catch(function(err, body) {
+    return msg.channel.send(`Results for “${animeRequest}”`, {
+      disableEveryone: true,
+      embed: embed
+    });
+  }).catch(function(err) {
+    var body, response;
+    [err, response, body] = err;
     console.log(...arguments);
     if (!body) {
       return msg.channel.send(["Hmm, I couldn’t find that anime. Did you spell it right?"]);

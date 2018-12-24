@@ -11,7 +11,7 @@ asyncReq = (options) ->
             if not err and (200 <= response.statusCode < 400) and not JSON.parse(body)?.errors
                 # coffeelint: enable=max_line_length
                 return resolve(JSON.parse body)
-            reject(err, body)
+            reject [err, response, body]
 
 query = '''
     query ($search: String) {
@@ -94,7 +94,7 @@ handler = (msg, match, Haruka) ->
                 embed.addField("Number of Episodes", "#{a.episodes}", yes)
 
             if a.averageScore?
-                embed.addField("Score", "#{a.averageScore} / 100", yes)
+                embed.addField("Score", "#{a.averageScore} out of 100", yes)
 
             if status isnt -1
                 status = switch status
@@ -113,8 +113,12 @@ handler = (msg, match, Haruka) ->
             if a.genres?.length > 0
                 embed.addField("Genres", a.genres.join(', '), yes)
 
-            msg.channel.send "Results for “#{animeRequest}”", embed
-        .catch (err, body) ->
+            msg.channel.send("Results for “#{animeRequest}”", {
+                disableEveryone: yes,
+                embed: embed
+            })
+        .catch (err) ->
+            [err, response, body] = err
             console.log ...arguments
             if not body
                 return msg.channel.send [

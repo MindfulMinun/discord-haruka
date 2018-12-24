@@ -22,7 +22,7 @@ handler = (msg, match, Haruka) ->
                 #{msg.author.username} in Message<#{msg.id}>"
             )
             .then ->
-                e = msg.guild.emojis.find("name", name)
+                e = msg.guild.emojis.find((e) -> e.name is name)
                 msg.channel.send "Emote created: `:#{name}:`"
                 .then (sent) -> sent.react e
             .catch (err) ->
@@ -36,7 +36,7 @@ handler = (msg, match, Haruka) ->
                     An emote name wasn't provided.
                     Please provide an emote name. Use `-h help emote`
                     for help with this command."
-            e = msg.guild.emojis.find("name", name)
+            e = msg.guild.emojis.find((e) -> e.name is name)
             if e?
                 msg.guild.deleteEmoji(e,
                     "Haruka: Deleted emote as asked by

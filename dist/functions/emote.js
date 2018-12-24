@@ -21,7 +21,9 @@ handler = function(msg, match, Haruka) {
       }
       msg.guild.createEmoji(image, name, null, `Haruka: Created emote as asked by ${msg.author.username} in Message<${msg.id}>`).then(function() {
         var e;
-        e = msg.guild.emojis.find("name", name);
+        e = msg.guild.emojis.find(function(e) {
+          return e.name === name;
+        });
         return msg.channel.send(`Emote created: \`:${name}:\``).then(function(sent) {
           return sent.react(e);
         });
@@ -35,7 +37,9 @@ handler = function(msg, match, Haruka) {
       if (name == null) {
         return msg.channel.send("An emote name wasn't provided. Please provide an emote name. Use `-h help emote` for help with this command.");
       }
-      e = msg.guild.emojis.find("name", name);
+      e = msg.guild.emojis.find(function(e) {
+        return e.name === name;
+      });
       if (e != null) {
         msg.guild.deleteEmoji(e, `Haruka: Deleted emote as asked by ${msg.author.username} in Message<${msg.id}>`).then(function() {
           return msg.channel.send(`Successfully deleted emote \`:${name}:\``);

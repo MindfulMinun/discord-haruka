@@ -7,16 +7,17 @@ request = require 'request'
 r = (options) ->
     new Promise (resolve, reject) ->
         request options, (err, response, body) ->
-            shouldResolve = [
-                not err,
-                200 <= response?.statusCode < 400
-                not JSON.parse(body).error
-            ].every((v) -> v) is yes
-
-            if shouldResolve
+            if (
+                (not err) and
+                (200 <= response?.statusCode <= 400) and
+                (not JSON.parse(body).error)
+            )
                 resolve JSON.parse body
             else
-                reject JSON.parse body
+                # Don't do JSON.body, pokeapi likes to return
+                # HTML-formatted 404s instead of error messages.
+                # This is the reason Haruka was crashing.
+                reject [err, response, body]
 
 #! String utils
 capitalize = (txt) ->
@@ -58,7 +59,7 @@ handler = (msg, match, Haruka) ->
             .choose()
             .flavor_text
             .replace(/\s+/g, ' ')
-
+            # Replace multiple occurrences of whitespace with just one space.
         P.category = species.genera
             .filter((genus) -> genus.language.name is "en")
             .choose()
@@ -99,19 +100,24 @@ handler = (msg, match, Haruka) ->
             .addField "Base stats", P.stats
         msg.channel.send embed
     .catch (err) ->
-        console.log err
-        if err.detail is "Not found."
+        [err, response, body] = err
+        try
+            body = JSON.parse(body)
+        if not (200 <= response?.statusCode <= 400)
             msg.reply [
-                "That Pokémon doesn’t seem to exist in my Pokédex,
-                    did you type its name correctly?"
-                "I couldn’t find that Pokémon in my Pokédex.
-                    Try asking a Professor instead?"
+                "Sorry, but I couldn't find that Pokémon.
+                    Did you spell its name right?"
+                "I’m not finding that Pokémon in my Pokédex.
+                    Perhaps try entering a Pokédex number instead?"
             ].choose()
         else
             msg.reply [
-                "An error occurred while fetching the Pokémon.
-                    Sorry about that."
-                "An exception was thrown while fetching the Pokémon."
+                "An unexpected error occurred while fetching the Pokémon.
+                    This shouldn’t typically happen,
+                    try again in a few seconds."
+                "A wild, unrecoverable error occurred!
+                    Errors like this shouldn’t typically happen,
+                    try again in a few seconds."
             ].choose()
 
 module.exports = {

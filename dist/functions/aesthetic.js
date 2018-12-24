@@ -43,7 +43,10 @@ handler = function(msg, match, Haruka) {
     // """
     return msg.channel.send(["Function was called without sufficient arguments.", "Use `-h help aesthetic` for help on this function.", "Use `-h aesthetic` followed by whatever you want me to “aesthetic-ize”."].choose());
   }
-  return msg.channel.send(toFullwidth(txt));
+  // Better safe than sorry, disableEveryone
+  return msg.channel.send(toFullwidth(txt), {
+    disableEveryone: true
+  });
 };
 
 module.exports = {
