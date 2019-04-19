@@ -2,8 +2,8 @@
 #! Special: owo
 
 handler = (msg, Haruka) ->
-    # Matches "owo", preceded or followed by whitespace, case insensitive
-    reg = /^\s*owo\s*$/i
+    # Matches variations of "owo", preceded or followed by whitespace, case insensitive
+    reg = /^\s*[ou][wmn][ou]\s*$/i
 
     # Break if regex doesn't match.
     if (not reg.test(msg.content)) or msg.author.bot then return no

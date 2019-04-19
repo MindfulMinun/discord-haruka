@@ -1,5 +1,9 @@
 #! ========================================
-#! Anime
+#! Manga
+
+# NOTE: This code is pretty much a duplicate of `anime.coffee`
+# any changes made here should reflect `anime` as well.
+
 Discord = require 'discord.js'
 request = require 'request'
 relative = require "#{__dirname}/../helpers/relative"
@@ -15,7 +19,7 @@ asyncReq = (options) ->
 
 query = '''
     query ($search: String) {
-        Media(search: $search, type: ANIME) {
+        Media(search: $search, type: MANGA) {
             title {
                 english
                 romaji
@@ -23,13 +27,10 @@ query = '''
             }
             description(asHtml: false)
             averageScore
-            nextAiringEpisode {
-                airingAt
-            }
             status
             siteUrl
-            episodes
-            duration
+            chapters
+            volumes
             genres
             coverImage {
                 large
@@ -43,10 +44,10 @@ query = '''
 url = 'https://graphql.anilist.co'
 
 handler = (msg, match, Haruka) ->
-    animeRequest = match.input.tokenize()[1]
+    mangaRequest = match.input.tokenize()[1]
 
-    if not animeRequest then return msg.reply [
-        "Use `-h anime` followed by an anime to search for that anime."
+    if not mangaRequest then return msg.reply [
+        "Use `-h manga` followed by an manga to search for that manga."
     ].choose()
 
     options =
@@ -57,7 +58,7 @@ handler = (msg, match, Haruka) ->
             'Accept': 'application/json'
         body: JSON.stringify {
             query: query
-            variables: search: animeRequest
+            variables: search: mangaRequest
         }
 
     asyncReq options
@@ -87,11 +88,11 @@ handler = (msg, match, Haruka) ->
                 .setThumbnail a.coverImage.large
                 .setFooter "Powered by the AniList API"
 
-            if a.duration?
-                embed.addField("Episode Duration (average)", "#{a.duration} min", yes)
+            if a.chapters?
+                embed.addField("Chapter count", "#{a.chapters}", yes)
 
-            if a.episodes?
-                embed.addField("Episode Count", "#{a.episodes}", yes)
+            if a.volumes?
+                embed.addField("Volume count", "#{a.volumes}", yes)
 
             if a.averageScore?
                 embed.addField("Score", "#{a.averageScore} out of 100", yes)
@@ -99,16 +100,10 @@ handler = (msg, match, Haruka) ->
             if status isnt -1
                 status = switch status
                     when 0 then "Completed"
-                    when 1 then "Currently airing"
-                    when 2 then "Not yet airing"
+                    when 1 then "Currently releasing"
+                    when 2 then "Not yet released"
                     when 3 then "Canceled"
                 embed.addField("Status", status, yes)
-
-            if a.nextAiringEpisode?.airingAt?
-                nextAiringDate = new Date a.nextAiringEpisode.airingAt * 1000
-                embed.addField("Next episode airs...", "#{
-                    relative nextAiringDate
-                }", yes)
 
             if a.synonyms?.length > 0
                 embed.addField("Alternate names", a.synonyms.join(', '), yes)
@@ -116,7 +111,7 @@ handler = (msg, match, Haruka) ->
             if a.genres?.length > 0
                 embed.addField("Genres", a.genres.join(', '), yes)
 
-            msg.channel.send("Results for “#{animeRequest}”", {
+            msg.channel.send("Results for “#{mangaRequest}”", {
                 disableEveryone: yes,
                 embed: embed
             })
@@ -128,7 +123,7 @@ handler = (msg, match, Haruka) ->
                 [err, response, body] = err
             if not body
                 return msg.channel.send [
-                    "Hmm, I couldn’t find that anime. Did you spell it right?"
+                    "Hmm, I couldn’t find that manga. Did you spell it right?"
                 ]
             if body?.errors
                 return msg.channel.send """
@@ -142,17 +137,17 @@ handler = (msg, match, Haruka) ->
 
 
 module.exports = {
-    name: "Anime"
-    regex: /^(anime|animu|japanime)(\s+|$)/i
+    name: "Manga"
+    regex: /^(manga|doujin)(\s+|$)/i
     handler: handler
     help:
-        short: "-h anime <...> ::
-            Retrieves info regarding some anime."
+        short: "-h manga <...> ::
+            Retrieves info regarding some manga."
         long: """
             ```asciidoc
-            === Help for Anime ===
-            *Aliases*: anime, animu, japanime
-            -h anime <query> :: Searches for an anime provided a search term.
+            === Help for Manga ===
+            *Aliases*: manga, doujin
+            -h manga <query> :: Searches for a mange provided a search term.
             ```
         """
 }

@@ -17,6 +17,7 @@ author: "MindfulMinun"
 license: "MIT"
 dependencies:
     "discord.js": "^11.3.2"
+    fuzzysort: "^1.1.4",
     request: "^2.87.0"
 devDependencies:
     coffeescript: "^2.3.1"

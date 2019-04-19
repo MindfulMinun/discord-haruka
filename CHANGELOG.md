@@ -6,6 +6,33 @@
     See https://semver.org/lang/es/
 -->
 
+# [Release v2.1.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.1.0)
+
+### New functions, yay!
+- Smash
+    - Search for any character in Smash Ultimate. Not much info is returned, but I'm working on it!
+- Manga
+    - Search for manga just like with `anime`
+
+### Changes
+- Anime
+    - For a given show, Anime will now show you the following:
+        - Alternate names:
+            - "Kono Subarashii Sekai ni Shukufuku wo!" &rarr; "Konosuba"
+            - "Seishun Buta Yarou wa Bunny Girl-senpai no Yume wo Minai" &rarr; "AoButa", etc.
+        - Episode count
+        - Airing status
+            - Whether the anime is completed, currenty airing, about to be, or cancelled.
+        - Next episode (when applicable)
+            - When the next episode is airing, if applicable.
+            - Relative dates such as "in one week", "tomorrow", etc.
+        - Score
+            - A weighted average score of user ratings.
+- Owo
+    - Replies to more variants
+
+-----
+
 # Development version v2.1.0
 
 - Updated `README.md` function count to be correct.

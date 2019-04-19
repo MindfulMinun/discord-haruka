@@ -25,7 +25,7 @@ randomComicNumber = ->
         temp
 
 # Get the latest comic once, since Haruka sometimes restarts on her own.
-latest = 2053
+latest = 2138
 do ->
     latest = (await r 'https://xkcd.com/info.0.json').num
 

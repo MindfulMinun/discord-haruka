@@ -34,7 +34,7 @@ randomComicNumber = function() {
 };
 
 // Get the latest comic once, since Haruka sometimes restarts on her own.
-latest = 2053;
+latest = 2138;
 
 (async function() {
   return latest = ((await r('https://xkcd.com/info.0.json'))).num;

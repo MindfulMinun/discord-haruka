@@ -5,8 +5,8 @@ var handler;
 
 handler = function(msg, Haruka) {
   var ref, reg;
-  // Matches "owo", preceded or followed by whitespace, case insensitive
-  reg = /^\s*owo\s*$/i;
+  // Matches variations of "owo", preceded or followed by whitespace, case insensitive
+  reg = /^\s*[ou][wmn][ou]\s*$/i;
   // Break if regex doesn't match.
   if ((!reg.test(msg.content)) || msg.author.bot) {
     return false;
