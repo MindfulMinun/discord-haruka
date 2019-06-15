@@ -6,6 +6,19 @@
     See https://semver.org/lang/es/
 -->
 
+# [Release v2.1.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.1.1)
+
+### Some bug fixes
+- Pokémon
+    - Now treats leading zeroes as expected (`-h pkmn 001` brings up Bulbasaur)
+- Smash
+    - Hotfix: Do not search by series. This fixes a problem when searching for "palutena", which is codename for the Kid Icarus series, bringing up Pit instead of Palutena as expected.
+    - Short help aligned properly. I sincerely apologize for triggering anyone's OCD.
+- Version
+    - Added relative time. Tells you how long ago Haruka was started.
+
+-----
+
 # [Release v2.1.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.1.0)
 
 ### New functions, yay!

@@ -28,7 +28,7 @@ module.exports = relative = (date) ->
             when secs < 26 * 86400    then "#{d} days ago"
             when secs < 45 * 86400    then "A month ago"
             when secs < 320 * 86400   then "#{M} months ago"
-            when secs < 548 * 86400   then "a year ago"
+            when secs < 548 * 86400   then "A year ago"
             else                           "#{y} years ago"
     else
         secs = Math.abs(secs)
@@ -58,9 +58,9 @@ module.exports = relative = (date) ->
         90 mins to 21h                  _ hours ago
         22 hrs to 35 hrs                Yesterday
         36 hrs to 24 days               _ days ago
-        26 days to 45 days              a month ago
+        26 days to 45 days              A month ago
         45 days to 319 days             _ months ago
-        320 days to 548 days            a year ago
+        320 days to 548 days            A year ago
         548 days+                       _ years ago
 
     If the time takes place in the future...

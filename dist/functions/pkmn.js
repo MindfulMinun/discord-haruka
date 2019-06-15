@@ -51,6 +51,7 @@ handler = function(msg, match, Haruka) {
     return msg.reply(["Use `-h pkmn` followed by the Pokémon you want me to look up.", "I can look for Pokémon in my Pokédex if you use `-h pkmn` followed by a Pokémon's name or its National Dex number.", "You’re missing an argument. Try `-h help pkmn` if you forgot this command’s syntax."].choose());
   }
   [P, species, pkmn] = [{}, null, null];
+  pokeRequest = pokeRequest.replace(/0/g, '');
   //! Fetch pkmn
   return r(`https://pokeapi.co/api/v2/pokemon-species/${pokeRequest}/`).then(function(s) {
     var PPromise;

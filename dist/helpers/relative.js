@@ -45,7 +45,7 @@ module.exports = relative = function(date) {
       case !(secs < 320 * 86400):
         return `${M} months ago`;
       case !(secs < 548 * 86400):
-        return "a year ago";
+        return "A year ago";
       default:
         return `${y} years ago`;
     }
@@ -92,9 +92,9 @@ module.exports = relative = function(date) {
         90 mins to 21h                  _ hours ago
         22 hrs to 35 hrs                Yesterday
         36 hrs to 24 days               _ days ago
-        26 days to 45 days              a month ago
+        26 days to 45 days              A month ago
         45 days to 319 days             _ months ago
-        320 days to 548 days            a year ago
+        320 days to 548 days            A year ago
         548 days+                       _ years ago
 
     If the time takes place in the future...

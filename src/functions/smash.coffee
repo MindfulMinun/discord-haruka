@@ -167,7 +167,13 @@ handler = (msg, match, Haruka) ->
 
         # "I'm feeling lucky" style search
         lucky = fuzzysort.go(args, fighters, {
-            keys: ['displayNum', '_name', 'url', 'displayNameEn', 'displayNameEnSecondary', 'series']
+            keys: [
+                'displayNum'
+                '_name'
+                'url'
+                'displayNameEn'
+                'displayNameEnSecondary'
+            ]
         })?[0]?.obj
 
         return msg.reply [
@@ -230,7 +236,7 @@ module.exports = {
     regex: /^(smash|ssbu)(\s+|$)/i
     handler: handler
     help:
-        short: "-h ssbu <f>   ::
+        short: "-h ssbu <f>    ::
             Returns some info regarding some SSBU Fighter."
         long: """
             ```asciidoc

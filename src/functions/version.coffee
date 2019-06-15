@@ -1,6 +1,7 @@
 #! ========================================
 #! Version
 Discord = require 'discord.js'
+relative = require "#{__dirname}/../helpers/relative"
 
 formattedTime = (secs) ->
     h = ~~(secs / 3600)
@@ -20,7 +21,10 @@ handler = (msg, match, H) ->
     embed = new Discord.RichEmbed()
         .setColor '#448aff'
         .setTitle "Haruka #{H.version}"
-        .addField "Uptime", formattedTime(H.client.uptime / 1000)
+        .addField "Uptime", "
+            #{formattedTime(H.client.uptime / 1000)} •
+            Started #{relative(new Date() - H.client.uptime).toLowerCase()}
+        "
         .setFooter "#{H.config.name}@#{H.version}"
         .setTimestamp H.client.readyAt
     msg.channel.send embed

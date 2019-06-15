@@ -10,7 +10,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [License](#license)
 
 ## Commands
-As of `v2.0.0`, Haruka has 22 functions:
+Haruka has 24 functions:
 
 - [`-h 8ball`][f-8ball]: Answers any yes or no question.
 - [`-h about`][f-about]: General stuff about Haruka.
@@ -23,6 +23,7 @@ As of `v2.0.0`, Haruka has 22 functions:
 - [`-h invite`][f-invite]: Replies with a URL to invite Haruka to other servers.
 - [`-h kanji`][f-kanji]: Retrieve information about a Kanji character.
 - [`-h kick`][f-kick]: Kicks all of the mentioned users.
+- [`-h manga`][f-manga]: Looks up information for a manga, you weeb.
 - [`-h now`][f-now]: Returns the current time in UTC
 - [`-h pfp`][f-pfp]: Return a user’s profile image as a URL.
 - [`-h ping`][f-ping]: Replies “Pong!”
@@ -31,6 +32,7 @@ As of `v2.0.0`, Haruka has 22 functions:
 - [`-h restart`][f-restart]: Restarts Haruka.
 - [`-h reverse`][f-reverse]: Reverses some text.
 - [`-h say`][f-say]: Replies with whatever you tell it to.
+- [`-h smash`][f-smash]: Looks up information on any Smash Ultimate fighter.
 - [`-h someone`][f-someone]: Mentions a user chosen at random.
 - [`-h version`][f-version]: Prints out technical information about Haruka.
 - [`-h xkcd`][f-xkcd]: Fetches xkcd comics.
@@ -85,6 +87,7 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [f-invite]:  https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/invite.coffee
 [f-kanji]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kanji.coffee
 [f-kick]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/kick.coffee
+[f-manga]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/manga.coffee
 [f-now]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/now.coffee
 [f-pfp]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/pfp.coffee
 [f-ping]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/ping.coffee
@@ -93,6 +96,7 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [f-restart]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/restart.coffee
 [f-reverse]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/reverse.coffee
 [f-say]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/say.coffee
+[f-smash]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/smash.coffee
 [f-someone]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/someone.coffee
 [f-version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee
 [f-xkcd]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/xkcd.coffee

@@ -20,7 +20,11 @@ handler = function(msg, Haruka) {
   }
   //! Likewise, if they're unlucky, send the reply.
   reply = msg.content.replace(reg, '');
-  return (ref = msg.channel) != null ? ref.send([`Hey ${reply}, I’m Haruka.`, `Hi ${reply}, I’m Haruka.`, `Hello ${reply}, I’m Haruka. Nice to meet you.`].choose()) : void 0;
+  if ((ref = msg.channel) != null) {
+    ref.send([`Hey ${reply}, I’m Haruka.`, `Hi ${reply}, I’m Haruka.`, `Hello ${reply}, I’m Haruka. Nice to meet you.`].choose());
+  }
+  // Message doesn't call Haruka, exit prematurely
+  return true;
 };
 
 module.exports = {

@@ -96,7 +96,7 @@ handler = function(msg, match, Haruka) {
     });
     // "I'm feeling lucky" style search
     lucky = (ref = fuzzysort.go(args, fighters, {
-      keys: ['displayNum', '_name', 'url', 'displayNameEn', 'displayNameEnSecondary', 'series']
+      keys: ['displayNum', '_name', 'url', 'displayNameEn', 'displayNameEnSecondary']
     })) != null ? (ref1 = ref[0]) != null ? ref1.obj : void 0 : void 0;
     if (!lucky) {
       return msg.reply(['Sorry, but I couldn’t find that fighter.', 'I couldn’t find that fighter, sorry.'].choose());
@@ -144,7 +144,7 @@ module.exports = {
   regex: /^(smash|ssbu)(\s+|$)/i,
   handler: handler,
   help: {
-    short: "-h ssbu <f>   :: Returns some info regarding some SSBU Fighter.",
+    short: "-h ssbu <f>    :: Returns some info regarding some SSBU Fighter.",
     long: "```asciidoc\n=== Help for Smash ===\n*Aliases*: ssbu, smash\n-h ssbu       :: Function without arguments.\n-h ssbu <arg> :: Function with arguments.\n```"
   }
 };

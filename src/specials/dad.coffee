@@ -22,6 +22,9 @@ handler = (msg, Haruka) ->
         "Hello #{reply}, I’m Haruka. Nice to meet you."
     ].choose()
 
+    # Message doesn't call Haruka, exit prematurely
+    yes
+
 module.exports = {
     name: "Dad"
     handler: handler
