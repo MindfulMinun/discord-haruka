@@ -2,11 +2,11 @@
 # .gitignore
 
 # Config: don't want to leak out Haruka's info
-/config.json
-/config.cson
+.env
 logs/
 log*.*
 package-lock.json
+*.cson
 docs/
 
 # IDEs and editors

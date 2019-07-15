@@ -28,7 +28,7 @@ handler = function(msg, match, H) {
     url: "https://kanjialive-api.p.mashape.com/api/public/kanji/" + encodeURI(kanji),
     method: "GET",
     headers: {
-      "X-Mashape-Key": H.config["kanji-alive-api-key"],
+      "X-Mashape-Key": process.env.KANJI_ALIVE_KEY,
       "Content-Type": "application/json"
     }
   };

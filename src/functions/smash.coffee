@@ -2,21 +2,8 @@
 #! Smash
 
 Discord = require 'discord.js'
-request = require 'request'
+r = require "#{__dirname}/../helpers/fetch"
 fuzzysort = require 'fuzzysort'
-
-r = (options) ->
-    new Promise (resolve, reject) ->
-        request options, (err, response, body) ->
-            shouldResolve = [
-                not err,
-                200 <= response?.statusCode < 400
-            ].every((v) -> v) is yes
-
-            if shouldResolve
-                resolve JSON.parse body
-            else
-                reject response
 
 # Map series slugs to series names
 seriesMap = {
@@ -53,6 +40,8 @@ seriesMap = {
     "splatoon": "Splatoon"
     "dracula": "Castlevania"
     "persona": "Persona"
+    "dragonquest": "Dragon Quest"
+    "banjo_and_kazooie": "Banjo-Kazooie"
 }
 
 # Map fighters to their names
@@ -131,6 +120,8 @@ fNameMap = [
     "Incineroar"
     "Piranha Plant"
     "Joker"
+    "Hero"
+    "Banjo & Kazooie"
 ]
 
 root = 'https://www.smashbros.com/assets_v2'

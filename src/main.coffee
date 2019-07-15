@@ -3,6 +3,16 @@ fs     = require 'fs'
 config = require '../config.json'
 Haruka = require './Haruka'
 
+do ->
+    require('dotenv').config()
+    p = require '../package.json'
+    config.version = "v#{p.version or "?.?.?"}"
+    config.name = p.name
+    config.dev = not /production/i.test(process.env.NODE_ENV or '')
+    config.ops = (process.env.HARUKA_OPS or '').split(',')
+
+console.log(config)
+
 # Start
 haruka = new Haruka({
     prefix: if config.dev then '#h' else '-h'
@@ -93,4 +103,4 @@ do ->
 
 #! ========================================
 #! Finally, log Haruka in.
-haruka.client.login haruka.config.token
+haruka.client.login process.env.DISCORD_TOKEN

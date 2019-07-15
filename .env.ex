@@ -1,0 +1,5 @@
+# Follow instructions in README.md
+DISCORD_TOKEN=
+KANJI_ALIVE_KEY=
+WA_APPID=
+HARUKA_OPS=

@@ -1,26 +1,21 @@
 {
-    "name": "discord-haruka",
-    "version": "<SemVer version number>",
-    "dev": false,
-    "token": "<https://discordapp.com/developers/applications/me>",
-    "kanji-alive-api-key": "<https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji>",
-    "ops": [
-        "<userID>"
-    ],
     "about": {
         "blobs": [
             "The world is not black and white.",
             "How much loss can one take before they finally break?",
+            "WataShu!",
+            "Haruka: Origin",
             [
                 "Haruka is Haruka.",
                 "Haruka is Haruka?",
                 "Haruka is Haruka.",
                 "Haruka is Haruka!",
                 "Haruka.",
-                "Only Haruka."
+                "Only Haruka.",
+                "Just Haruka."
             ]
         ],
-        "description": "I’m Haruka, your useless discord bot. I’m made out of nothing but CoffeeScript and dedication. I was created by MindfulMinun.",
+        "description": "I’m Haruka, your useless Discord bot. I’m made out of nothing but CoffeeScript, dedication, and love. I was created by MindfulMinun.",
         "links": "- [Mindful’s Twitter](https://twitter.com/MindfulMinun)\n- [GitHub repository](https://github.com/MindfulMinun/discord-haruka)\n- [How I work](https://benjic.xyz/2018-07-30/haruka-teardown/?s=1)"
     }
 }

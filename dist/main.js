@@ -8,6 +8,18 @@ config = require('../config.json');
 
 Haruka = require('./Haruka');
 
+(function() {
+  var p;
+  require('dotenv').config();
+  p = require('../package.json');
+  config.version = `v${p.version || "?.?.?"}`;
+  config.name = p.name;
+  config.dev = !/production/i.test(process.env.NODE_ENV || '');
+  return config.ops = (process.env.HARUKA_OPS || '').split(',');
+})();
+
+console.log(config);
+
 // Start
 haruka = new Haruka({
   prefix: config.dev ? '#h' : '-h',
@@ -97,4 +109,4 @@ process.on('unhandledRejection', function(err) {
 
 //! ========================================
 //! Finally, log Haruka in.
-haruka.client.login(haruka.config.token);
+haruka.client.login(process.env.DISCORD_TOKEN);

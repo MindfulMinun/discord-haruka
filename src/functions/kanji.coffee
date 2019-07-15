@@ -21,7 +21,7 @@ handler = (msg, match, H) ->
             encodeURI kanji
         method: "GET"
         headers: {
-            "X-Mashape-Key": H.config["kanji-alive-api-key"]
+            "X-Mashape-Key": process.env.KANJI_ALIVE_KEY
             "Content-Type": "application/json"
         }
     }

@@ -6,6 +6,15 @@
     See https://semver.org/lang/es/
 -->
 
+# Development version v3.0.0
+**Note:** The three probably doesn't mean anything to you.
+- Switching from `config.json` to `.env`
+- Added `fetch` helper function
+- Added Hero and Banjo-Kazooie to Smash
+- Added WolframAlpha function
+
+-----
+
 # [Release v2.1.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v2.1.1)
 
 ### Some bug fixes

@@ -10,7 +10,7 @@ Haruka, your useless Discord bot. [Add Haruka][add].
 - [License](#license)
 
 ## Commands
-Haruka has 24 functions:
+Haruka has 25 functions:
 
 - [`-h 8ball`][f-8ball]: Answers any yes or no question.
 - [`-h about`][f-about]: General stuff about Haruka.
@@ -35,27 +35,23 @@ Haruka has 24 functions:
 - [`-h smash`][f-smash]: Looks up information on any Smash Ultimate fighter.
 - [`-h someone`][f-someone]: Mentions a user chosen at random.
 - [`-h version`][f-version]: Prints out technical information about Haruka.
+- [`-h wa`][f-wa]: Compute anything with WolframAlpha.
 - [`-h xkcd`][f-xkcd]: Fetches xkcd comics.
 
 ## Installation
 
-Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][repo] and get a copy of [Haruka’s latest release][releases]. In the root directory, open the file called `example-config.json`. The most important bits are as follows.:
+Although Haruka _can_ be installed via `npm i discord-haruka`, it’s not recommended, as Haruka isn’t a module. Instead, go to the [GitHub repo][repo] and get a copy of [Haruka’s latest release][releases]. In the root directory, open the file called `.env.ex`, and place your keys in there.
 
-```json
-{
-  "version": "<Version number>",
-  "dev": false,
-  "token": "<https://discordapp.com/developers/applications/me>",
-  "kanji-alive-api-key": "<https://market.mashape.com/KanjiAlive/learn-to-read-and-write-japanese-kanji>",
-  "ops": [
-    "<userID>"
-  ]
-}
+```env
+DISCORD_TOKEN=
+KANJI_ALIVE_KEY=
+WA_APPID=
+HARUKA_OPS=
 ```
 
-Replace each thing in `<angle brackets>` with its respective value. `token` is your bot’s login token, which can be found in [your Discord apps][discord-my-apps]. `kanji-alive-api-key` is your `X-Mashape-Key` header used for [KanjiAlive][kanjialive], the API used to get Kanji data. If you don't wish to use the Kanji function, rename `dist/functions/kanji.js` to `dist/functions/_kanji.js`. `ops` is an array of user IDs; a user ID represents a user on Discord, and these are used to determine who can run the `-h restart` command, which kills the Haruka process.
+Place your *super sensitive* keys in here. Be mindful as to not add spaces around the equal sign. `DISCORD_TOKEN` is your bot’s login token which can be found in [the Discord Developer portal][discord-my-apps]. The second key, `KANJI_ALIVE_KEY`, is your `X-Mashape-Key` used for [KanjiAlive][kanjialive], the API used to retrieve Kanji data. If you don't wish to use the Kanji function, rename `src/functions/kanji.coffee` to `src/functions/_kanji.coffee` and rerun the build command. In a similar fashion, the `WA_APPID` key is Haruka's WolframAlpha AppID, which can be found [here][wolfram-dev-portal]. You can disable this function similarly to disabling the Kanji function. The `OPS` key is a comma-separated list of IDs of users who can run the `-h halt` command. Add your User ID to the list. If adding multiple people, remember to separate them with commas without spaces.
 
-Finally, rename `example-config.json` to `config.json`, run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
+Finally, rename `.env.ex` to simply `.env`. Run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
 
 ## Contributing
 First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of several component parts, and understanding how they work will ease development. Install Haruka as [mentioned above](#installation), create a fork with your changes, and issue a Pull Request. Haruka’s written in CoffeeScript, you can build her by running `coffee -o dist/ -cw src/` in the root directory with CoffeeScript installed. It’s also recommended you have a CoffeeScript linter installed.
@@ -74,6 +70,7 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [discord-my-apps]: https://discordapp.com/developers/applications/me "Discord - My Apps"
 [license]: https://github.com/MindfulMinun/discord-haruka/blob/master/LICENSE "discord-haruka/LICENSE"
 [add]: https://discordapp.com/oauth2/authorize?client_id=458130019554820127&scope=bot&permissions=125966 "Add Haruka to your Discord server."
+[wolfram-dev-portal]: https://developer.wolframalpha.com/portal/myapps/index.html "Wolfram|Alpha Developer Portal: My Applications"
 
 <!-- Function links -->
 [f-8ball]:   https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/8ball.coffee
@@ -99,4 +96,5 @@ First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of
 [f-smash]:     https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/smash.coffee
 [f-someone]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/someone.coffee
 [f-version]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/version.coffee
+[f-wa]: https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/wa.coffee
 [f-xkcd]:    https://github.com/MindfulMinun/discord-haruka/blob/master/src/functions/xkcd.coffee
