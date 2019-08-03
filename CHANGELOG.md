@@ -6,6 +6,31 @@
     See https://semver.org/
 -->
 
+# [Release v3.0.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.0.0)
+**Note:** The three probably doesn't mean anything to you.
+
+### Additions & Changes
+- New: WolframAlpha
+    - Query the world's information with Haruka's `-h wa` function!
+- Smash
+    - Now denotes whether a character is DLC or not.
+    - Updated help data
+    - Added Hero and Banjo-Kazooie metadata.
+- Ping
+    - Now shows 3 numbers, WebSocket ping, Reaction time, and Delivery. This may be more confusing but I digress.
+- Dev
+    - Added `fetch` helper function
+    - Switching from `config.json` to `.env`
+        - This is a breaking change, which constitutes bumping the major version number.
+
+### Bug fixes
+- Help
+    - Help would refuse to show the detailed help list when asked to. I'm still not sure why, but this has been fixed.
+- Smash
+    - Smash uses the FrannHammer API for determining whether frame data was available. [The endpoint has since changed](https://github.com/Frannsoft/FrannHammer/wiki/v0.7.0-Update).
+
+-----
+
 # Development version v3.0.0
 **Note:** The three probably doesn't mean anything to you.
 
