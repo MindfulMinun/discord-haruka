@@ -12,8 +12,13 @@ handler = (msg, match, Haruka) ->
         when "owo" then msg.reply "uwu"
         else msg.reply "Pong!"
     ).then (reply) ->
+        p = Haruka.client.ping
         delta = reply.createdTimestamp - msg.createdTimestamp
-        reply.edit("#{reply.content} (#{delta}ms)")
+        reply.edit(
+            "#{reply.content} (WebSocket: #{p}ms,
+                Reaction: #{delta}ms,
+                Delivery: #{delta - p}ms)"
+        )
 
 module.exports = {
     name: "Ping"
@@ -28,10 +33,17 @@ module.exports = {
             *Aliases*: ping, beep, ding, owo, uwu, awoo
             -h ping :: Replies "Pong!" along with the time it took to reply.
             -h beep :: Replies "Boop!" along with the time it took to reply.
-            -h ding :: Replies "Dong!" along with the time it took to reply.
-            -h uwu  :: Replies "OwO" along with the time it took to reply.
-            -h owo  :: Replies "uwu" along with the time it took to reply.
-            -h awoo :: Replies "Awoo!" along with the time it took to reply.
+            -h ding :: Replies "Dong!"...
+            -h uwu  :: Replies "OwO"...
+            -h owo  :: Replies "uwu"...
+            -h awoo :: Replies "Awoo!"...
+            *Note(s):*
+                The WebSocket time is the mean of the last 3 heartbeat
+                    pings of Haruka's WebSocket.
+                The Reaction time is raw difference between you sending the
+                    command and Haruka repling to it.
+                The Delivery time is Haruka's Reaction time minus
+                    internal evaluation time.
             ```
         """
 }

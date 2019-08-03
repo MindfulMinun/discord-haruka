@@ -125,7 +125,7 @@ fNameMap = [
 ]
 
 root = 'https://www.smashbros.com/assets_v2'
-frameDataURL = 'https://test-khapi.frannsoft.com/api/characters/?game=ultimate'
+frameDataURL = 'https://api.kuroganehammer.com/api/characters/?game=ultimate'
 fighterPath = root + '/data/fighter.json'
 
 
@@ -134,7 +134,8 @@ handler = (msg, match, Haruka) ->
 
     if not args
         return msg.reply [
-            "You didn’t enter a search term, so I couldn’t search for a fighter."
+            "You didn’t enter a search term, so I couldn’t
+                search for a fighter."
             "You need to enter a search term to search a fighter."
             "Provide a search term when using this command. :)"
         ].choose()
@@ -212,12 +213,20 @@ handler = (msg, match, Haruka) ->
             else
                 "Not available (yet)"
 
+        dlc = (
+            if lucky.dlc
+                "Yes, give Mr. Sakurai your money."
+            else
+                "No, comes with the game."
+        )
+
         embed = new Discord.RichEmbed()
             .setColor lucky.color
             .setAuthor title, imgHead, url
             .addField 'Echo', echo, true
             .addField 'Series', series, true
             .addField 'Frame data', (await fdata), true
+            .addField 'DLC', dlc, true
             .setImage imgPanoramic
 
         msg.channel.send embed
@@ -233,8 +242,7 @@ module.exports = {
             ```asciidoc
             === Help for Smash ===
             *Aliases*: ssbu, smash
-            -h ssbu       :: Function without arguments.
-            -h ssbu <arg> :: Function with arguments.
+            -h ssbu <fighter> :: Retrieves information on that specific fighter.
             ```
         """
 }

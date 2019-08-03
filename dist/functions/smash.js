@@ -53,7 +53,7 @@ fNameMap = ["Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kir
 
 root = 'https://www.smashbros.com/assets_v2';
 
-frameDataURL = 'https://test-khapi.frannsoft.com/api/characters/?game=ultimate';
+frameDataURL = 'https://api.kuroganehammer.com/api/characters/?game=ultimate';
 
 fighterPath = root + '/data/fighter.json';
 
@@ -75,7 +75,7 @@ handler = function(msg, match, Haruka) {
     }), {});
   });
   return r(fighterPath).then(async function(fighters) {
-    var echo, embed, imgHead, imgPanoramic, lucky, name, ref, ref1, series, title, url;
+    var dlc, echo, embed, imgHead, imgPanoramic, lucky, name, ref, ref1, series, title, url;
     fighters = fighters.fighters;
     fighters.map(function(f, i) {
       return f._name = fNameMap[i];
@@ -120,7 +120,8 @@ handler = function(msg, match, Haruka) {
         return "Not available (yet)";
       }
     })();
-    embed = new Discord.RichEmbed().setColor(lucky.color).setAuthor(title, imgHead, url).addField('Echo', echo, true).addField('Series', series, true).addField('Frame data', (await fdata), true).setImage(imgPanoramic);
+    dlc = (lucky.dlc ? "Yes, give Mr. Sakurai your money." : "No, comes with the game.");
+    embed = new Discord.RichEmbed().setColor(lucky.color).setAuthor(title, imgHead, url).addField('Echo', echo, true).addField('Series', series, true).addField('Frame data', (await fdata), true).addField('DLC', dlc, true).setImage(imgPanoramic);
     return msg.channel.send(embed);
   });
 };
@@ -131,6 +132,6 @@ module.exports = {
   handler: handler,
   help: {
     short: "-h ssbu <f>    :: Returns some info regarding some SSBU Fighter.",
-    long: "```asciidoc\n=== Help for Smash ===\n*Aliases*: ssbu, smash\n-h ssbu       :: Function without arguments.\n-h ssbu <arg> :: Function with arguments.\n```"
+    long: "```asciidoc\n=== Help for Smash ===\n*Aliases*: ssbu, smash\n-h ssbu <fighter> :: Retrieves information on that specific fighter.\n```"
   }
 };

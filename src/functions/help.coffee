@@ -2,11 +2,12 @@
 #! Help
 handler = (msg, match, H) ->
 
-    helpforCommand = match?[1]?
-    if helpforCommand?
+    tokens = match.input.tokenize()
+
+    if /^(?:help|h)/i.test tokens[0]
         for fn in H.functions
-            helpMatch = fn.regex.test helpforCommand
-            if helpMatch then return msg.channel.send fn.help.long
+            if fn.regex.test tokens[1]
+                return msg.channel.send fn.help.long
 
     allHelpList = """
         Here’s a list of all my commands. Arguments in `<angle brackets>` \
@@ -27,7 +28,7 @@ handler = (msg, match, H) ->
 
 module.exports = {
     name: "Help"
-    regex: /^(?:(?:\s*$)|(?:(?:help|h)(?:\s+(\S[\s\S]*))?))/i
+    regex: /(?:^(?:help|h)(\s+|$))|(?:^\s*$)/i
     handler: handler
     help:
         short: "-h help [...]  ::
@@ -37,7 +38,8 @@ module.exports = {
             === Help for Help (so meta) ===
             *Aliases*: help, h
             -h help :: Returns a help menu listing all the commands.
-            -h help [command] :: Returns a help menu for that specific command.
+            -h help [command] :: Returns a help menu for that specific
+                                 command, much like this one.
             ```
         """
 }

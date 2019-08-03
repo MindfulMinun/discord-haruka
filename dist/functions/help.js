@@ -4,14 +4,13 @@
 var handler;
 
 handler = function(msg, match, H) {
-  var allHelpList, fn, helpMatch, helpforCommand, i, len, ref;
-  helpforCommand = (match != null ? match[1] : void 0) != null;
-  if (helpforCommand != null) {
+  var allHelpList, fn, i, len, ref, tokens;
+  tokens = match.input.tokenize();
+  if (/^(?:help|h)/i.test(tokens[0])) {
     ref = H.functions;
     for (i = 0, len = ref.length; i < len; i++) {
       fn = ref[i];
-      helpMatch = fn.regex.test(helpforCommand);
-      if (helpMatch) {
+      if (fn.regex.test(tokens[1])) {
         return msg.channel.send(fn.help.long);
       }
     }
@@ -35,10 +34,10 @@ handler = function(msg, match, H) {
 
 module.exports = {
   name: "Help",
-  regex: /^(?:(?:\s*$)|(?:(?:help|h)(?:\s+(\S[\s\S]*))?))/i,
+  regex: /(?:^(?:help|h)(\s+|$))|(?:^\s*$)/i,
   handler: handler,
   help: {
     short: "-h help [...]  :: This list. What did you expect?",
-    long: "```asciidoc\n=== Help for Help (so meta) ===\n*Aliases*: help, h\n-h help :: Returns a help menu listing all the commands.\n-h help [command] :: Returns a help menu for that specific command.\n```"
+    long: "```asciidoc\n=== Help for Help (so meta) ===\n*Aliases*: help, h\n-h help :: Returns a help menu listing all the commands.\n-h help [command] :: Returns a help menu for that specific\n                     command, much like this one.\n```"
   }
 };

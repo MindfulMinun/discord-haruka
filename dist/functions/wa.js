@@ -72,7 +72,7 @@ module.exports = {
   regex: /^(wa|wolfram|wolframalpha)(\s+|$)/i,
   handler: handler,
   help: {
-    short: "-h wa          :: Ask anything with WolframAlpha.",
-    long: "```asciidoc\n=== Help for WolframAlpha ===\n*Aliases*: list, of, aliases\n-h fn       :: Function without arguments.\n-h fn <arg> :: Function with arguments.\n```"
+    short: "-h wa <query>  :: Ask anything with WolframAlpha.",
+    long: "```asciidoc\n=== Help for WolframAlpha ===\n*Aliases*: wa, wolfram, wolframalpha\n-h wa <query> :: Computes stuff with WolframAlpha\n```"
   }
 };

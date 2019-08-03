@@ -84,14 +84,13 @@ module.exports = {
     regex: /^(wa|wolfram|wolframalpha)(\s+|$)/i
     handler: handler
     help:
-        short: "-h wa          ::
+        short: "-h wa <query>  ::
             Ask anything with WolframAlpha."
         long: """
             ```asciidoc
             === Help for WolframAlpha ===
-            *Aliases*: list, of, aliases
-            -h fn       :: Function without arguments.
-            -h fn <arg> :: Function with arguments.
+            *Aliases*: wa, wolfram, wolframalpha
+            -h wa <query> :: Computes stuff with WolframAlpha
             ```
         """
 }
