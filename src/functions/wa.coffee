@@ -2,6 +2,7 @@
 #! WolframAlpha
 
 r = require "#{__dirname}/../helpers/fetch"
+tableToAscii = require "#{__dirname}/../helpers/tableToAscii"
 Embed = (require 'discord.js').RichEmbed
 
 path = [
@@ -11,6 +12,22 @@ path = [
     "&input="
 ].join ''
 
+
+
+generatePlainOrTable = (x) ->
+    if x.img?.type is "Grid"
+        tbl = tableToAscii(
+            x.img.alt
+                .split('\n')
+                .map((l) -> l.split(/\s*\|\s*/g))
+        )
+        return """
+            ```
+            #{tbl}
+            ```
+        """
+    if x.plaintext
+        return x.plaintext
 
 handler = (msg, match, Haruka) ->
     args = match.input.tokenize()[1]
@@ -48,19 +65,14 @@ handler = (msg, match, Haruka) ->
                     if textPods.length
                         embed.setDescription(
                             textPods
-                                .map((x) -> x.plaintext)
+                                .map((x) -> generatePlainOrTable x)
                                 .join '\n'
                         )
 
-                for pod in result.pods[..10]
+                for pod in result.pods
                     textPods = pod.subpods
                         .map (x) ->
-                            # if x.img and x.img.alt
-                            # alt = x.img.alt
-                            #       .replace(/[*_]/g, '\\$&') or "See image"
-                            # return "[#{alt}](#{x.img.src})"
-                            if x.plaintext
-                                return x.plaintext.replace(/[\\*_]/g, '\\$&')
+                            generatePlainOrTable x
                         .filter (x) -> x?
                     if textPods.length
                         embed.addField(
@@ -68,7 +80,7 @@ handler = (msg, match, Haruka) ->
                             textPods.join '\n\n'
                         )
 
-                reply.delete()
+                reply.delete().catch(console.log)
                 msg.reply "Results for “#{args}”:", embed
 
 

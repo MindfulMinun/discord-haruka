@@ -2,83 +2,92 @@
 /*
  * Passing a date returns a string with the time relative to now.
  */
-var relative;
-
-module.exports = relative = function(date) {
-  var M, d, h, m, s, secs, y;
-  if (date == null) {
-    date = new Date;
-  }
-  if (!(date instanceof Date)) {
-    date = new Date(date);
-  }
-  if (Number.isNaN(date)) {
-    date = new Date;
-  }
-  secs = ((+(new Date)) - (+date)) / 1000;
-  s = Math.abs(Math.round(secs % 60));
-  m = Math.abs(Math.round((secs % 3600) / 60));
-  h = Math.abs(Math.round((secs % 86400) / 3600));
-  d = Math.abs(Math.round((secs % (30.5 * 86400)) / 86400));
-  M = Math.abs(Math.round((secs % (365 * 86400)) / (30.5 * 86400)));
-  y = Math.abs(Math.round(secs / (365 * 86400)));
-  if (Math.abs(secs) === secs) {
-    switch (false) {
-      case !(secs < 15):
-        return "Just now";
-      case !(secs < 45):
-        return `${s} seconds ago`;
-      case !(secs < 90):
-        return "A minute ago";
-      case !(secs < 60 * 45):
-        return `${m} minutes ago`;
-      case !(secs < 60 * 90):
-        return "An hour ago";
-      case !(secs < 22 * 3600):
-        return `${h} hours ago`;
-      case !(secs < 36 * 3600):
-        return "Yesterday";
-      case !(secs < 26 * 86400):
-        return `${d} days ago`;
-      case !(secs < 45 * 86400):
-        return "A month ago";
-      case !(secs < 320 * 86400):
-        return `${M} months ago`;
-      case !(secs < 548 * 86400):
-        return "A year ago";
-      default:
-        return `${y} years ago`;
-    }
+(function(name, root, factory) {
+  // UMD: https://git.io/fjxpW
+  if (typeof define !== "undefined" && define !== null ? define.amd : void 0) {
+    return define([], factory);
+  } else if (typeof module !== "undefined" && module !== null ? module.exports : void 0) {
+    return module.exports = factory();
   } else {
-    secs = Math.abs(secs);
-    switch (false) {
-      case !(secs < 15):
-        return "Right now";
-      case !(secs < 45):
-        return `In ${s} seconds`;
-      case !(secs < 90):
-        return "In one minute";
-      case !(secs < 60 * 45):
-        return `In ${m} minutes`;
-      case !(secs < 60 * 90):
-        return "In an hour";
-      case !(secs < 22 * 3600):
-        return `In ${h} hours`;
-      case !(secs < 36 * 3600):
-        return "Tomorrow";
-      case !(secs < 26 * 86400):
-        return `In ${d} days`;
-      case !(secs < 45 * 86400):
-        return "In one month";
-      case !(secs < 320 * 86400):
-        return `In ${M} months`;
-      case !(secs < 548 * 86400):
-        return "In one year";
-      default:
-        return `In ${y} years`;
-    }
+    return root[name] = factory();
   }
-};
+})('relative', typeof self !== "undefined" && self !== null ? self : this, function() {
+  return function(date) {
+    var M, d, h, m, s, secs, y;
+    if (date == null) {
+      date = new Date;
+    }
+    if (!(date instanceof Date)) {
+      date = new Date(date);
+    }
+    if (Number.isNaN(date)) {
+      date = new Date;
+    }
+    secs = ((+(new Date)) - (+date)) / 1000;
+    s = Math.abs(Math.round(secs % 60));
+    m = Math.abs(Math.round((secs % 3600) / 60));
+    h = Math.abs(Math.round((secs % 86400) / 3600));
+    d = Math.abs(Math.round((secs % (30.5 * 86400)) / 86400));
+    M = Math.abs(Math.round((secs % (365 * 86400)) / (30.5 * 86400)));
+    y = Math.abs(Math.round(secs / (365 * 86400)));
+    if (Math.abs(secs) === secs) {
+      switch (false) {
+        case !(secs < 15):
+          return "Just now";
+        case !(secs < 45):
+          return `${s} seconds ago`;
+        case !(secs < 90):
+          return "A minute ago";
+        case !(secs < 60 * 45):
+          return `${m} minutes ago`;
+        case !(secs < 60 * 90):
+          return "An hour ago";
+        case !(secs < 22 * 3600):
+          return `${h} hours ago`;
+        case !(secs < 36 * 3600):
+          return "Yesterday";
+        case !(secs < 26 * 86400):
+          return `${d} days ago`;
+        case !(secs < 45 * 86400):
+          return "A month ago";
+        case !(secs < 320 * 86400):
+          return `${M} months ago`;
+        case !(secs < 548 * 86400):
+          return "A year ago";
+        default:
+          return `${y} years ago`;
+      }
+    } else {
+      secs = Math.abs(secs);
+      switch (false) {
+        case !(secs < 15):
+          return "Right now";
+        case !(secs < 45):
+          return `In ${s} seconds`;
+        case !(secs < 90):
+          return "In one minute";
+        case !(secs < 60 * 45):
+          return `In ${m} minutes`;
+        case !(secs < 60 * 90):
+          return "In an hour";
+        case !(secs < 22 * 3600):
+          return `In ${h} hours`;
+        case !(secs < 36 * 3600):
+          return "Tomorrow";
+        case !(secs < 26 * 86400):
+          return `In ${d} days`;
+        case !(secs < 45 * 86400):
+          return "In one month";
+        case !(secs < 320 * 86400):
+          return `In ${M} months`;
+        case !(secs < 548 * 86400):
+          return "In one year";
+        default:
+          return `In ${y} years`;
+      }
+    }
+  };
+});
 
 /*
     If the time takes place in the past...

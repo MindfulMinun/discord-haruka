@@ -25,6 +25,16 @@ handler = (msg, match, H) ->
             #{formattedTime(H.client.uptime / 1000)} •
             Started #{relative(new Date() - H.client.uptime).toLowerCase()}
         "
+        .addField "Function counts", "
+            #{H.functions.length} functions,
+            #{H.specials.length} specials.
+        "
+        .addField "Functions", "
+            #{H.functions.map((f) -> f.name).join(', ')}
+        "
+        .addField "Specials", "
+            #{H.specials.map((f) -> f.name).join(', ')}
+        "
         .setFooter "#{H.config.name}@#{H.version}"
         .setTimestamp H.client.readyAt
     msg.channel.send embed

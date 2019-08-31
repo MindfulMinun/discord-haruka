@@ -25,7 +25,11 @@ handler = function(msg, match, H) {
   if (Array.isArray(chosenBlob)) {
     chosenBlob = chosenBlob.choose();
   }
-  embed = new Discord.RichEmbed().setColor('#448aff').setTitle(`Haruka ${H.version}`).addField("Uptime", `${formattedTime(H.client.uptime / 1000)} • Started ${relative(new Date() - H.client.uptime).toLowerCase()}`).setFooter(`${H.config.name}@${H.version}`).setTimestamp(H.client.readyAt);
+  embed = new Discord.RichEmbed().setColor('#448aff').setTitle(`Haruka ${H.version}`).addField("Uptime", `${formattedTime(H.client.uptime / 1000)} • Started ${relative(new Date() - H.client.uptime).toLowerCase()}`).addField("Function counts", `${H.functions.length} functions, ${H.specials.length} specials.`).addField("Functions", `${H.functions.map(function(f) {
+    return f.name;
+  }).join(', ')}`).addField("Specials", `${H.specials.map(function(f) {
+    return f.name;
+  }).join(', ')}`).setFooter(`${H.config.name}@${H.version}`).setTimestamp(H.client.readyAt);
   return msg.channel.send(embed);
 };
 
