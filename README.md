@@ -54,7 +54,7 @@ Place your *super sensitive* keys in here. Be mindful as to not add spaces aroun
 Finally, rename `.env.ex` to simply `.env`. Run `npm install` to install Haruka’s dependencies, and run her locally by using `npm start`.
 
 ## Contributing
-First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of several component parts, and understanding how they work will ease development. Install Haruka as [mentioned above](#installation), create a fork with your changes, and issue a Pull Request. Haruka’s written in CoffeeScript, you can build her by running `coffee -o dist/ -cw src/` in the root directory with CoffeeScript installed. It’s also recommended you have a CoffeeScript linter installed.
+First of all, [get to know how Haruka works][haruka-teardown]. Haruka is made of several component parts, and understanding how they work will ease development. Install Haruka as [mentioned above](#installation), create a fork with your changes, and issue a Pull Request. Haruka’s written in CoffeeScript, you can build her by running `npm build` or `npm watch` in the root directory with CoffeeScript installed (devDependency). It’s also recommended you have a CoffeeScript linter installed.
 
 ## License
 
