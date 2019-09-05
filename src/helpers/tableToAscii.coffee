@@ -7,7 +7,7 @@ module.exports = tableToAscii = (tbl) ->
         out = tbl[0].join ' | '
     else
         wmatrix = tbl.map((row) -> row.map((s) -> s.length + 1))
-        widths = List::transpose(wmatrix).map((col) -> Math.max ...col)
+        widths = List::transpose(wmatrix).map((col) -> Math.max col...)
         sum = List::sum widths
         line = '+' + widths.map((l) -> '-'.repeat(l + 1)).join('+') + '+'
         out = ''
