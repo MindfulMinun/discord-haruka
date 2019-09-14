@@ -18,8 +18,6 @@ Haruka = require('./Haruka');
   return config.ops = (process.env.HARUKA_OPS || '').split(',');
 })();
 
-console.log(config);
-
 // Start
 haruka = new Haruka({
   prefix: config.dev ? '#h' : '-h',
@@ -110,3 +108,5 @@ process.on('unhandledRejection', function(err) {
 //! ========================================
 //! Finally, log Haruka in.
 haruka.client.login(process.env.DISCORD_TOKEN);
+
+console.log(haruka);

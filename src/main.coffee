@@ -11,8 +11,6 @@ do ->
     config.dev = not /production/i.test(process.env.NODE_ENV or '')
     config.ops = (process.env.HARUKA_OPS or '').split(',')
 
-console.log(config)
-
 # Start
 haruka = new Haruka({
     prefix: if config.dev then '#h' else '-h'
@@ -104,3 +102,5 @@ do ->
 #! ========================================
 #! Finally, log Haruka in.
 haruka.client.login process.env.DISCORD_TOKEN
+
+console.log(haruka)
