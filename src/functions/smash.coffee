@@ -42,6 +42,7 @@ seriesMap = {
     "persona": "Persona"
     "dragonquest": "Dragon Quest"
     "banjo_and_kazooie": "Banjo-Kazooie"
+    "garou": "Fatal Fury"
 }
 
 # Map fighters to their names
@@ -122,6 +123,7 @@ fNameMap = [
     "Joker"
     "Hero"
     "Banjo & Kazooie"
+    "Terry"
 ]
 
 root = 'https://www.smashbros.com/assets_v2'
@@ -182,7 +184,9 @@ handler = (msg, match, Haruka) ->
                 .replace(/\<\S[\s\S]*?\>/gi, '')
                 .replace(/\s+/g, ' ')
         )
-        url = "https://www.smashbros.com/en_US/fighter/#{lucky.url}.html"
+        url = lucky.url and "
+            https://www.smashbros.com/en_US/fighter/#{lucky.url}.html
+        "
         imgHead = "#{root}/img/fighter/pict/#{lucky.file}.png"
         imgPanoramic = "#{root}/img/fighter/series/#{lucky.file}.png"
 
@@ -222,7 +226,7 @@ handler = (msg, match, Haruka) ->
 
         embed = new Discord.RichEmbed()
             .setColor lucky.color
-            .setAuthor title, imgHead, url
+            .setAuthor title, imgHead, (url or undefined)
             .addField 'Echo', echo, true
             .addField 'Series', series, true
             .addField 'Frame data', (await fdata), true

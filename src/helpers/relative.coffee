@@ -1,51 +1,58 @@
 ###
  * Passing a date returns a string with the time relative to now.
 ###
-module.exports = relative = (date) ->
-    if not date?                  then date = new Date
-    if not (date instanceof Date) then date = new Date(date)
-    if Number.isNaN date          then date = new Date
-
-    secs = ((+new Date) - (+date)) / 1000
-    s = Math.abs Math.round(secs % 60)
-    m = Math.abs Math.round((secs % 3600) / 60)
-    h = Math.abs Math.round((secs % 86400) / 3600)
-    d = Math.abs Math.round((secs % (30.5 * 86400)) / 86400)
-    M = Math.abs Math.round((secs % (365 * 86400)) / (30.5 * 86400))
-    y = Math.abs Math.round(secs / (365 * 86400))
-
-
-
-    if Math.abs(secs) is secs
-        switch
-            when secs < 15            then "Just now"
-            when secs < 45            then "#{s} seconds ago"
-            when secs < 90            then "A minute ago"
-            when secs < 60 * 45       then "#{m} minutes ago"
-            when secs < 60 * 90       then "An hour ago"
-            when secs < 22 * 3600     then "#{h} hours ago"
-            when secs < 36 * 3600     then "Yesterday"
-            when secs < 26 * 86400    then "#{d} days ago"
-            when secs < 45 * 86400    then "A month ago"
-            when secs < 320 * 86400   then "#{M} months ago"
-            when secs < 548 * 86400   then "A year ago"
-            else                           "#{y} years ago"
+((name, root, factory) ->
+    # UMD: https://git.io/fjxpW
+    if define?.amd
+        define([], factory)
+    else if module?.exports
+        module.exports = factory()
     else
-        secs = Math.abs(secs)
-        switch
-            when secs < 15            then "Right now"
-            when secs < 45            then "In #{s} seconds"
-            when secs < 90            then "In one minute"
-            when secs < 60 * 45       then "In #{m} minutes"
-            when secs < 60 * 90       then "In an hour"
-            when secs < 22 * 3600     then "In #{h} hours"
-            when secs < 36 * 3600     then "Tomorrow"
-            when secs < 26 * 86400    then "In #{d} days"
-            when secs < 45 * 86400    then "In one month"
-            when secs < 320 * 86400   then "In #{M} months"
-            when secs < 548 * 86400   then "In one year"
-            else                           "In #{y} years"
+        root[name] = factory()
+)('relative', self ? this, ->
+    return (date) ->
+        if not date?                  then date = new Date
+        if not (date instanceof Date) then date = new Date(date)
+        if Number.isNaN date          then date = new Date
 
+        secs = ((+new Date) - (+date)) / 1000
+        s = Math.abs Math.round(secs % 60)
+        m = Math.abs Math.round((secs % 3600) / 60)
+        h = Math.abs Math.round((secs % 86400) / 3600)
+        d = Math.abs Math.round((secs % (30.5 * 86400)) / 86400)
+        M = Math.abs Math.round((secs % (365 * 86400)) / (30.5 * 86400))
+        y = Math.abs Math.round(secs / (365 * 86400))
+
+        if Math.abs(secs) is secs
+            switch
+                when secs < 15            then "Just now"
+                when secs < 45            then "#{s} seconds ago"
+                when secs < 90            then "A minute ago"
+                when secs < 60 * 45       then "#{m} minutes ago"
+                when secs < 60 * 90       then "An hour ago"
+                when secs < 22 * 3600     then "#{h} hours ago"
+                when secs < 36 * 3600     then "Yesterday"
+                when secs < 26 * 86400    then "#{d} days ago"
+                when secs < 45 * 86400    then "A month ago"
+                when secs < 320 * 86400   then "#{M} months ago"
+                when secs < 548 * 86400   then "A year ago"
+                else                           "#{y} years ago"
+        else
+            secs = Math.abs(secs)
+            switch
+                when secs < 15            then "Right now"
+                when secs < 45            then "In #{s} seconds"
+                when secs < 90            then "In one minute"
+                when secs < 60 * 45       then "In #{m} minutes"
+                when secs < 60 * 90       then "In an hour"
+                when secs < 22 * 3600     then "In #{h} hours"
+                when secs < 36 * 3600     then "Tomorrow"
+                when secs < 26 * 86400    then "In #{d} days"
+                when secs < 45 * 86400    then "In one month"
+                when secs < 320 * 86400   then "In #{M} months"
+                when secs < 548 * 86400   then "In one year"
+                else                           "In #{y} years"
+)
 ###
     If the time takes place in the past...
         Range                           Output

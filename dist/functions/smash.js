@@ -45,11 +45,12 @@ seriesMap = {
   "dracula": "Castlevania",
   "persona": "Persona",
   "dragonquest": "Dragon Quest",
-  "banjo_and_kazooie": "Banjo-Kazooie"
+  "banjo_and_kazooie": "Banjo-Kazooie",
+  "garou": "Fatal Fury"
 };
 
 // Map fighters to their names
-fNameMap = ["Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Dr. Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokémon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Mega Man", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Mii Fighter", "Palutena", "PAC-MAN", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie"];
+fNameMap = ["Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Dr. Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokémon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Mega Man", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Mii Fighter", "Palutena", "PAC-MAN", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry"];
 
 root = 'https://www.smashbros.com/assets_v2';
 
@@ -91,7 +92,7 @@ handler = function(msg, match, Haruka) {
     // Falcon, G&W, and Pkmn Trainer include an html <br> element.
     // Get rid of it.
     name = lucky._name || lucky.displayName.en_US.replace(/\<\S[\s\S]*?\>/gi, '').replace(/\s+/g, ' ');
-    url = `https://www.smashbros.com/en_US/fighter/${lucky.url}.html`;
+    url = lucky.url && `https://www.smashbros.com/en_US/fighter/${lucky.url}.html`;
     imgHead = `${root}/img/fighter/pict/${lucky.file}.png`;
     imgPanoramic = `${root}/img/fighter/series/${lucky.file}.png`;
     // Format the name like "21e – Lucina"
@@ -121,7 +122,7 @@ handler = function(msg, match, Haruka) {
       }
     })();
     dlc = (lucky.dlc ? "Yes, give Mr. Sakurai your money." : "No, comes with the game.");
-    embed = new Discord.RichEmbed().setColor(lucky.color).setAuthor(title, imgHead, url).addField('Echo', echo, true).addField('Series', series, true).addField('Frame data', (await fdata), true).addField('DLC', dlc, true).setImage(imgPanoramic);
+    embed = new Discord.RichEmbed().setColor(lucky.color).setAuthor(title, imgHead, url || void 0).addField('Echo', echo, true).addField('Series', series, true).addField('Frame data', (await fdata), true).addField('DLC', dlc, true).setImage(imgPanoramic);
     return msg.channel.send(embed);
   });
 };

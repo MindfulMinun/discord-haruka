@@ -27,7 +27,7 @@ handler = function(msg, match, Haruka) {
     var delta, p;
     p = Haruka.client.ping;
     delta = reply.createdTimestamp - msg.createdTimestamp;
-    return reply.edit(`${reply.content} (WebSocket: ${p}ms, Reaction: ${delta}ms, Delivery: ${delta - p}ms)`);
+    return reply.edit(`${reply.content} (WebSocket: ${p.toFixed(3)}ms, Reaction: ${delta.toFixed(3)}ms, Delivery: ${(delta - p).toFixed(3)}ms)`);
   });
 };
 
