@@ -6,6 +6,22 @@
     See https://semver.org/
 -->
 
+# [Release v3.1.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.0)
+
+- New: Edits
+    - Check out what your friends said before they edited their message.
+- Ping
+    - Ping is now rounded correctly.
+- Smash
+    - Terry's info is displayed correctly.
+- WolframAlpha
+    - Tables are a equally but differently ugly.
+- Version
+    - Lists the number of functions and names them.
+
+
+-----
+
 # Development version v3.1.0
 
 - Functions
