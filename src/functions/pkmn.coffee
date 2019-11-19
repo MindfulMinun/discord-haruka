@@ -43,7 +43,7 @@ handler = (msg, match, Haruka) ->
             you forgot this command’s syntax."
     ].choose()
     [P, species, pkmn] = [{}, null, null]
-    pokeRequest = pokeRequest.replace(/0/g, '')
+    pokeRequest = pokeRequest.replace(/^\s*0/g, '')
 
     #! Fetch pkmn
     r "https://pokeapi.co/api/v2/pokemon-species/#{pokeRequest}/"
