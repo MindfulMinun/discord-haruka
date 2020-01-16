@@ -6,6 +6,19 @@
     See https://semver.org/
 -->
 
+# [Release v3.1.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.1)
+
+- Pokémon
+    - Occasionally, searches with the "0" character would return unexpected results. This has now been fixed.
+- Dab
+    - Dab now catches more variations on the word "dab"
+- GitHub
+    - User Agent changed to something meaninful
+- Smash
+    - Add Byleth to Smash
+
+-----
+
 # Development version v3.1.1
 
 - Change GitHub UA to something meaningful
