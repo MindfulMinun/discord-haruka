@@ -124,6 +124,7 @@ fNameMap = [
     "Hero"
     "Banjo & Kazooie"
     "Terry"
+    "Byleth"
 ]
 
 root = 'https://www.smashbros.com/assets_v2'

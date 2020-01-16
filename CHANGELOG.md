@@ -6,6 +6,13 @@
     See https://semver.org/
 -->
 
+# Development version v3.1.1
+
+- Change GitHub UA to something meaningful
+- Add Byleth to Smash
+
+-----
+
 # [Release v3.1.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.0)
 
 - New: Edits
