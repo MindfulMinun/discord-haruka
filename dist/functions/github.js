@@ -31,7 +31,7 @@ handler = function(msg, match, H) {
     url: "https://api.github.com/repos/" + repo,
     method: "GET",
     headers: {
-      "User-Agent": `Node.js ${process.version} on Ubuntu 16.04`,
+      "User-Agent": require('../package.json').repository,
       "Content-Type": "application/json"
     }
   };
