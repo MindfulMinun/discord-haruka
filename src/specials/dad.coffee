@@ -16,7 +16,7 @@ handler = (msg, Haruka) ->
     if (1 / 10) <= Math.random() then return no
 
     #! Likewise, if they're unlucky, send the reply.
-    reply = msg.content.replace reg, ''
+    reply = msg.content.replace imRegex, ''
     msg.channel?.send [
         "Hey #{reply}, I’m Haruka."
         "Hi #{reply}, I’m Haruka."
