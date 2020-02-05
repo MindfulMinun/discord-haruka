@@ -1,6 +1,6 @@
 {
     "name": "discord-haruka",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "description": "A useless Discord bot.",
     "main": "dist/Haruka.js",
     "repository": "github:MindfulMinun/discord-haruka",

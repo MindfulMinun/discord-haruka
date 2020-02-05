@@ -6,6 +6,10 @@
     See https://semver.org/
 -->
 
+# [Release v3.1.2](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.2)
+
+- Fixed dad.coffee always failing
+
 # [Release v3.1.1](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.1)
 
 - Pokémon
@@ -13,7 +17,7 @@
 - Dab
     - Dab now catches more variations on the word "dab"
 - GitHub
-    - User Agent changed to something meaninful
+    - User Agent changed to something meaningful
 - Smash
     - Add Byleth to Smash
 

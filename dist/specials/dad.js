@@ -20,7 +20,7 @@ handler = function(msg, Haruka) {
     return false;
   }
   //! Likewise, if they're unlucky, send the reply.
-  reply = msg.content.replace(reg, '');
+  reply = msg.content.replace(imRegex, '');
   if ((ref = msg.channel) != null) {
     ref.send([`Hey ${reply}, I’m Haruka.`, `Hi ${reply}, I’m Haruka.`, `Hello ${reply}, I’m Haruka. Nice to meet you.`].choose(), {
       disableEveryone: true
