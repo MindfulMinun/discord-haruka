@@ -35,20 +35,23 @@ handler = (msg, match, H) ->
         .addField "Specials", "
             #{H.specials.map((f) -> f.name).join(', ')}
         "
+        .addField "Server count", "
+            In #{H.client.guilds.size} servers
+        "
         .setFooter "#{H.config.name}@#{H.version}"
         .setTimestamp H.client.readyAt
     msg.channel.send embed
 
 module.exports = {
     name: "Version"
-    regex: /^(version|v)(\s+|$)/i
+    regex: /^(version|v|stats)(\s+|$)/i
     handler: handler
     help:
         hidden: yes
         long: """
             ```asciidoc
             === Help for Version ===
-            *Aliases*: version, v
+            *Aliases*: version, v, stats
             -h version  :: Prints out technical information about Haruka.
             ```
         """

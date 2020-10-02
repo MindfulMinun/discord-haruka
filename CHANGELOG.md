@@ -6,6 +6,14 @@
     See https://semver.org/
 -->
 
+# [Release v3.1.3](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.3)
+
+- Finally updated npm packages lmao
+- Added server count, `stats` alias to Version command
+- Added Min Min and Steve to Smash
+- Haruka collects function usage information
+    - I'm planning on unplugging her, but I wanna see how many servers actually use her before I do ;( 
+
 # [Release v3.1.2](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.2)
 
 - Fixed dad.coffee always failing
