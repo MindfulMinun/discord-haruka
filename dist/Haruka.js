@@ -139,7 +139,7 @@ Haruka = class Haruka {
         // When a function is successful, Haruka sends a message
         // in a secret channel in a secret server with stats about the message
         if (process.env.HARUKA_LOG_GUILD_ID) {
-          embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id}`).setTitle(fn.name).setDescription(msg.content).addField('Sender', msg.author.tag).addField('Guild', ((ref3 = msg.guild) != null ? ref3.name : void 0) || '???').addField('Channel', '#' + (((ref2 = msg.channel) != null ? ref2.name : void 0) || '???')).setFooter(msg.createdAt.slice(0, 19).replace('T', ' ')).setTimestamp(msg.createdAt);
+          embed = new Discord.RichEmbed().setColor('#448aff').setURL(`https://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id}`).setTitle(fn.name).setDescription(msg.content).addField('Sender', msg.author.tag).addField('Guild', ((ref3 = msg.guild) != null ? ref3.name : void 0) || '???').addField('Channel', '#' + (((ref2 = msg.channel) != null ? ref2.name : void 0) || '???')).setFooter(msg.createdAt.toISOString().slice(0, 19).replace('T', ' ')).setTimestamp(msg.createdAt);
           if ((ref4 = this.client.guilds.get(process.env.HARUKA_LOG_GUILD_ID)) != null) {
             if ((ref5 = ref4.channels.get(process.env.HARUKA_LOG_CHANNEL_ID)) != null) {
               ref5.send(embed);

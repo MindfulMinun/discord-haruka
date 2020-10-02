@@ -133,7 +133,7 @@ class Haruka
                         .addField 'Sender', msg.author.tag
                         .addField 'Guild', msg.guild?.name or '???'
                         .addField 'Channel', '#' + (msg.channel?.name or '???')
-                        .setFooter msg.createdAt.slice(0, 19).replace 'T', ' '
+                        .setFooter msg.createdAt.toISOString().slice(0, 19).replace 'T', ' '
                         .setTimestamp msg.createdAt
                 
                     @client.guilds.get(process.env.HARUKA_LOG_GUILD_ID)
