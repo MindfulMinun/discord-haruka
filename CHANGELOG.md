@@ -6,6 +6,10 @@
     See https://semver.org/
 -->
 
+# [Release v3.2.0](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.2.0)
+
+- Added know 'er special. I haven't killed her and it's 2022 lmao.
+
 # [Release v3.1.3](https://github.com/MindfulMinun/discord-haruka/releases/tag/v3.1.3)
 
 - Finally updated npm packages lmao

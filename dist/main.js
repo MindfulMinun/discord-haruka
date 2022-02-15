@@ -104,9 +104,13 @@ process.on('unhandledRejection', function(err) {
     //! Retrieve this array’s first element (for chained calls)
     return this[0];
   };
-  return String.prototype.tokenize = function() {
+  String.prototype.tokenize = function() {
     //! Split this string at the first occurrence of whitespace.
     return this.replace(/\s+/, '\x01').split('\x01');
+  };
+  return String.prototype.capitalize = function() {
+    //! Capitalize the first letter of this string.
+    return this.charAt(0).toUpperCase() + this.slice(1);
   };
 })();
 
