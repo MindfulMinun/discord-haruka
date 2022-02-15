@@ -43,6 +43,8 @@ seriesMap = {
     "dragonquest": "Dragon Quest"
     "banjo_and_kazooie": "Banjo-Kazooie"
     "garou": "Fatal Fury"
+    "arms": "ARMS"
+    "minecraft": "Minecraft"
 }
 
 # Map fighters to their names
@@ -125,6 +127,8 @@ fNameMap = [
     "Banjo & Kazooie"
     "Terry"
     "Byleth"
+    "Min Min"
+    "Steve / Alex"
 ]
 
 root = 'https://www.smashbros.com/assets_v2'

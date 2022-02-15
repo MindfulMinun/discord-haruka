@@ -98,6 +98,9 @@ do ->
     String::tokenize = ->
         #! Split this string at the first occurrence of whitespace.
         this.replace(/\s+/, '\x01').split '\x01'
+    String::capitalize = ->
+        #! Capitalize the first letter of this string.
+        this.charAt(0).toUpperCase() + this.slice(1)
 
 #! ========================================
 #! Finally, log Haruka in.

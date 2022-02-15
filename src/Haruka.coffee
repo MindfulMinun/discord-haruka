@@ -119,6 +119,27 @@ class Haruka
         for fn in @functions
             regexMatch = fn.regex.exec commands
             if regexMatch
+                # 2020-10-01 18:40:13
+                # OK so i'm planning to kill Haruka, but before I do that
+                # I wanna gauge how many people actually use her (besides me)
+                # When a function is successful, Haruka sends a message
+                # in a secret channel in a secret server with stats about the message
+                if process.env.HARUKA_LOG_GUILD_ID
+                    embed = new Discord.RichEmbed()
+                        .setColor '#448aff'
+                        .setURL "https://discordapp.com/channels/#{msg.guild.id}/#{msg.channel.id}/#{msg.id}"
+                        .setTitle fn.name
+                        .setDescription  msg.content
+                        .addField 'Sender', msg.author.tag
+                        .addField 'Guild', msg.guild?.name or '???'
+                        .addField 'Channel', '#' + (msg.channel?.name or '???')
+                        .setFooter msg.createdAt.toISOString().slice(0, 19).replace 'T', ' '
+                        .setTimestamp msg.createdAt
+                
+                    @client.guilds.get(process.env.HARUKA_LOG_GUILD_ID)
+                        ?.channels.get(process.env.HARUKA_LOG_CHANNEL_ID)
+                        ?.send(embed)
+                
                 return fn.handler(msg, regexMatch, @)
 
         # Catchall

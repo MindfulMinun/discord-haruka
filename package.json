@@ -1,6 +1,6 @@
 {
     "name": "discord-haruka",
-    "version": "3.1.2",
+    "version": "3.2.0",
     "description": "A useless Discord bot.",
     "main": "dist/Haruka.js",
     "repository": "github:MindfulMinun/discord-haruka",
@@ -15,14 +15,14 @@
     "author": "MindfulMinun",
     "license": "MIT",
     "dependencies": {
-        "discord.js": "^11.3.2",
-        "dotenv": "^8.0.0",
+        "discord.js": "^11.6.4",
+        "dotenv": "^8.2.0",
         "fuzzysort": "^1.1.4",
-        "request": "^2.87.0",
+        "request": "^2.88.2",
         "uws": "^100.0.1"
     },
     "devDependencies": {
-        "coffeescript": "^2.3.1",
+        "coffeescript": "^2.5.1",
         "foodoc": "0.0.9"
     }
 }
